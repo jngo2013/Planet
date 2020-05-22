@@ -47,6 +47,8 @@ const EventSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
+  host: { type: Schema.Types.ObjectId, ref: 'Comment' },
+  
   
 });
 
