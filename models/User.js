@@ -24,6 +24,14 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Todo',
   }],
+  events: [{
+    type: Schema.Types.ObjectId,
+    ref: 'event'
+  }],
+  attending: [{
+    type: Schema.Types.ObjectId,
+    ref: 'event'
+  }]
 });
 
 UserSchema.methods.toJSON = function() {
