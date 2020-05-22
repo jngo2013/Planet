@@ -11,6 +11,7 @@ import UserTodoList from '../UserTodoList';
 import SignUp from '../SignUp';
 import SignIn from '../SignIn';
 import SignOut from '../SignOut';
+import JoinEvent from '../JoinEvent'
 
 import Navbar from './../../components/Navbar';
 
@@ -28,6 +29,7 @@ class App extends Component {
           <Route exact path='/alltodos' component={AllTodosList}/>
           <Route exact path='/usertodos' component={UserTodoList}/>
           <Route exact path='/counter' component={Counter}/>
+          <Route exact path='/joinEvent' component={JoinEvent}/>
         </Grid.Column>
       </Grid>
     )
