@@ -104,3 +104,5 @@ export default reduxForm({
   asyncValidate,
   asyncChangeFields: ['email']
 })(SignUp);
+
+
