@@ -3,6 +3,7 @@ import { List, Header } from 'semantic-ui-react';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { getAllTodos } from '../../actions/allTodos';
+import ShowEvent from './../../components/ShowEvent'
 
 class AllTodosList extends Component {
 
@@ -30,9 +31,13 @@ class AllTodosList extends Component {
 
   render() {
     return (
-      <List>
-        { this.renderTodoList() }
-      </List>
+      <div>
+        <ShowEvent />
+        <List>
+          { this.renderTodoList() }
+        </List>
+      </div>
+      
     );
   }
 }
