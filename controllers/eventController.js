@@ -1,15 +1,23 @@
-const { Event } = require('../models');
+
+const { User, Event } = require('../models/index');
 
 module.exports = {
-  getEvents: async (req, res) => {
+  
+  joinEvent: async (req, res) => {
+    console.log('im hit')
+    console.log(req.body)
+    const { pin } = req.body
     try {
-      const events = await Event.find();
-      if (!events) {
-        return res.status(200).json({ error: 'No events found' });
+      const findEventToJoin = await Event.find({ pin })
+    
+      if(!findEventToJoin.length) {
+        return res.status(401).json({ error: 'No event found with that pin'})
       }
-      return res.json(events);
-    } catch (error) {
-      return res.status(403).json({ error });
+      return res.json(findEventToJoin)
+
+    } catch (e) {
+      return res.status(403).json({ e });
     }
-  },
-};
+  }
+
+}
