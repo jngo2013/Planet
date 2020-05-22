@@ -18,6 +18,12 @@ module.exports = {
     } catch (e) {
       return res.status(403).json({ e });
     }
+  },
+
+  createEvent: async (req, res) => {
+    console.log("I'm trying to create an event")
+    console.log(req.body)
+    // they're creating a pin and creating an event name
   }
 
 }
