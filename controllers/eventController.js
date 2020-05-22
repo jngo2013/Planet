@@ -1,3 +1,4 @@
+
 const { User, Event } = require('../models/index');
 
 module.exports = {
@@ -24,6 +25,5 @@ module.exports = {
     console.log(req.body)
     // they're creating a pin and creating an event name
   }
-
 
 }

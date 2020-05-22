@@ -1,4 +1,4 @@
-const { User, Todo } = require('../models/index');
+const { User, Todo, Event } = require('../models/index');
 
 module.exports = {
   getAllUserEmails: async (req, res) => {
@@ -25,6 +25,24 @@ module.exports = {
       return res.status(403).json({ e });
     }
   },
+
+  
+  addEvent: async (req, res) => {
+    const { data } = req.body;
+    if (!data) {
+      return res.status(400).json({ error: 'You must provide information of your event' });
+    }
+    try {
+      const newEvents = await new Event({ data, host: req.user._id }).save();
+      req.user.events.push(newEvents);
+      await req.user.save();
+      return res.status(200).json(newEvents);
+    } catch (e) {
+      return res.status(403).json({ e });
+    }
+  },
+  
+
   getUserTodos: async (req, res) => {
     try {
       const todos = await Todo.find({ user: req.user._id });
