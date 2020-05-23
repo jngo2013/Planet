@@ -1,6 +1,6 @@
 const router = require('express').Router();
 // const { signUp, signIn } = require('../../../controllers/authController');
-const { requireSignIn } = require('../../../middlewares/authMiddlewares');
+const { requireAuth } = require('../../../middlewares/authMiddlewares');
 const { joinEvent, createEvent } = require('../../../controllers/eventController')
 const { addMessage } = require('../../../controllers/messageBController')
 // has /api/event prepended to everything
@@ -9,8 +9,8 @@ const { addMessage } = require('../../../controllers/messageBController')
 // router.post('/signup', signUp);
 // router.post('/signin', requireSignIn, signIn);
 
-router.post('/join', joinEvent);
-router.post('/create', createEvent);
+router.post('/join', requireAuth, joinEvent);
+router.post('/create',requireAuth, createEvent);
 
 
 router.post('/', addMessage);

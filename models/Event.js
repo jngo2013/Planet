@@ -1,13 +1,13 @@
 const { Schema, model } = require('mongoose');
 
 const EventSchema = new Schema({
-  text: {
+  title: {
     type: String,
     required: true,
   },
   date: {
     type: Date,
-    default: Date.now(),
+  
   },
   startTime: {
     type: String,
@@ -20,7 +20,7 @@ const EventSchema = new Schema({
     type: String
   },
   attending: [ { type: Schema.Types.ObjectId, ref: 'User' } ],
-  comment: [ { type: Schema.Types.ObjectId, ref: 'Comment' } ],
+  comments: [ { type: Schema.Types.ObjectId, ref: 'Comment' } ],
   quickTips: {
     type: String,
   },
@@ -47,7 +47,7 @@ const EventSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  host: { type: Schema.Types.ObjectId, ref: 'Comment' },
+  host: { type: Schema.Types.ObjectId, ref: 'User' },
   
   
 });
