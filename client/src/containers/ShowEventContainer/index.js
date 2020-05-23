@@ -14,6 +14,10 @@ import ShowEvent from './../../components/ShowEvent';
 // 3.  See if we actually need the ShowEvent component here.  We're actually mapping through an events array and returning an item for every event.
 // 4.  Currently this is connected to the Add Todos form (which will become the Add Events Form)
 // 5.  Pass in props to <ShowEvent /> for the user's name
+// 6.  in the getAllTodos function, the GET request should hit '/api/events'
+// 7.  change the dispatch type to 'GET_ALL_EVENTS'
+// 8.  create a function in the eventController to find all events from the database
+
 
 class ShowEventContainer extends Component {
 
@@ -26,7 +30,7 @@ class ShowEventContainer extends Component {
     if (this.props.todos.length === 0) {
       return <Header content='No todos yet' />
     } else {
-      return this.props.todos.map(({ _id, text, dateCreated }) => {
+      return this.props.todos.map(({ _id, text, dateCreated }) => { // <----- add data from create event form here; put it in a variable so it's cleaner
         return (
           // SAVE FOR REFERENCE!  MAY NEED THIS
           // <List.Item key={_id}>
