@@ -36,13 +36,13 @@ class UserTodoList extends Component {
     }
   }
 
-  renderAddTodo = ({ input, meta, language })=> {
+  renderAddTodo = ({ input, meta })=> {
     return (
       <Form.Input
         {...input}
         error={ meta.touched && meta.error }
         autoComplete='off'
-        placeholder={ language === 'portuguese' ? 'adicione uma tarefa' : 'Add a todo' }
+        placeholder='Event Name'
       />
     );
   }
@@ -60,19 +60,18 @@ class UserTodoList extends Component {
     console.log(this.props.userTodos);
     return (
       <>
-        <Header as='h2' color='teal' textAlign='center' content='Welcome to the todo app'/>
+        <Header as='h2' color='black' textAlign='center' content='Create New Event'/>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           <Segment stacked>
             <Field
               name='text'
               component={this.renderAddTodo}
-              language='portuguese'
             />
             <Button
               type='submit'
               fluid
               color='teal'
-              content='Add a todo'/>
+              content='Create new event'/>
           </Segment>
         </Form>
         <List animated divided selection>

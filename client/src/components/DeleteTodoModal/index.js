@@ -1,22 +1,25 @@
 import React from 'react';
 
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
+import './deletetodomodal.css'
+
 
 export default (props) => (
-  <Modal
+  <Modal className='deleteModal'
     trigger={ <Button color='red' content='Delete' size='small'/> }
     basic
     style={{ width: '450px'}}
   >
-    <Header icon='archive' content='Delete old Todo'/>
+    <Header icon='archive' content='Are you sure you want to delete this event?'/>
     <Modal.Content>
-      <p>Are you sure you want to delete this todo?</p>
+      <p>Are you sure you want to delete this event? All users will be unsubscribed from the event! Are you sure?</p>
       <p>{props.text}</p>
     </Modal.Content>
     <Modal.Actions>
       <Button
         fluid
         negative
+
         onClick={ () => props.handleDelete(props.id)}
       >
         <Icon name='remove'/> Are you sure you want to delete?

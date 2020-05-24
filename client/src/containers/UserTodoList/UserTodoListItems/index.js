@@ -5,7 +5,7 @@ import DeleteTodoModal from './../../../components/DeleteTodoModal';
 
 export default (props) => {
   if (props.todos.length === 0) {
-    return <Header content='No todos yet'/>;
+    return <Header content='No events yet'/>;
   } else {
     return props.todos.map(({_id, text, completed }) => {
       return (
@@ -28,7 +28,7 @@ export default (props) => {
                 <Button
                   color='green'
                   content='Are you sure this is done?'
-                  onClick={ (event) => props.handleUpdate(_id, completed, text)}
+                  onClick={ (event) => props.handleUpdate(_id, completed, text) }
                 />
               }
             />
