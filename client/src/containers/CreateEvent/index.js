@@ -9,7 +9,7 @@ import requireAuth from './../../hoc/requireAuth';
 import DatePicker from 'react-datepicker';
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
-import './styles.css'
+import './createevent.css'
 
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { AUTH_USER } from '../../actions/types';
@@ -52,7 +52,7 @@ import { AUTH_USER } from '../../actions/types';
       <Form.Input className='eventForm'
         {...input}
         fluid
-        label
+        // label
 
         error={ meta.touched && meta.error }
         // icon='user'
@@ -91,19 +91,21 @@ import { AUTH_USER } from '../../actions/types';
 
     const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
-      <div>
+      <div className='eventForm'>
       <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
       <Segment stacked>
+        <h2 align='left'>Name of event</h2>
         <Field
           name='title'
           validate={
             [
-              required({ msg: 'Title is required' })
+              required({ msg: 'Please name your event!' })
             ]
           }
           component={this.renderInput}
         />
-        <Field
+        <h3 align='left'>Date of the event</h3>
+        <Field className='dateField'
           name='date'
           validate={
             [
@@ -111,6 +113,7 @@ import { AUTH_USER } from '../../actions/types';
             ]
           }
           component={this.renderDatePicker}
+
         />
         {/*<Field*/}
         {/*  name='startTime'*/}
@@ -130,7 +133,8 @@ import { AUTH_USER } from '../../actions/types';
         {/*  }*/}
         {/*  component={this.renderInput}*/}
         {/*/>*/}
-        <Field
+        <h3 align='left' >Describe the event for your guests.</h3>
+        <Field className='text-area'
           name='description'
           validate={
             [
@@ -138,8 +142,10 @@ import { AUTH_USER } from '../../actions/types';
             ]
           }
           component={this.renderInput}
+          className='field'
         />
-       
+       <h3 align='left'>4-Digit access code</h3>
+        <p>This will be used for inviting guest who can update the event.</p>
         <Field
           name='pin'
           label='password'
