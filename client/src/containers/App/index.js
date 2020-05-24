@@ -16,6 +16,7 @@ import LandingPage from "../../components/LandingPage";
 import SignUp from '../SignUp';
 import SignIn from '../SignIn';
 import SignOut from '../SignOut';
+import JoinEvent from '../JoinEvent'
 import './app.css'
 
 
