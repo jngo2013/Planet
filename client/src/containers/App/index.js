@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
-
-
 import Counter from './../Counter';
 
 import AllTodosList from '../AllTodosList';
@@ -15,7 +13,8 @@ import SignIn from '../SignIn';
 import SignOut from '../SignOut';
 import JoinEvent from '../JoinEvent'
 import './app.css'
-
+import EventsDashboard from './../../components/EventsDashboard';
+import ShowEventContainer from './../../containers/ShowEventContainer'
 
 
 import Navbar from './../../components/Navbar';
@@ -30,6 +29,7 @@ class App extends Component {
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 700 }}>
             <Navbar authenticated={this.props.authenticated}/>
+            <Route exact path='/' component={LandingPage}/>
             <Route exact path='/createevent' component={CreateEvent}/>
             <Route exact path='/' component={SignUp}/>
             <Route exact path='/signin' component={SignIn}/>
@@ -39,7 +39,6 @@ class App extends Component {
             <Route exact path='/usertodos' component={UserTodoList}/>
             {/* <Route exact path='/message' component={MessageBoard}/> */}
             <Route exact path='/joinEvent' component={JoinEvent}/>
-            <Route exact path='/createevent' component ={CreateEvent}/>
           </Grid.Column>
         </Grid>
 
@@ -48,20 +47,6 @@ class App extends Component {
         <Route exact path='/eventsdashboard' component={EventsDashboard} />
       </div>
       
-
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-        <Grid.Column style={{ maxWidth: 700 }}>
-          <Navbar authenticated={this.props.authenticated}/>
-          <Route exact path='/' component={LandingPage}/>
-          <Route exact path='/' component={SignUp}/>
-          <Route exact path='/createevent' component={CreateEvent}/>
-          <Route exact path='/signout' component={SignOut}/>
-          <Route exact path='/signin' component={SignIn}/>
-          <Route exact path='/alltodos' component={AllTodosList}/>
-          <Route exact path='/usertodos' component={UserTodoList}/>
-
-        </Grid.Column>
-      </Grid>
 
     )
   }
