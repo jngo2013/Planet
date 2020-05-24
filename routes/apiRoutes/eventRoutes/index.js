@@ -13,6 +13,6 @@ router.post('/join', requireAuth, joinEvent);
 router.post('/create',requireAuth, createEvent);
 
 
-router.post('/', addMessage);
+// router.post('/', addMessage);
 
 module.exports = router;
