@@ -1,6 +1,6 @@
 import React from 'react';
 import HeroImage from '../HeroImage';
-import MessageBoard from './../MessageBoard';
+import MessageBoardContainer from './../../containers/MessageBoardContainer';
 import GoogleMap from './../GoogleMap';
 import TasksBox from './../TasksBox';
 import EventDetails from './../EventDetails';
@@ -24,7 +24,7 @@ function EventsDashboard() {
         <Grid>
           <Grid.Row>
             <EventDetails />
-            <Grid.Column width={11}><MessageBoard /></Grid.Column>
+            <Grid.Column width={11}><MessageBoardContainer /></Grid.Column>
             <Grid.Row>
               <Grid.Column><GoogleMap /></Grid.Column>
               <Grid.Column><TasksBox /></Grid.Column>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
-import MessageBoard from "../../components/MessageBoard";
+// import MessageBoard from "../../components/MessageBoard";
 import Counter from './../Counter';
 
 import AllTodosList from '../AllTodosList';
@@ -35,7 +35,7 @@ class App extends Component {
             <Route exact path='/alltodos' component={ShowEventContainer}/>
             {/* <Route exact path='/alltodos' component={AllTodosList}/> */}
             <Route exact path='/usertodos' component={UserTodoList}/>
-            <Route exact path='/message' component={MessageBoard}/>
+            {/* <Route exact path='/message' component={MessageBoard}/> */}
             <Route exact path='/joinEvent' component={JoinEvent}/>
             <Route exact path='/createevent' component ={CreateEvent}/>
           </Grid.Column>
