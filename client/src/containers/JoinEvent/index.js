@@ -3,7 +3,11 @@ import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { Form, Segment, Button } from 'semantic-ui-react';
 import { required } from 'redux-form-validators';
 import axios from 'axios';
-import { AUTH_USER } from '../../actions/types';
+import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
+import requireAuth from './../../hoc/requireAuth';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 
 
 
@@ -12,11 +16,12 @@ class JoinEvent extends Component {
   onSubmit = async (formValues, dispatch) => {
     console.log(formValues.pin)
     try {
-      const { data } = await axios.post('/api/event/join', formValues);
+      const { data } = await axios.post('/api/event/join', formValues, { headers: { 'authorization': localStorage.getItem('token')}});
       localStorage.setItem('currentPin', formValues.pin);
-      // dispatch({ type: AUTH_USER, payload: data.token });
+      // dispatch({ type: ADD_USER_TODO });
       console.log(data)
-      this.props.history.push('/counter');
+      this.props.history.push('/alltodos');
+      // this.props.getUserTodos();
     } catch (e) {
       throw new SubmissionError({
         password: 'Wrong pin',
@@ -27,19 +32,19 @@ class JoinEvent extends Component {
   // set the token coming from data into localStorage under the key 'token'
   // Dispatch the action to the reducer to set the token as the state for authentication
   // Redirect the user to the '/counter' route
-  renderEmail = ({ input, meta }) => {
-    return (
-      <Form.Input
-        {...input}
-        fluid
-        error={ meta.touched && meta.error }
-        icon='user'
-        iconPosition='left'
-        autoComplete='off'
-        placeholder='Email address'
-      />
-    )
-  }
+  // renderEmail = ({ input, meta }) => {
+  //   return (
+  //     <Form.Input
+  //       {...input}
+  //       fluid
+  //       error={ meta.touched && meta.error }
+  //       icon='user'
+  //       iconPosition='left'
+  //       autoComplete='off'
+  //       placeholder='Email address'
+  //     />
+  //   )
+  // }
   renderPassword = ({ input, meta }) => {
     return (
       <Form.Input
@@ -81,4 +86,17 @@ class JoinEvent extends Component {
     )
   }
 }
-export default reduxForm({ form: 'JoinEvent '})(JoinEvent);
+
+function mapStateToProps(state) {
+  return {
+    userTodos: state.todos.userTodos,
+  }
+}
+const composedComponent = compose(
+  reduxForm({ form: 'JoinEvent' }),
+  connect(mapStateToProps, { getUserTodos })
+)(JoinEvent)
+
+// export default requireAuth(connect(mapStateToProps)(JoinEvent));
+// export default requireAuth(reduxForm({ form: 'JoinEvent '})(JoinEvent));
+export default requireAuth(composedComponent);

@@ -37,7 +37,7 @@ class App extends Component {
             <Route exact path='/usertodos' component={UserTodoList}/>
             <Route exact path='/message' component={MessageBoard}/>
             <Route exact path='/joinEvent' component={JoinEvent}/>
-
+            <Route exact path='/createevent' component ={CreateEvent}/>
           </Grid.Column>
         </Grid>
 

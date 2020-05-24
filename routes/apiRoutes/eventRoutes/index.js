@@ -10,7 +10,7 @@ const { addMessage } = require('../../../controllers/messageBController')
 // router.post('/signin', requireSignIn, signIn);
 
 router.post('/join', requireAuth, joinEvent);
-router.post('/create',requireAuth, createEvent);
+router.post('/create', requireAuth, createEvent);
 
 
 // router.post('/', addMessage);
