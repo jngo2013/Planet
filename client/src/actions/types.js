@@ -21,6 +21,7 @@ export const UPDATE_TODO_BY_ID_ERROR = 'UPDATE_TODO_BY_ID_ERROR';
 export const DELETE_TODO_BY_ID = 'DELETE_TODO_BY_ID';
 export const DELETE_TODO_BY_ID_ERROR = 'DELETE_TODO_BY_ID_ERROR';
 
+export const GET_USER_EVENT = 'GET_USER_EVENT';
 
 // Authenticate user action types
 export const AUTH_USER = 'AUTH_USER';

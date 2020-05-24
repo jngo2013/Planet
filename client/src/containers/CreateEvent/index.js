@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { Header, Form, Segment, Message, List, Pagination, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 // import { compose } from 'redux';
@@ -12,7 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import './styles.css'
 
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
-// import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
+import { AUTH_USER } from '../../actions/types';
 
 
 // import UserTodoListItems from './UserTodoListItems';
@@ -35,14 +35,17 @@ import './styles.css'
   
     onSubmit = async (formValues, dispatch) => {
     console.log(formValues);
-    // try {
-    //   const { data } = await axios.post('/api/auth/signup', formValues);
-    //   localStorage.setItem('token', data.token);
-    //   dispatch({ type: AUTH_USER, payload: data.token });
-    //   this.props.history.push('/counter');
-    // } catch (e) {
-    //   dispatch({ type: AUTH_USER_ERROR, payload: e });
-    // }
+    try {
+      const { data } = await axios.post('/api/event/create', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
+      localStorage.setItem('token', data.token);
+      // dispatch({ type: AUTH_USER, payload: data.token });
+      this.props.history.push('/alltodos');
+    } catch (e) {
+      throw new SubmissionError({
+        password: 'Wrong pin',
+        _error: 'No event to join!'
+      });
+    }
   }
   renderInput = ({ input, meta }) => {
     return (
@@ -165,7 +168,7 @@ import './styles.css'
   }
 }
 
-export default reduxForm({
+export default requireAuth(reduxForm({
   form: 'CreateEvent'
-})(CreateEvent);
+})(CreateEvent));
 

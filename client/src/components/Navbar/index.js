@@ -10,6 +10,7 @@ export default (props) => (
     { props.authenticated ? <Menu.Item as={Link} to='/usertodos' content='My Events'/> : null   }
     {/* <Menu.Item as={Link} to='/alltodos' content='See Todos'/> */}
     { props.authenticated ? <Menu.Item as={Link} to='/joinEvent' content='Attend Event'/> : null   }
+    { props.authenticated ? <Menu.Item as={Link} to='/createevent' content='Create Event'/> : null   }
 
   </Menu>
 );
