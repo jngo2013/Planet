@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react'
-<<<<<<< Updated upstream
-// import MessageBoard from "../../components/MessageBoard";
-=======
 
->>>>>>> Stashed changes
+
 import Counter from './../Counter';
 
 import AllTodosList from '../AllTodosList';
@@ -28,7 +25,7 @@ import CreateEvent from "../CreateEvent";
 class App extends Component {
   render() {
     return (
-<<<<<<< Updated upstream
+
       <div>
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 700 }}>
@@ -51,7 +48,6 @@ class App extends Component {
         <Route exact path='/eventsdashboard' component={EventsDashboard} />
       </div>
       
-=======
 
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 700 }}>
@@ -66,7 +62,7 @@ class App extends Component {
 
         </Grid.Column>
       </Grid>
->>>>>>> Stashed changes
+
     )
   }
 }
