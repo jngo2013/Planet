@@ -19,24 +19,33 @@ import Navbar from './../../components/Navbar';
 import ShowEventContainer from './../ShowEventContainer/index'
 import CreateEvent from '../CreateEvent';
 
+import EventsDashboard from './../../components/EventsDashboard';
+
 class App extends Component {
   render() {
     return (
-      <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-        <Grid.Column style={{ maxWidth: 700 }}>
-          <Navbar authenticated={this.props.authenticated}/>
-          <Route exact path='/createevent' component={CreateEvent}/>
-          <Route exact path='/' component={SignUp}/>
-          <Route exact path='/signin' component={SignIn}/>
-          <Route exact path='/signout' component={SignOut}/>
-          <Route exact path='/alltodos' component={ShowEventContainer}/>
-          {/* <Route exact path='/alltodos' component={AllTodosList}/> */}
-          <Route exact path='/usertodos' component={UserTodoList}/>
-          <Route exact path='/message' component={MessageBoard}/>
-          <Route exact path='/joinEvent' component={JoinEvent}/>
+      <div>
+        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+          <Grid.Column style={{ maxWidth: 700 }}>
+            <Navbar authenticated={this.props.authenticated}/>
+            <Route exact path='/createevent' component={CreateEvent}/>
+            <Route exact path='/' component={SignUp}/>
+            <Route exact path='/signin' component={SignIn}/>
+            <Route exact path='/signout' component={SignOut}/>
+            <Route exact path='/alltodos' component={ShowEventContainer}/>
+            {/* <Route exact path='/alltodos' component={AllTodosList}/> */}
+            <Route exact path='/usertodos' component={UserTodoList}/>
+            <Route exact path='/message' component={MessageBoard}/>
+            <Route exact path='/joinEvent' component={JoinEvent}/>
 
-        </Grid.Column>
-      </Grid>
+          </Grid.Column>
+        </Grid>
+
+      {/* // Events Dashboard page */}
+        {/* <Navbar authenticated={this.props.authenticated}/> */}
+        <Route exact path='/eventsdashboard' component={EventsDashboard} />
+      </div>
+      
     )
   }
 }
