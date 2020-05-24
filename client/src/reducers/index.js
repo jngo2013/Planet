@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import counterReducer from './counterReducer';
 import todosReducer from './todosReducer';
 import authReducer from './authReducer';
 import eventReducer from './eventReducer';
@@ -12,7 +11,6 @@ export default combineReducers({
   event: eventReducer,
   auth: authReducer,
   todos: todosReducer,
-  counter: counterReducer,
   form: formReducer.plugin({
     addTodo: (state, action) => {
       switch(action.type) {
