@@ -31,7 +31,11 @@ const UserSchema = new Schema({
   attending: [{
     type: Schema.Types.ObjectId,
     ref: 'event'
-  }]
+  }],
+  messages: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Message'
+  }],
 });
 
 UserSchema.methods.toJSON = function() {

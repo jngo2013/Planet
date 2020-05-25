@@ -4,6 +4,7 @@ const { addMessage } = require('../../../controllers/messageBController')
 const { requireAuth } = require('../../../middlewares/authMiddlewares');
 
 
-router.post('/eventsdashboard', requireAuth, addMessage);
+router.post('/', requireAuth, addMessage);
+
 
 module.exports = router
