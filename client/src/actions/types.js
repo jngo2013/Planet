@@ -28,4 +28,8 @@ export const AUTH_USER = 'AUTH_USER';
 export const AUTH_USER_ERROR = 'AUTH_USER_ERROR';
 
 export const POST_MESSAGE = 'POST_MESSAGE';
-export const POST_MESSAGE_ERROR = 'POST_MESSAGE_ERROR'
+export const POST_MESSAGE_ERROR = 'POST_MESSAGE_ERROR';
+
+// Get messages action types
+export const GET_MESSAGE = 'GET_MESSAGE';
+export const GET_MESSAGE_ERROR = 'GET_MESSAGE_ERROR';

@@ -1,3 +1,149 @@
+
+// ==================================================================
+
+import React, { Component } from 'react';
+import { reduxForm, Field, SubmissionError } from 'redux-form';
+import { Header, Form, Segment, Message, List, Pagination, Button, Comment } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+// import { compose } from 'redux';
+import { length, required } from 'redux-form-validators';
+import axios from 'axios';
+import requireAuth from './../../hoc/requireAuth';
+import DatePicker from 'react-datepicker';
+import moment from "moment";
+
+
+
+// import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
+import { AUTH_USER, POST_MESSAGE, GET_MESSAGE } from '../../actions/types';
+import { getAllMessages } from './../../actions/message';
+
+
+// import UserTodoListItems from './UserTodoListItems';
+
+
+
+class MessageBoardContainer extends Component {
+
+  state = {
+    startDate: new Date()
+  }; handleChange = date => { this.setState({ startDate: date }); };
+
+
+  // NEXT STEPS:
+  // X 1.  connect 'onSubmit' to the backend
+  // X 2.  add the area for messages to show up in
+  // 3.  connect the messages area to the backend to get all messages
+  // ??? 4.  BACKEND BROKEN FIX 052520!!
+  // 5.  create a function to get all of the messages to be rendered into the comments area
+
+  // QUESTIONS TO ASK:
+  // 1.  how do we get all the messages from the database and display them here?
+  // 2.  POST http://localhost:3000/api/dashboard 400 (Bad Request) <--- what on earth is this
+
+  // componentDidMount will go here to get all the messages from the database
+  // componentDidMount(){
+  //   getAllMessages();
+  // }
+
+  onSubmit = async (formValues, dispatch) => {
+    console.log(formValues);
+    try {
+      // change the post route here
+      // const { data } = await axios.post('/api/dashboard', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
+      await axios.post('/api/dashboard', formValues, { headers: { 'authorization': localStorage.getItem('token') } })
+      dispatch({ type: POST_MESSAGE });
+
+      // localStorage.setItem('token', data.token);
+      // dispatch({ type: AUTH_USER, payload: data.token });
+      // this.props.history.push('/alltodos');
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  renderInput = ({ input, meta }) => {
+    return (
+      <div>
+        <Comment.Group>
+          <Header as='h3' dividing>
+            Message Board
+         </Header>
+
+          <Comment>
+            {/* <Comment.Avatar src='/images/avatar/small/matt.jpg' /> */}
+            <Comment.Content>
+              <Comment.Author as='a'>Matt</Comment.Author>
+              <Comment.Metadata>
+                <div>Today at 5:42PM</div>
+              </Comment.Metadata>
+              <Comment.Text>How artistic!</Comment.Text>
+              <Comment.Actions>
+                <Comment.Action>Reply</Comment.Action>
+              </Comment.Actions>
+            </Comment.Content>
+          </Comment>
+
+        </Comment.Group>
+
+        <Form reply>
+          <Form.TextArea
+            {...input}
+            fluid
+            error={meta.touched && meta.error}
+            autoComplete='off'
+            placeholder="Add your comment here"
+          />
+
+          <Button
+            content='Add Reply'
+            labelPosition='left'
+            icon='edit'
+            primary
+            onClick={this.onSubmit}
+          />
+        </Form>
+      </div>
+
+    )
+  }
+
+
+  render() {
+
+    const { handleSubmit, invalid, submitting, submitFailed } = this.props;
+    return (
+      <div>
+        <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
+          <Segment stacked>
+
+            <h2 align='left'>Add Your Message Here</h2>
+
+            <Field
+              name='text'
+              validate={
+                [
+                  required({ msg: 'Please add a message' })
+                ]
+              }
+              component={this.renderInput}
+            />
+
+          </Segment>
+        </Form>
+      </div>
+    )
+  }
+}
+
+export default requireAuth(reduxForm({
+  form: 'CreateEvent'
+})(MessageBoardContainer));
+
+
+
+
+//  ====================== OLD CODE FOR REFERENCE =======================
 // // this is the message board.  use this component in an events page (will probably go in kerry's page).
 // // import this to whatever component you plan on using this in.
 // // POSSIBLE NEXT STEPS FOR THIS COMPONENT:  
@@ -124,112 +270,3 @@
 // export default requireAuth(reduxForm({
 //   form: 'CreateEvent'
 // })(MessageBoardContainer));
-
-
-
-
-// ==================================================================
-
-import React, { Component } from 'react';
-import { reduxForm, Field, SubmissionError } from 'redux-form';
-import { Header, Form, Segment, Message, List, Pagination, Button } from 'semantic-ui-react';
-import { connect } from 'react-redux';
-// import { compose } from 'redux';
-import { length, required} from 'redux-form-validators';
-import axios from 'axios';
-import requireAuth from './../../hoc/requireAuth';
-import DatePicker from 'react-datepicker';
-import moment from "moment";
-
-
-
-// import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
-import { AUTH_USER } from '../../actions/types';
-
-
-// import UserTodoListItems from './UserTodoListItems';
-
-
-
-  class MessageBoardContainer extends Component {
-
-    state = {
-      startDate: new Date()  };   handleChange = date =>
-    {    this.setState({      startDate: date    });  };
-
-
-    // NEXT STEPS:
-    // 1.  connect 'onSubmit' to the backend
-    // 2.  add the area for messages to show up in
-    // 3.  connect the messages area to the backend to get all messages
-    // 4.  BACKEND BROKEN FIX 052520!!
-    onSubmit = async (formValues, event) => {
-      
-      console.log(formValues);
-      try {
-      // change the post route here
-      const { data } = await axios.post('/api/dashboard', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
-      localStorage.setItem('token', data.token);
-
-      // dispatch({ type: AUTH_USER, payload: data.token });
-      // this.props.history.push('/alltodos');
-    } catch (e) {
-      throw e;
-    }
-  }
-  renderInput = ({ input, meta }) => {
-    
-    return (
-     
-      <Form reply>
-          <Form.TextArea 
-            {...input}
-            fluid
-            error={ meta.touched && meta.error }
-            autoComplete='off'
-            placeholder="Add your comment here"
-          />
-
-          <Button 
-            content='Add Reply' 
-            labelPosition='left' 
-            icon='edit' 
-            primary 
-            onClick={this.onSubmit} 
-          />
-      </Form>
-    )
-  }
-
-
-  render() {
-
-    const { handleSubmit, invalid, submitting, submitFailed } = this.props;
-    return (
-      <div>
-        <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-          <Segment stacked>
-
-            <h2 align='left'>Add Your Message Here</h2>
-
-            <Field
-              name='text'
-              validate={
-                [
-                  required({ msg: 'Please add a message' })
-                ]
-              }
-              component={this.renderInput}
-            />
-
-          </Segment>
-        </Form>
-      </div>
-    )
-  }
-}
-
-export default requireAuth(reduxForm({
-  form: 'CreateEvent'
-})(MessageBoardContainer));
-
