@@ -1,6 +1,3 @@
-
-// ==================================================================
-
 import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { Header, Form, Segment, Message, List, Pagination, Button, Comment } from 'semantic-ui-react';
@@ -11,17 +8,12 @@ import axios from 'axios';
 import requireAuth from './../../hoc/requireAuth';
 import DatePicker from 'react-datepicker';
 import moment from "moment";
-
-
-
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { AUTH_USER, POST_MESSAGE, GET_MESSAGE } from '../../actions/types';
 import { getAllMessages } from './../../actions/message';
 
 
 // import UserTodoListItems from './UserTodoListItems';
-
-
 
 class MessageBoardContainer extends Component {
 
@@ -61,7 +53,6 @@ class MessageBoardContainer extends Component {
       throw e;
     }
   }
-
   renderInput = ({ input, meta }) => {
     return (
       <div>
@@ -139,9 +130,6 @@ class MessageBoardContainer extends Component {
 export default requireAuth(reduxForm({
   form: 'CreateEvent'
 })(MessageBoardContainer));
-
-
-
 
 //  ====================== OLD CODE FOR REFERENCE =======================
 // // this is the message board.  use this component in an events page (will probably go in kerry's page).
@@ -270,3 +258,4 @@ export default requireAuth(reduxForm({
 // export default requireAuth(reduxForm({
 //   form: 'CreateEvent'
 // })(MessageBoardContainer));
+
