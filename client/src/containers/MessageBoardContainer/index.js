@@ -163,12 +163,14 @@ import { AUTH_USER } from '../../actions/types';
     // 2.  add the area for messages to show up in
     // 3.  connect the messages area to the backend to get all messages
     // 4.  BACKEND BROKEN FIX 052520!!
-    onSubmit = async (formValues, dispatch) => {
-    console.log(formValues);
-    try {
+    onSubmit = async (formValues, event) => {
+      event.preventDefault()
+      console.log(formValues);
+      try {
       // change the post route here
       const { data } = await axios.post('/api/dashboard', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
       localStorage.setItem('token', data.token);
+
       // dispatch({ type: AUTH_USER, payload: data.token });
       // this.props.history.push('/alltodos');
     } catch (e) {
@@ -210,7 +212,7 @@ import { AUTH_USER } from '../../actions/types';
             <h2 align='left'>Add Your Message Here</h2>
 
             <Field
-              name='message'
+              name='text'
               validate={
                 [
                   required({ msg: 'Please add a message' })
