@@ -5,13 +5,16 @@ module.exports = {
   
   joinEvent: async (req, res) => {
     const { pin } = req.body
+
     try {
       const findEventToJoin = await Event.find({ pin })
-    
+      const joinedEventId = findEventToJoin._id
       if(!findEventToJoin.length) {
         return res.status(401).json({ error: 'No event found with that pin'})
       }
-      return res.json(findEventToJoin)
+      const joinAttending = await Event.findByIdAndUpdate(joinedEventId, { $push: { attending: req.user._id }})
+
+      return res.json(joinAttending)
 
     } catch (e) {
       return res.status(403).json({ e });
@@ -24,14 +27,35 @@ module.exports = {
       return res.status(400).json({ error: 'You must input a title, description, date, and pin!'})
     }
     try {
+      const existingPin = await Event.findOne({ pin });
+      if(existingPin) { return res.status(403).json({ error: 'Pin Already Exists'})}
+
       const newEvent = await new Event({ title, description, date, pin, host: req.user._id }).save();
-      req.user.todos.push(newEvent)
-      await req.user.save()
-      return res.status(200).json(newEvent)
+      
+      const newEventId = newEvent._id
+
+// pushing the user's specific ID into the attending field 
+      const updateAttending = await Event.findByIdAndUpdate(newEventId, { $push: { attending: req.user._id }})
+      
+      // await req.user.save()
+      return res.status(200).json(updateAttending)
     } catch (e) {
       return res.status(403).json ({ e })
     }
     // they're creating a pin and creating an event name
-  }
+  },
+
+  getEvent: async (req, res) => {
+    console.log("you made it to getEvent Function")
+    console.log(req.user._id)
+    try {
+      const events = await Event.find({ attending: req.user._id })
+      console.log(events)
+      return res.json(events)
+
+    } catch (e) {
+      return res.status(403).json({ e })
+    }
+  },
 
 }
