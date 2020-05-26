@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
-import { Header, Form, Segment, Message, List, Pagination, Button } from 'semantic-ui-react';
+import { Header, Form, Segment, Message, List, Pagination, Button, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 // import { compose } from 'redux';
 import { length, required} from 'redux-form-validators';
@@ -19,21 +19,21 @@ import { AUTH_USER } from '../../actions/types';
 
 
 
-  class CreateEvent extends Component {
+class CreateEvent extends Component {
 
-    state = {
-      startDate: new Date()  };   handleChange = date =>
-    {    this.setState({      startDate: date    });  };
+  state = {
+    startDate: new Date()  };   handleChange = date =>
+  {    this.setState({      startDate: date    });  };
 
 
-    // state = {
-    //   currentDate: new Date()
-    //
-    // }
-  
-  
-  
-    onSubmit = async (formValues, dispatch) => {
+  // state = {
+  //   currentDate: new Date()
+  //
+  // }
+
+
+
+  onSubmit = async (formValues, dispatch) => {
     console.log(formValues);
     try {
       const { data } = await axios.post('/api/event/create', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
@@ -50,41 +50,41 @@ import { AUTH_USER } from '../../actions/types';
   renderInput = ({ input, meta }) => {
     return (
       <Form.Input className='eventForm'
-        {...input}
-        fluid
+                  {...input}
+                  fluid
         // label
 
-        error={ meta.touched && meta.error }
+                  error={ meta.touched && meta.error }
         // icon='user'
         // iconPosition='left'
-        autoComplete='off'
-        placeholder='Do not leave blank'
+                  autoComplete='off'
+                  placeholder='Do not leave blank'
       />
     )
   }
 
-    renderPassword = ({ input, meta }) => {
-      return (
-        <Form.Input
-          {...input}
-          type='password'
-          fluid
-          error={ meta.touched && meta.error }
-          icon='lock'
-          iconPosition='left'
-          autoComplete='off'
-          placeholder='PIN'
-        />
-      )
-    }
+  renderPassword = ({ input, meta }) => {
+    return (
+      <Form.Input
+        {...input}
+        type='password'
+        fluid
+        error={ meta.touched && meta.error }
+        icon='lock'
+        iconPosition='left'
+        autoComplete='off'
+        placeholder='PIN'
+      />
+    )
+  }
 
 
 
   renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => (
-    <>
-          <DatePicker {...input} dateForm="MM/DD/YYYY" selected={this.state.startDate} />
-          {touched && error && <span>{error}</span>}
-    </>
+    <div>
+      <DatePicker {...input} dateForm="MM/DD/YYYY" selected={this.state.startDate} />
+      {touched && error && <span>{error}</span>}
+    </div>
   );
 
   render() {
@@ -92,84 +92,97 @@ import { AUTH_USER } from '../../actions/types';
     const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
       <div className='eventForm'>
-      <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-      <Segment stacked>
-        <h2 align='left'>Name of event</h2>
-        <Field
-          name='title'
-          validate={
-            [
-              required({ msg: 'Please name your event!' })
-            ]
-          }
-          component={this.renderInput}
-        />
-        <h3 align='left'>Date of the event</h3>
-        <Field className='dateField'
-          name='date'
-          validate={
-            [
-              required({ msg: 'Date of event required' })
-            ]
-          }
-          component={this.renderDatePicker}
+        <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
+          <Segment stacked>
+            <h2 align='left'>Name of event</h2>
+            <Field
+              name='title'
+              validate={
+                [
+                  required({ msg: 'Please name your event!' })
+                ]
+              }
+              component={this.renderInput}
+            />
+            <h3 align='left'>Date of the event</h3>
+            <Field className='dateField'
+                   name='date'
+                   validate={
+                     [
+                       required({ msg: 'Date of event required' })
+                     ]
+                   }
+                   component={this.renderDatePicker}
 
-        />
-        {/*<Field*/}
-        {/*  name='startTime'*/}
-        {/*  validate={*/}
-        {/*    [*/}
-        {/*      required({ msg: 'Start-time required' })*/}
-        {/*    ]*/}
-        {/*  }*/}
-        {/*  component={this.renderInput}*/}
-        {/*/>*/}
-        {/*<Field*/}
-        {/*  name='finishTime'*/}
-        {/*  validate={*/}
-        {/*    [*/}
-        {/*      required({ msg: 'Finish-time is required' })*/}
-        {/*    ]*/}
-        {/*  }*/}
-        {/*  component={this.renderInput}*/}
-        {/*/>*/}
-        <h3 align='left' >Describe the event for your guests.</h3>
-        <Field className='text-area'
-          name='description'
-          validate={
-            [
-              required({ msg: 'Description is required' })
-            ]
-          }
-          component={this.renderInput}
-          className='field'
-        />
-       <h3 align='left'>4-Digit access code</h3>
-        <p>This will be used for inviting guest who can update the event.</p>
-        <Field
-          name='pin'
-          label='password'
+            />
+            {/*<Field*/}
+            {/*  name='startTime'*/}
+            {/*  validate={*/}
+            {/*    [*/}
+            {/*      required({ msg: 'Start-time required' })*/}
+            {/*    ]*/}
+            {/*  }*/}
+            {/*  component={this.renderInput}*/}
+            {/*/>*/}
+            {/*<Field*/}
+            {/*  name='finishTime'*/}
+            {/*  validate={*/}
+            {/*    [*/}
+            {/*      required({ msg: 'Finish-time is required' })*/}
+            {/*    ]*/}
+            {/*  }*/}
+            {/*  component={this.renderInput}*/}
+            {/*/>*/}
+            <h3 align='left' >Describe the event for your guests.</h3>
+            <Field className='text-area'
+                   name='description'
+                   validate={
+                     [
+                       required({ msg: 'Description is required' })
+                     ]
+                   }
+                   component={this.renderInput}
+                   className='field'
+            />
+            <h3 align='left'>4-Digit access code</h3>
+            <p>This will be used for inviting guest who can update the event.</p>
+            <Field
+              name='pin'
+              label='password'
 
-          validate={
-            [
-              required({ msg: '4-digit pin is required' }),
-              length({ minimum: 4, maximum: 4, msg: 'example: 0000'})
-            ]
-          }
-          component={this.renderPassword}
-        />
-       
-        <Button
-          content='Create Event'
-          color='violet'
-          fluid
-          size='large'
-          type='submit'
-          disabled={ invalid || submitting || submitFailed }
-        />
-      </Segment>
-    </Form>
-  </div>
+              validate={
+                [
+                  required({ msg: '4-digit pin is required' }),
+                  length({ minimum: 4, maximum: 4, msg: 'example: 0000'})
+                ]
+              }
+              component={this.renderPassword}
+            />
+
+            <Button
+              content='Create Event'
+              color='violet'
+
+              size='large'
+              type='submit'
+              disabled={ invalid || submitting || submitFailed }
+            />
+            <Button
+              content='Reset'
+              color='red'
+              floated
+              negative
+              size='large'
+            />
+            <Button animated>
+              <Button.Content visible>Next</Button.Content>
+              <Button.Content hidden>
+                <Icon name='arrow right' />
+              </Button.Content>
+            </Button>
+          </Segment>
+        </Form>
+      </div>
     )
   }
 }

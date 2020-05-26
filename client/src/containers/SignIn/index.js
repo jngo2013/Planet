@@ -4,6 +4,7 @@ import { Form, Segment, Button } from 'semantic-ui-react';
 import { email, required } from 'redux-form-validators';
 import axios from 'axios';
 import { AUTH_USER } from '../../actions/types';
+import './signin.css'
 
 
 
@@ -56,10 +57,12 @@ class SignIn extends Component {
   render() {
     const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
+  <div className='image'>
       <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
         <Segment stacked>
           <Field
             name='email'
+
             component={this.renderEmail}
             validate={
               [
@@ -87,6 +90,7 @@ class SignIn extends Component {
           />
         </Segment>
       </Form>
+  </div>
     )
   }
 }
