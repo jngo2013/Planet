@@ -7,6 +7,8 @@ import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 import requireAuth from './../../hoc/requireAuth';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { ADD_USER_EVENT } from '../../actions/types'
+import { getUserEvents } from '../../actions/eventActions'
 import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 
 
@@ -18,8 +20,11 @@ class JoinEvent extends Component {
     try {
       const { data } = await axios.post('/api/event/join', formValues, { headers: { 'authorization': localStorage.getItem('token')}});
       localStorage.setItem('currentPin', formValues.pin);
+      // localStorage.setItem('token', data.token);
       // dispatch({ type: ADD_USER_TODO });
-      console.log(data)
+      dispatch({ type: ADD_USER_EVENT })
+      this.props.getUserEvents();
+      
       this.props.history.push('/alltodos');
       // this.props.getUserTodos();
     } catch (e) {
@@ -89,12 +94,12 @@ class JoinEvent extends Component {
 
 function mapStateToProps(state) {
   return {
-    userTodos: state.todos.userTodos,
+    userEvents: state.event.userEvents,
   }
 }
 const composedComponent = compose(
   reduxForm({ form: 'JoinEvent' }),
-  connect(mapStateToProps, { getUserTodos })
+  connect(mapStateToProps, { getUserEvents })
 )(JoinEvent)
 
 // export default requireAuth(connect(mapStateToProps)(JoinEvent));

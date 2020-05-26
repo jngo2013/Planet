@@ -12,6 +12,9 @@ import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../
 import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 
 
+import { ADD_USER_EVENT } from '../../actions/types'
+import { getUserEvents, deleteUserEvent } from '../../actions/eventActions'
+
 import UserTodoListItems from './UserTodoListItems';
 
 class UserTodoList extends Component {
@@ -23,7 +26,7 @@ class UserTodoList extends Component {
 
 
   componentDidMount() {
-    this.props.getUserTodos();
+    this.props.getUserEvents();
   }
 
   onSubmit = async (formValues, dispatch) => {
@@ -76,15 +79,15 @@ class UserTodoList extends Component {
         </Form>
         <List animated divided selection>
           <UserTodoListItems
-            todos={this.props.userTodos.slice(this.state.start, this.state.end)}
+            events={this.props.userEvents.slice(this.state.start, this.state.end)}
             handleDelete={this.props.deleteTodoById}
             handleUpdate={this.props.updateCompleteUserTodoById}
           />
         </List>
-        { this.props.userTodos.length === 0 ?
+        { this.props.userEvents.length === 0 ?
           null
           : <Pagination
-            totalPages={ Math.ceil(this.props.userTodos.length / 10) }
+            totalPages={ Math.ceil(this.props.userEvents.length / 10) }
             activePage={this.state.activePage}
             onPageChange={ (e, data) => this.handlePageChange(e, data) }
           />
@@ -98,7 +101,8 @@ function mapStateToProps(state) {
   return {
     userTodos: state.todos.userTodos,
     todoClientError: state.todos.getUserTodosClientError,
-    todoServerError: state.todos.getUserTodosServerError
+    todoServerError: state.todos.getUserTodosServerError,
+    userEvents: state.event.userEvents
   };
 };
 
@@ -111,7 +115,7 @@ function mapStateToProps(state) {
 
 const composedComponent =  compose(
   reduxForm({ form: 'addTodo' }),
-  connect(mapStateToProps, { getUserTodos, updateCompleteUserTodoById, deleteTodoById })
+  connect(mapStateToProps, { getUserEvents, getUserTodos, updateCompleteUserTodoById, deleteTodoById })
 )(UserTodoList);
 
 

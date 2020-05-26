@@ -10,9 +10,13 @@ import DatePicker from 'react-datepicker';
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import './createevent.css'
+import { compose } from 'redux';
 
+import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
+import { getUserEvents } from '../../actions/eventActions'
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
-import { AUTH_USER } from '../../actions/types';
+import { ADD_USER_EVENT } from '../../actions/types'
+import { AUTH_USER, ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 
 
 // import UserTodoListItems from './UserTodoListItems';
@@ -37,8 +41,9 @@ class CreateEvent extends Component {
     console.log(formValues);
     try {
       const { data } = await axios.post('/api/event/create', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
-      localStorage.setItem('token', data.token);
-      // dispatch({ type: AUTH_USER, payload: data.token });
+
+      dispatch({ type: ADD_USER_EVENT })
+      this.props.getUserEvents();
       this.props.history.push('/alltodos');
     } catch (e) {
       throw new SubmissionError({
@@ -187,7 +192,22 @@ class CreateEvent extends Component {
   }
 }
 
-export default requireAuth(reduxForm({
-  form: 'CreateEvent'
-})(CreateEvent));
+// export default requireAuth(reduxForm({
+//   form: 'CreateEvent'
+// }),
+// connect(mapStateToProps, { getUserTodos, updateCompleteUserTodoById, deleteTodoById })
+// (CreateEvent));
+function mapStateToProps(state) {
+  return {
+    userEvents: state.event.userEvents,
+    
+  }
+}
+
+const composedComponent = compose(
+  reduxForm({ form: 'CreateEvent'}),
+  connect(mapStateToProps, { getUserEvents })
+)(CreateEvent)
+
+export default requireAuth(composedComponent)
 
