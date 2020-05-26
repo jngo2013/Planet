@@ -11,6 +11,7 @@ import moment from "moment";
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { AUTH_USER, POST_MESSAGE, GET_MESSAGE } from '../../actions/types';
 import { getAllMessages } from './../../actions/message';
+import './messageboard.css';
 
 
 // import UserTodoListItems from './UserTodoListItems';
@@ -104,7 +105,7 @@ class MessageBoardContainer extends Component {
 
     const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
-      <div>
+      <div className='test'>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           <Segment stacked>
 
