@@ -2,12 +2,12 @@
 
 import React from 'react'
 import { Container, Header } from 'semantic-ui-react'
-
+import './eventdetails.css';
 
 const EventDetails = () => (
   <div>
     <Container fluid textAlign='left'>
-      <Header as='h2' textAlign='left'>EVENT NAME WILL GO HERE</Header>
+      <Header as='h1' textAlign='left' className='header'>EVENT NAME WILL GO HERE</Header>
       <p>
         Domestic dogs inherited complex behaviors, such as bite inhibition, from
         their wolf ancestors, which would have been pack hunters with complex

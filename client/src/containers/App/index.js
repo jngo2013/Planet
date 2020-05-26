@@ -26,17 +26,18 @@ class App extends Component {
 
       <div>
         <Navbar authenticated={this.props.authenticated}/>
-        {/*<div>*/}
-        {/*  <div className='sideBuffer'>*/}
+        <Route exact path='/eventsdashboard' component={EventsDashboard} />
+        <div>
+          <div className='sideBuffer'>
 
-        {/*  </div>*/}
-        {/*</div>*/}
-        {/*<div className="sidenav">*/}
-        {/*  <a href="#about">About</a>*/}
-        {/*  <a href="#services">Services</a>*/}
-        {/*  <a href="#clients">Clients</a>*/}
-        {/*  <a href="#contact">Contact</a>*/}
-        {/*</div>*/}
+          </div>
+        </div>
+        <div className="sidenav">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#clients">Clients</a>
+          <a href="#contact">Contact</a>
+        </div>
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 1000 }}>
             <Route exact path='/' component={LandingPage}/>
@@ -56,7 +57,7 @@ class App extends Component {
 
       {/* // Events Dashboard page */}
         {/* <Navbar authenticated={this.props.authenticated}/> */}
-        <Route exact path='/eventsdashboard' component={EventsDashboard} />
+
       </div>
       
 

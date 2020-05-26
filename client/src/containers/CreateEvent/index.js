@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
-import { Header, Form, Segment, Message, List, Pagination, Button, Icon } from 'semantic-ui-react';
+import { Header, Form, Segment, Message, List, Pagination, Button, Icon, Container, Grid, GridColumn, GridProps, GridRow } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 // import { compose } from 'redux';
 import { length, required} from 'redux-form-validators';
