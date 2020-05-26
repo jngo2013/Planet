@@ -60,8 +60,8 @@ class CreateEvent extends Component {
         // label
 
                   error={ meta.touched && meta.error }
-        // icon='user'
-        // iconPosition='left'
+        icon='file'
+        iconPosition='left'
                   autoComplete='off'
                   placeholder='Do not leave blank'
       />
@@ -75,7 +75,7 @@ class CreateEvent extends Component {
         type='password'
         fluid
         error={ meta.touched && meta.error }
-        icon='lock'
+        icon='key'
         iconPosition='left'
         autoComplete='off'
         placeholder='PIN'
@@ -86,7 +86,7 @@ class CreateEvent extends Component {
 
 
   renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => (
-    <div>
+    <div className='customDatePickerWidth'>
       <DatePicker {...input} dateForm="MM/DD/YYYY" selected={this.state.startDate} />
       {touched && error && <span>{error}</span>}
     </div>
@@ -94,7 +94,7 @@ class CreateEvent extends Component {
 
   render() {
 
-    const { handleSubmit, invalid, submitting, submitFailed } = this.props;
+    const { handleSubmit, invalid, submitting, submitFailed, pristine, reset } = this.props;
     return (
       <div className='eventForm'>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
@@ -178,6 +178,9 @@ class CreateEvent extends Component {
               floated
               negative
               size='large'
+             type='button'
+              active={ pristine || submitting }
+              onClick={reset}
             />
             <Button animated>
               <Button.Content visible>Next</Button.Content>
