@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
-const { addMessage } = require('../../../controllers/messageBController')
+const { addMessage, getAllMessages } = require('../../../controllers/messageBController')
 const { requireAuth } = require('../../../middlewares/authMiddlewares');
 
 
 router.post('/', requireAuth, addMessage);
 
-
+router.get('/', requireAuth, getAllMessages)
 module.exports = router

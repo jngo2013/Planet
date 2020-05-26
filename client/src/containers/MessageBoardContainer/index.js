@@ -164,7 +164,7 @@ import { AUTH_USER } from '../../actions/types';
     // 3.  connect the messages area to the backend to get all messages
     // 4.  BACKEND BROKEN FIX 052520!!
     onSubmit = async (formValues, event) => {
-      event.preventDefault()
+      
       console.log(formValues);
       try {
       // change the post route here
@@ -178,6 +178,7 @@ import { AUTH_USER } from '../../actions/types';
     }
   }
   renderInput = ({ input, meta }) => {
+    
     return (
      
       <Form reply>
