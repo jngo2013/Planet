@@ -14,8 +14,8 @@ import JoinEvent from '../JoinEvent'
 import './app.css'
 import EventsDashboard from './../../components/EventsDashboard';
 import ShowEventContainer from './../../containers/ShowEventContainer'
-
-
+import Form from './../../components/Form/index'
+import "react-datepicker/dist/react-datepicker.css";
 import Navbar from './../../components/Navbar';
 import CreateEvent from "../CreateEvent";
 
@@ -25,10 +25,22 @@ class App extends Component {
     return (
 
       <div>
+        <Navbar authenticated={this.props.authenticated}/>
+        {/*<div>*/}
+        {/*  <div className='sideBuffer'>*/}
+
+        {/*  </div>*/}
+        {/*</div>*/}
+        {/*<div className="sidenav">*/}
+        {/*  <a href="#about">About</a>*/}
+        {/*  <a href="#services">Services</a>*/}
+        {/*  <a href="#clients">Clients</a>*/}
+        {/*  <a href="#contact">Contact</a>*/}
+        {/*</div>*/}
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 700 }}>
-            <Navbar authenticated={this.props.authenticated}/>
+          <Grid.Column style={{ maxWidth: 1000 }}>
             <Route exact path='/' component={LandingPage}/>
+            <Route exact path='/testform' component={Form}/>
             <Route exact path='/createevent' component={CreateEvent}/>
             <Route exact path='/' component={SignUp}/>
             <Route exact path='/signin' component={SignIn}/>
@@ -38,6 +50,7 @@ class App extends Component {
             <Route exact path='/usertodos' component={UserTodoList}/>
             {/* <Route exact path='/message' component={MessageBoard}/> */}
             <Route exact path='/joinEvent' component={JoinEvent}/>
+
           </Grid.Column>
         </Grid>
 
@@ -52,7 +65,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return { authenticated: state.auth.authenticated };
+  return {authenticated: state.auth.authenticated};
 }
 
 export default connect(mapStateToProps)(App);
