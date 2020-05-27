@@ -11,6 +11,7 @@ import SignUp from '../SignUp';
 import SignIn from '../SignIn';
 import SignOut from '../SignOut';
 import JoinEvent from '../JoinEvent'
+import Sidebar from './../../components/Sidebar';
 import './app.css'
 import EventsDashboard from './../../components/EventsDashboard';
 import ShowEventContainer from './../../containers/ShowEventContainer'
@@ -26,18 +27,10 @@ class App extends Component {
 
       <div>
         <Navbar authenticated={this.props.authenticated}/>
+        <Sidebar />
         <Route exact path='/eventsdashboard' component={EventsDashboard} />
-        {/*<div>*/}
-        {/*  <div className='sideBuffer'>*/}
 
-        {/*  </div>*/}
-        {/*</div>*/}
-        {/*<div className="sidenav">*/}
-        {/*  <a href="#about">About</a>*/}
-        {/*  <a href="#services">Services</a>*/}
-        {/*  <a href="#clients">Clients</a>*/}
-        {/*  <a href="#contact">Contact</a>*/}
-        {/*</div>*/}
+
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 1000 }}>
             <Route exact path='/' component={LandingPage}/>
