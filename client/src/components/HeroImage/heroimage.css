@@ -1,9 +1,7 @@
 .hero-image {
     opacity: 70%;
-    width: 100%;
-    height: 50%;
+    /* width: 90%; */
     background-size: cover;
-
 }
 
 

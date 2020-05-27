@@ -27,7 +27,8 @@ class App extends Component {
       <div>
         <Navbar authenticated={this.props.authenticated}/>
         <Route exact path='/eventsdashboard' component={EventsDashboard} />
-        <div>
+
+        {/* <div>
           <div className='sideBuffer'>
 
           </div>
@@ -37,7 +38,8 @@ class App extends Component {
           <a href="#services">Services</a>
           <a href="#clients">Clients</a>
           <a href="#contact">Contact</a>
-        </div>
+        </div> */}
+
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 1000 }}>
             <Route exact path='/' component={LandingPage}/>
