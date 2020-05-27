@@ -6,11 +6,10 @@ import { connect } from 'react-redux';
 import { length, required } from 'redux-form-validators';
 import axios from 'axios';
 import requireAuth from './../../hoc/requireAuth';
-import DatePicker from 'react-datepicker';
-import moment from "moment";
+
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { AUTH_USER, POST_MESSAGE, GET_MESSAGE } from '../../actions/types';
-import { getAllMessages } from './../../actions/message';
+// import { getAllMessages } from './../../actions/message';
 import './messageboard.css';
 
 

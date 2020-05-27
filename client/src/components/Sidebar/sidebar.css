@@ -7,7 +7,7 @@ body {
     padding: 0;
     width: 200px;
     background-color: #f1f1f1;
-    position: fixed;
+    position: relative;
     height: 100%;
     overflow: auto;
 }
@@ -25,11 +25,11 @@ body {
     background-color: #555;
     color: white;
 }
-div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-}
+/*div.content {*/
+/*    margin-left: 200px;*/
+/*    padding: 1px 16px;*/
+/*    height: 1000px;*/
+/*}*/
 @media screen and (max-width: 1080px) {
     .sidebar {
         width: 100%;
@@ -52,3 +52,4 @@ div.content {
         float: none;
     }
 }
+

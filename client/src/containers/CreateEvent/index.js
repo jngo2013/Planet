@@ -12,7 +12,7 @@ import moment from 'moment';
 import './createevent.css'
 import { compose } from 'redux';
 import "react-datepicker/dist/react-datepicker.css";
-import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
+// import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { getUserEvents } from '../../actions/eventActions'
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { ADD_USER_EVENT } from '../../actions/types'
@@ -104,7 +104,7 @@ class CreateEvent extends Component {
 
     const { handleSubmit, invalid, submitting, submitFailed, pristine, reset } = this.props;
     return (
-      <div className='eventForm'>
+      <Container className='eventForm'>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           <Segment stacked>
             <h2 align='left'>Name of event</h2>
@@ -129,24 +129,6 @@ class CreateEvent extends Component {
                    component={this.renderDatePicker}
 
             />
-            {/*<Field*/}
-            {/*  name='startTime'*/}
-            {/*  validate={*/}
-            {/*    [*/}
-            {/*      required({ msg: 'Start-time required' })*/}
-            {/*    ]*/}
-            {/*  }*/}
-            {/*  component={this.renderInput}*/}
-            {/*/>*/}
-            {/*<Field*/}
-            {/*  name='finishTime'*/}
-            {/*  validate={*/}
-            {/*    [*/}
-            {/*      required({ msg: 'Finish-time is required' })*/}
-            {/*    ]*/}
-            {/*  }*/}
-            {/*  component={this.renderInput}*/}
-            {/*/>*/}
             <h3 align='left' >Describe the event for your guests.</h3>
             <Field className='text-area'
                    name='description'
@@ -174,32 +156,37 @@ class CreateEvent extends Component {
             />
 
             <Button
-              content='Create Event'
-              color='violet'
-
-              size='large'
+              animated
               type='submit'
-              disabled={ invalid || submitting || submitFailed }
-            />
-            <Button
-              content='Reset'
-              color='red'
-              floated
-              negative
               size='large'
-             type='button'
-              active={ pristine || submitting }
-              onClick={reset}
-            />
-            <Button animated>
-              <Button.Content visible>Next</Button.Content>
+
+              color='facebook'
+              disabled={ invalid || submitting || submitFailed }
+
+            >
+              <Button.Content visible>Create Event</Button.Content>
               <Button.Content hidden>
                 <Icon name='arrow right' />
               </Button.Content>
             </Button>
+            <Button
+                    animated
+                    type='button'
+                    size='large'
+
+                    color='red'
+                    disabled={ invalid || submitting || submitFailed }
+
+            >
+              <Button.Content visible>Reset Event</Button.Content>
+              <Button.Content hidden>
+                <Icon name='long arrow alternate left' />
+              </Button.Content>
+            </Button>
+
           </Segment>
         </Form>
-      </div>
+      </Container>
     )
   }
 }
