@@ -7,11 +7,11 @@ import { length, required} from 'redux-form-validators';
 import axios from 'axios';
 import requireAuth from './../../hoc/requireAuth';
 import DatePicker from 'react-datepicker';
-import moment from "moment";
-import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
+
 import './createevent.css'
 import { compose } from 'redux';
-
+import "react-datepicker/dist/react-datepicker.css";
 import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { getUserEvents } from '../../actions/eventActions'
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
@@ -25,15 +25,28 @@ import { AUTH_USER, ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/typ
 
 class CreateEvent extends Component {
 
+
   state = {
-    startDate: new Date()  };   handleChange = date =>
-  {    this.setState({      startDate: date    });  };
+    startDate: ''
+  };
 
+  handleSelect = date => {
+    this.setState({      startDate: date    });
+  };
 
-  // state = {
-  //   currentDate: new Date()
-  //
-  // }
+  renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => (
+    <div className='customDatePickerWidth'>
+      <Form.Input error={ touched && error }>
+      <DatePicker className='dateForm' {...input} dateForm="MM/DD/YYYY" selected={this.state.startDate} onSelect={this.handleSelect} />
+      {/*{touched && error && <span>{error}</span>}*/}
+      </Form.Input>
+     </div>
+  );
+
+  componentDidMount(prevProps, prevState, snapshot) {
+    this.setState({startDate: new Date() })
+
+  }
 
 
 
@@ -57,7 +70,7 @@ class CreateEvent extends Component {
       <Form.Input className='eventForm'
                   {...input}
                   fluid
-        // label
+
 
                   error={ meta.touched && meta.error }
         icon='file'
@@ -72,7 +85,7 @@ class CreateEvent extends Component {
     return (
       <Form.Input
         {...input}
-        type='password'
+        type='text'
         fluid
         error={ meta.touched && meta.error }
         icon='key'
@@ -85,12 +98,7 @@ class CreateEvent extends Component {
 
 
 
-  renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => (
-    <div className='customDatePickerWidth'>
-      <DatePicker {...input} dateForm="MM/DD/YYYY" selected={this.state.startDate} />
-      {touched && error && <span>{error}</span>}
-    </div>
-  );
+
 
   render() {
 
@@ -110,8 +118,9 @@ class CreateEvent extends Component {
               component={this.renderInput}
             />
             <h3 align='left'>Date of the event</h3>
-            <Field className='dateField'
+            <Field
                    name='date'
+
                    validate={
                      [
                        required({ msg: 'Date of event required' })
