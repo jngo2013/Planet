@@ -1,8 +1,22 @@
-p {
+.eventDetails {
     font-family: 'Bitter', serif;
+    font-size: 1.3rem;
 }
 
-header {
+.eventDetailsBox {
+    margin: 30px;
+}
+
+/* header {
     font-family: 'Pacifico', cursive !important;
     font-size: 30px !important;
-}
+} */
+
+
+/*font-family: 'Bitter', serif;*/
+/*font-family: 'Fugaz One', cursive;*/
+/*font-family: 'Homemade Apple', cursive;*/
+/*font-family: 'Lato', sans-serif;*/
+/*font-family: 'Merriweather', serif;*/
+/*font-family: 'Monoton', cursive;*/
+/*font-family: 'Pacifico', cursive;*/

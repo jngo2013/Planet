@@ -105,7 +105,7 @@ class MessageBoardContainer extends Component {
 
     const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
-      <div className='test'>
+      <div className='messageBoard'>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           <Segment stacked>
 
