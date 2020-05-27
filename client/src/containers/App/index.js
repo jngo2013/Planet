@@ -26,7 +26,7 @@ class App extends Component {
 
       <div>
         <Navbar authenticated={this.props.authenticated}/>
-        <Route exact path='/eventsdashboard' component={EventsDashboard} />
+        {/* <Route exact path='/eventsdashboard' component={EventsDashboard} /> */}
 
         {/* <div>
           <div className='sideBuffer'>
@@ -53,13 +53,14 @@ class App extends Component {
             <Route exact path='/usertodos' component={UserTodoList}/>
             {/* <Route exact path='/message' component={MessageBoard}/> */}
             <Route exact path='/joinEvent' component={JoinEvent}/>
-
+            <Route exact path='/eventsdashboard' component={EventsDashboard} />
+            
           </Grid.Column>
         </Grid>
 
       {/* // Events Dashboard page */}
         {/* <Navbar authenticated={this.props.authenticated}/> */}
-
+        
       </div>
       
 
