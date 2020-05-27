@@ -57,7 +57,7 @@ class CreateEvent extends Component {
 
       dispatch({ type: ADD_USER_EVENT })
       this.props.getUserEvents();
-      this.props.history.push('/alltodos');
+      this.props.history.push('/eventsdashboard');
     } catch (e) {
       throw new SubmissionError({
         password: 'Wrong pin',
