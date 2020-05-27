@@ -3,13 +3,13 @@ import { Field, reduxForm, SubmissionError } from 'redux-form';
 import { Form, Segment, Button } from 'semantic-ui-react';
 import { required } from 'redux-form-validators';
 import axios from 'axios';
-import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
+// import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 import requireAuth from './../../hoc/requireAuth';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { ADD_USER_EVENT } from '../../actions/types'
 import { getUserEvents } from '../../actions/eventActions'
-import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
+// import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 
 
 

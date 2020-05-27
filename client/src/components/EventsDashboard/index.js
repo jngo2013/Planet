@@ -1,41 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
 import HeroImage from '../HeroImage';
 import MessageBoardContainer from './../../containers/MessageBoardContainer';
 import GoogleMap from './../GoogleMap';
 import TasksBox from './../TasksBox';
+import Sidebar from './../Sidebar/index';
+import './../Sidebar/sidebar.css'
 import EventDetails from './../EventDetails';
 // import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react';
-import { Button, Container, Divider, Grid, Header, Icon, Image, List, Menu, Responsive, Segment, Sidebar, Visibility, } from 'semantic-ui-react'
+import {  Container, Grid } from 'semantic-ui-react'
+// import { LOAD_SPECIFIC_EVENT_ID, LOAD_SPECIFIC_EVENT_ID_ERROR} from "../../actions/types";
+// import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
 
 
-function EventsDashboard() {
-  return (
-    <div>
-      <Container>
-        <Grid>
+
+
+
+
+class EventDashboard extends Component {
+
+  componentDidMount() {
+    console.log('Im hit')
+  }
+
+
+
+  render() {
+    return (
+      <div>
+        <Container style={{float: 'left'}}>
           <Grid.Row>
-            <HeroImage />
+            <Grid.Column>
+              <Sidebar/>
+
+            </Grid.Column>
           </Grid.Row>
-        </Grid>
-        
-      </Container>
-      
-      <Container>
-        <Grid>
-          <Grid.Row>
-            <EventDetails />
-            <Grid.Column width={11}><MessageBoardContainer /></Grid.Column>
+        </Container>
+        <Container style={{float: 'left'}}>
+          <Grid>
             <Grid.Row>
-              <Grid.Column><GoogleMap /></Grid.Column>
-              <Grid.Column><TasksBox /></Grid.Column>
+              <HeroImage />
             </Grid.Row>
-            
-          </Grid.Row>
-        </Grid>
-      </Container>
-    </div>
-  )
+          </Grid>
+
+        </Container>
+
+        <Container>
+          <Grid>
+            <Grid.Row>
+              <EventDetails />
+              <Grid.Column width={11}><MessageBoardContainer /></Grid.Column>
+              <Grid.Row>
+                <Grid.Column><GoogleMap /></Grid.Column>
+                <Grid.Column><TasksBox /></Grid.Column>
+              </Grid.Row>
+
+            </Grid.Row>
+          </Grid>
+        </Container>
+      </div>
+    );
+  }
 }
 
-export default EventsDashboard;
+export default EventDashboard;
+
+
 

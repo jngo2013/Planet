@@ -12,7 +12,7 @@ import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../
 import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 
 
-import { ADD_USER_EVENT } from '../../actions/types'
+// import { ADD_USER_EVENT } from '../../actions/types'
 import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
 
 import UserTodoListItems from './UserTodoListItems';

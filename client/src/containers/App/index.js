@@ -11,11 +11,11 @@ import SignUp from '../SignUp';
 import SignIn from '../SignIn';
 import SignOut from '../SignOut';
 import JoinEvent from '../JoinEvent'
-import Sidebar from './../../components/Sidebar';
+
 import './app.css'
 import EventsDashboard from './../../components/EventsDashboard';
 import ShowEventContainer from './../../containers/ShowEventContainer'
-import Form from './../../components/Form/index'
+
 import "react-datepicker/dist/react-datepicker.css";
 import Navbar from './../../components/Navbar';
 import CreateEvent from "../CreateEvent";
@@ -27,14 +27,14 @@ class App extends Component {
 
       <div>
         <Navbar authenticated={this.props.authenticated}/>
-        <Sidebar />
+
         <Route exact path='/eventsdashboard' component={EventsDashboard} />
 
 
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 1000 }}>
             <Route exact path='/' component={LandingPage}/>
-            <Route exact path='/testform' component={Form}/>
+
             <Route exact path='/createevent' component={CreateEvent}/>
             <Route exact path='/' component={SignUp}/>
             <Route exact path='/signin' component={SignIn}/>
