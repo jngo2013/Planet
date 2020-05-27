@@ -57,5 +57,27 @@ module.exports = {
       return res.status(403).json({ e })
     }
   },
+  deleteEvent: async (req, res) => {
+    console.log("you're deleting me!?")
+    console.log(req.user._id)
+    const { eventId } = req.params;
+    console.log(eventId)
+    try {
+      const eventToDelete = await Event.findById(eventId)
+      console.log(eventToDelete)
+      if(!eventToDelete) {
+        return res.status(401).json({ error: 'That event had already been deleted'});
+      }
+      if(req.user._id.toString() !== eventToDelete.host.toString()) {
+        // considering checking (if this is true maybe we just remove you from attendance array instead of deleting the event)
+        return res.status(401).json({ error: "You cannot delete an event you are not hosting"})
+      }
+
+      const deletedEvent = await Event.findByIdAndDelete(eventId)
+      return res.json(deletedEvent)
+    } catch (e) {
+      return res.status(403).json({ e })
+    }
+  },
 
 }

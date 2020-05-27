@@ -5,6 +5,7 @@ import DeleteTodoModal from './../../../components/DeleteTodoModal';
 
 export default (props) => {
   console.log(props)
+  console.log("---------")
   if (props.events.length === 0) {
     return <Header content='No events yet'/>;
   } else {
@@ -21,15 +22,16 @@ export default (props) => {
               trigger={
                 <Button
                   color='blue'
-                  content='Mark Complete'
+                  content='Event Details'
                   size='small'
                 />
               }
               content={
                 <Button
                   color='green'
-                  content='Are you sure this is done?'
-                  onClick={ (event) => props.handleUpdate(_id, completed, title) }
+                  content='Event Dashboard'
+                  // onClick={ (event) => props.handleEventSelect(_id, completed) }
+                  onClick={ (event) => props.handleRedirect(_id, completed) }
                 />
               }
             />
@@ -37,6 +39,7 @@ export default (props) => {
               handleDelete={props.handleDelete}
               text={title}
               id={_id}
+              
             />
           </List.Content>
         </List.Item>

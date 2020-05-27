@@ -13,7 +13,7 @@ import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 
 
 import { ADD_USER_EVENT } from '../../actions/types'
-import { getUserEvents, deleteUserEvent } from '../../actions/eventActions'
+import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
 
 import UserTodoListItems from './UserTodoListItems';
 
@@ -49,6 +49,10 @@ class UserTodoList extends Component {
       />
     );
   }
+  handleRedirect = (_id, completed) => {
+    this.props.selectEvent(_id, completed)
+    this.props.history.push('/eventsdashboard')
+  }
 
   handlePageChange = (event, data) => {
     this.setState({
@@ -60,7 +64,6 @@ class UserTodoList extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    console.log(this.props.userTodos);
     return (
       <>
         <Header as='h2' color='black' textAlign='center' content='Create New Event'/>
@@ -80,8 +83,9 @@ class UserTodoList extends Component {
         <List animated divided selection>
           <UserTodoListItems
             events={this.props.userEvents.slice(this.state.start, this.state.end)}
-            handleDelete={this.props.deleteTodoById}
-            handleUpdate={this.props.updateCompleteUserTodoById}
+            handleDelete={this.props.deleteUserEvent}
+            handleEventSelect={this.props.selectEvent}
+            handleRedirect={this.handleRedirect}
           />
         </List>
         { this.props.userEvents.length === 0 ?
@@ -102,7 +106,10 @@ function mapStateToProps(state) {
     userTodos: state.todos.userTodos,
     todoClientError: state.todos.getUserTodosClientError,
     todoServerError: state.todos.getUserTodosServerError,
-    userEvents: state.event.userEvents
+    userEvents: state.event.userEvents,
+    specificEvent: state.event.specificEvent,
+    specificEventError: state.event.specificEventError,
+    deleteEventError: state.event.deleteEventError,
   };
 };
 
@@ -115,7 +122,7 @@ function mapStateToProps(state) {
 
 const composedComponent =  compose(
   reduxForm({ form: 'addTodo' }),
-  connect(mapStateToProps, { getUserEvents, getUserTodos, updateCompleteUserTodoById, deleteTodoById })
+  connect(mapStateToProps, { getUserEvents, selectEvent, deleteUserEvent, getUserTodos, updateCompleteUserTodoById, deleteTodoById })
 )(UserTodoList);
 
 
