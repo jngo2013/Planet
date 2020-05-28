@@ -79,5 +79,22 @@ module.exports = {
       return res.status(403).json({ e })
     }
   },
+  specificEvent: async (req, res) => {
+    console.log("you made it the whole way here!")
+    const { eventId } = req.params;
+    console.log(req.user._id)
+    console.log(eventId)
+    try {
+     const eventFound = await Event.findById(eventId).populate('attending')
+      console.log('----')
+      console.log(eventFound)
+      console.log('----')
+      return res.json(eventFound)
+
+    } catch (e) {
+      return res.status(403).json({ e })
+    }
+
+  }
 
 }

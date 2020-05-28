@@ -1,7 +1,7 @@
 const router = require('express').Router();
 // const { signUp, signIn } = require('../../../controllers/authController');
 const { requireAuth } = require('../../../middlewares/authMiddlewares');
-const { joinEvent, createEvent, getEvent, deleteEvent } = require('../../../controllers/eventController')
+const { joinEvent, createEvent, getEvent, deleteEvent, specificEvent } = require('../../../controllers/eventController')
 
 // has /api/event prepended to everything
 
@@ -16,6 +16,8 @@ router.post('/create', requireAuth, createEvent);
 // api/event/events
 
 router.delete('/delete/:eventId', requireAuth, deleteEvent);
+router.get('/eventSelected/:eventId', requireAuth, specificEvent )
+
 
 
 
