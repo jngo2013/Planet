@@ -9,7 +9,7 @@ import requireAuth from './../../hoc/requireAuth';
 
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { AUTH_USER, POST_MESSAGE, GET_MESSAGE } from '../../actions/types';
-import { getAllMessages } from './../../actions/message';
+import { getAllMessages, postMessage } from './../../actions/message';
 import './messageboard.css';
 
 
@@ -37,7 +37,7 @@ class MessageBoardContainer extends Component {
 
   // componentDidMount will go here to get all the messages from the database
   componentDidMount(){
-    this.props.getAllMessages();
+    this.props.getAllMessages(this.props.eventId);
   }
 
   onSubmit = async (formValues, dispatch) => {
@@ -45,8 +45,9 @@ class MessageBoardContainer extends Component {
     try {
       // change the post route here
       // const { data } = await axios.post('/api/dashboard', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
-      await axios.post('/api/dashboard', formValues, { headers: { 'authorization': localStorage.getItem('token') } })
-      dispatch({ type: POST_MESSAGE });
+      const { data } = await axios.post(`/api/dashboard/comment/${this.props.eventId}`, formValues, { headers: { 'authorization': localStorage.getItem('token') } })
+      dispatch({ type: POST_MESSAGE, payload: data });
+      this.props.getAllMessages(this.props.eventId);
 
       // localStorage.setItem('token', data.token);
       // dispatch({ type: AUTH_USER, payload: data.token });
@@ -131,7 +132,7 @@ function mapStateToProps(state) {
 }
 
 export default compose(
-  connect(mapStateToProps, { getAllMessages }),
+  connect(mapStateToProps, { getAllMessages, postMessage }),
   reduxForm({
     form: 'CreateEvent'
   })

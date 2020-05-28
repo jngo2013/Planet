@@ -67,7 +67,11 @@ class EventDashboard extends Component {
           <Grid>
             <Grid.Row>
               <EventDetails />
-              <Grid.Column width={11}><MessageBoardContainer /></Grid.Column>
+              <Grid.Column width={11}>
+                <MessageBoardContainer
+                  eventId={this.props.specificEvent}
+                />
+                </Grid.Column>
               <Grid.Row>
                 <Grid.Column><GoogleMap /></Grid.Column>
                 <Grid.Column><TasksBox /></Grid.Column>
