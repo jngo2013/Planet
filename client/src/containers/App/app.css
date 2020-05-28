@@ -1,0 +1,28 @@
+.hero {
+    position: relative;
+}
+
+.hero-overlay {
+    text-align: center;
+    position: absolute;
+    text-transform: uppercase;
+    z-index: 0;
+    width: 100%;
+}
+
+.hero-title {
+    font-size: 6vw;
+    transform: translateY(9vw);
+    color: #ffffff;
+    letter-spacing: 0.45rem;
+    font-weight: 700;
+}
+
+.hero-image {
+    display: block;
+    overflow: visible;
+    z-index: -1;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Grid } from 'semantic-ui-react'
+import { Grid, Container } from 'semantic-ui-react'
 
 import AllTodosList from '../AllTodosList';
 import UserTodoList from '../UserTodoList';
@@ -19,6 +19,7 @@ import ShowEventContainer from './../../containers/ShowEventContainer'
 import "react-datepicker/dist/react-datepicker.css";
 import Navbar from './../../components/Navbar';
 import CreateEvent from "../CreateEvent";
+import HeroImage from "../../components/HeroImage";
 
 
 class App extends Component {
@@ -26,16 +27,23 @@ class App extends Component {
     return (
 
       <div>
+        <Container fluid>
         <Navbar authenticated={this.props.authenticated}/>
-
+        </Container>
+       <div className='hero'>
+         <div className='hero-overlay'>
+           <h1 className='hero-title'>Robo-Planner.com</h1>
+         </div>
+         <img src='https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' className='hero-image'/>
+       </div>
         <Route exact path='/eventsdashboard' component={EventsDashboard} />
-
+        <Route exact path='/createevent' component={CreateEvent}/>
 
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 1000 }}>
             <Route exact path='/' component={LandingPage}/>
 
-            <Route exact path='/createevent' component={CreateEvent}/>
+
             <Route exact path='/' component={SignUp}/>
             <Route exact path='/signin' component={SignIn}/>
             <Route exact path='/signout' component={SignOut}/>
