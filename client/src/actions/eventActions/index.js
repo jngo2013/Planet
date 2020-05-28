@@ -9,6 +9,8 @@ import {
   LOAD_SPECIFIC_EVENT_ID,
   LOAD_SPECIFIC_EVENT_ID_ERROR,
   DELETE_SPECIFIC_EVENT_BY_ID_ERROR,
+  GET_SPECIFIC_EVENT,
+  GET_SPECIFIC_EVENT_ERROR,
 } from '../types';
 
 import axios from 'axios';
@@ -46,6 +48,17 @@ try {
 } catch (e) {
   dispatch({ type: DELETE_SPECIFIC_EVENT_BY_ID_ERROR, payload: e})
 }
+}
+
+export const selectedEvent = (id) => async dispatch => {
+  console.log("eyyyy")
+  console.log(id)
+  try {
+    const { data } = await axios.get(`/api/event/eventSelected/${id}`, { headers: { 'authorization': localStorage.getItem('token') }});
+    dispatch({ type: GET_SPECIFIC_EVENT, payload: data })
+  } catch (e) {
+    dispatch({ type: GET_SPECIFIC_EVENT_ERROR, payload: e})
+  }
 }
 
 // export const deleteTodoById = id => async dispatch => {

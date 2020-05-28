@@ -6,12 +6,18 @@ import TasksBox from './../TasksBox';
 import Sidebar from './../Sidebar/index';
 import './../Sidebar/sidebar.css'
 import EventDetails from './../EventDetails';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import requireAuth from './../../hoc/requireAuth';
+import { reduxForm, Field } from 'redux-form';
+
+import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 // import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react';
 import {  Container, Grid } from 'semantic-ui-react'
 // import { LOAD_SPECIFIC_EVENT_ID, LOAD_SPECIFIC_EVENT_ID_ERROR} from "../../actions/types";
 // import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
 
-
+import { getUserEvents, deleteUserEvent, selectEvent, selectedEvent } from '../../actions/eventActions'
 
 
 
@@ -19,7 +25,11 @@ import {  Container, Grid } from 'semantic-ui-react'
 class EventDashboard extends Component {
 
   componentDidMount() {
-    console.log('Im hit')
+    const eventId = this.props.specificEvent
+    this.props.selectedEvent(eventId);
+    // the way you access the summoned event is through this prop below
+    console.log(this.props.userSpecificEvent)
+    console.log("-----")
   }
 
 
@@ -62,7 +72,21 @@ class EventDashboard extends Component {
   }
 }
 
-export default EventDashboard;
+function mapStateToProps(state) {
+  return {
+    userSpecificEvent: state.event.userSpecificEvent,
+    specificEvent: state.event.specificEvent,
+    specificEventError: state.event.specificEventError,
+    deleteEventError: state.event.deleteEventError,
+  };
+};
+
+const composedComponent =  compose(
+  reduxForm({ form: 'addTodo' }),
+  connect(mapStateToProps, { getUserEvents, selectEvent, deleteUserEvent, selectedEvent })
+)(EventDashboard);
+
+export default requireAuth(composedComponent);
 
 
 

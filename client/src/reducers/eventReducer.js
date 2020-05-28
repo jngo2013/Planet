@@ -7,6 +7,8 @@ import {
   LOAD_SPECIFIC_EVENT_ID,
   LOAD_SPECIFIC_EVENT_ID_ERROR,
   DELETE_SPECIFIC_EVENT_BY_ID_ERROR,
+  GET_SPECIFIC_EVENT,
+  GET_SPECIFIC_EVENT_ERROR,
 } from '../actions/types'
 
 
@@ -18,6 +20,8 @@ const INITIAL_STATE = {
   userEvents: [],
   specificEvent: '',
   specificEventError: '',
+  userSpecificEvent: [],
+  userSpecificEventError: '',
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -38,6 +42,10 @@ export default function (state = INITIAL_STATE, action) {
       return {...state, specificEventError: action.payload };
     case DELETE_SPECIFIC_EVENT_BY_ID_ERROR:
       return {...state, deleteEventError: action.payload };
+    case GET_SPECIFIC_EVENT:
+      return {...state, userSpecificEvent: action.payload, userSpecificEventError: ''};
+    case GET_SPECIFIC_EVENT_ERROR:
+      return {...state, userSpecificEventError: action.payload }
     default:
       return state;
   }
