@@ -30,11 +30,13 @@ class EventDashboard extends Component {
       const eventId = this.props.specificEvent
       await this.props.selectedEvent(eventId);
       // the way you access the summoned event is through this prop below
-      console.log(this.props.userSpecificEvent)
-      console.log(this.props.userSpecificEvent.title)
-      console.log(this.props.userSpecificEvent.description)
+      console.log(this.props.userSpecificEvent, "LINE 33")
+      console.log(this.props.userSpecificEvent.title, "THIS IS THE TITLE")
+      console.log(this.props.userSpecificEvent.description, "THIS IS THE DESCRIPTION")
+      console.log(this.props.userSpecificEvent.date, "THIS IS THE DATE OF EVENT")
       console.log(this.props.userSpecificEvent.attending)
       console.log("-----")
+
     } catch (e) {
 
     }
@@ -46,6 +48,7 @@ class EventDashboard extends Component {
   render() {
     return (
       <div>
+        
         <Container>
           <Grid.Row>
             <Grid.Column>
@@ -66,12 +69,16 @@ class EventDashboard extends Component {
         <Container>
           <Grid>
             <Grid.Row>
-              <EventDetails />
+              <EventDetails 
+                title={this.props.userSpecificEvent.title}
+                description={this.props.userSpecificEvent.description}
+                dateCreated={this.props.userSpecificEvent.date}
+              />
               <Grid.Column width={11}>
-                <MessageBoardContainer
-                  eventId={this.props.specificEvent}
-                />
-                </Grid.Column>
+                <MessageBoardContainer 
+                  eventId={this.props.specificEvent}/>
+              </Grid.Column>
+              
               <Grid.Row>
                 <Grid.Column><GoogleMap /></Grid.Column>
                 <Grid.Column><TasksBox /></Grid.Column>

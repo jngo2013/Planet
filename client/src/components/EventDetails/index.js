@@ -9,16 +9,18 @@ const buttonFunction = () => {
   prompt("Edit Something");
 }
 
-const EventDetails = () => (
+const EventDetails = (props) => (
   <div className="eventDetailsBox">
     <Container fluid textAlign='left'>
-      <Header as='h1' textAlign='left' className='header'>EVENT NAME WILL GO HERE <Button onClick={buttonFunction}>Edit</Button> </Header>
+      <Header as='h1' textAlign='left' className='header'>{props.title}<Button onClick={buttonFunction}>Edit</Button> </Header>
       <p className="eventDetails">
-        Event details will go here.  This is from the "Create Event" form. <Button onClick={buttonFunction}>Edit</Button>
+        {props.dateCreated} <Button onClick={buttonFunction}>Edit</Button>
       </p>
       <p className="eventDetails">
-        Event details will go here.  This is from the "Create Event" form. <Button onClick={buttonFunction}>Edit</Button>
+        {props.description} <Button onClick={buttonFunction}>Edit</Button>
       </p>
+      
+
     </Container>
   </div>
 )
