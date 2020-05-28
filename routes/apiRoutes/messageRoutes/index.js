@@ -4,7 +4,7 @@ const { addMessage, getAllMessages } = require('../../../controllers/messageBCon
 const { requireAuth } = require('../../../middlewares/authMiddlewares');
 
 
-router.post('/', requireAuth, addMessage);
+router.post('/comment/:eventId', requireAuth, addMessage);
 
-router.get('/', requireAuth, getAllMessages)
+router.get('/get/:id', requireAuth, getAllMessages)
 module.exports = router

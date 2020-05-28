@@ -74,7 +74,11 @@ class EventDashboard extends Component {
                 description={this.props.userSpecificEvent.description}
                 dateCreated={this.props.userSpecificEvent.date}
               />
-              <Grid.Column width={11}><MessageBoardContainer /></Grid.Column>
+              <Grid.Column width={11}>
+                <MessageBoardContainer 
+                  eventId={this.props.specificEvent}/>
+              </Grid.Column>
+              
               <Grid.Row>
                 <Grid.Column><GoogleMap /></Grid.Column>
                 <Grid.Column><TasksBox /></Grid.Column>
