@@ -24,12 +24,21 @@ import { getUserEvents, deleteUserEvent, selectEvent, selectedEvent } from '../.
 
 class EventDashboard extends Component {
 
-  componentDidMount() {
-    const eventId = this.props.specificEvent
-    this.props.selectedEvent(eventId);
-    // the way you access the summoned event is through this prop below
-    console.log(this.props.userSpecificEvent)
-    console.log("-----")
+  async componentDidMount()  {
+
+    try {
+      const eventId = this.props.specificEvent
+      await this.props.selectedEvent(eventId);
+      // the way you access the summoned event is through this prop below
+      console.log(this.props.userSpecificEvent)
+      console.log(this.props.userSpecificEvent.title)
+      console.log(this.props.userSpecificEvent.description)
+      console.log(this.props.userSpecificEvent.attending)
+      console.log("-----")
+    } catch (e) {
+
+    }
+
   }
 
 
