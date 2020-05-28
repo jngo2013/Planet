@@ -1,7 +1,10 @@
 .hero-image {
-    opacity: 70%;
+    /*opacity: 70%;*/
     /* width: 90%; */
     background-size: cover;
+    height: 350px;
+    width: 100%;
+    margin-bottom: 200px;
 }
 
 

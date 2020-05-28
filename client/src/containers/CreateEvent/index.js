@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
-import { Header, Form, Segment, Message, List, Pagination, Button, Icon, Container, Grid, GridColumn, GridProps, GridRow } from 'semantic-ui-react';
+import { Form, Segment, Button, Icon, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 // import { compose } from 'redux';
 import { length, required} from 'redux-form-validators';
 import axios from 'axios';
 import requireAuth from './../../hoc/requireAuth';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
-
 import './createevent.css'
 import { compose } from 'redux';
 import "react-datepicker/dist/react-datepicker.css";
@@ -17,23 +15,17 @@ import { getUserEvents } from '../../actions/eventActions'
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { ADD_USER_EVENT } from '../../actions/types'
 import { AUTH_USER, ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
-
-
 // import UserTodoListItems from './UserTodoListItems';
-
 
 
 class CreateEvent extends Component {
 
-
   state = {
     startDate: ''
   };
-
   handleSelect = date => {
     this.setState({      startDate: date    });
   };
-
   renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => (
     <div className='customDatePickerWidth'>
       <Form.Input error={ touched && error }>
@@ -43,18 +35,14 @@ class CreateEvent extends Component {
      </div>
   );
 
-  componentDidMount(prevProps, prevState, snapshot) {
+  componentDidMount() {
     this.setState({startDate: new Date() })
-
   }
-
-
 
   onSubmit = async (formValues, dispatch) => {
     console.log(formValues);
     try {
-      const { data } = await axios.post('/api/event/create', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
-
+      const { data } = await axios.post('/api/event/create', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});
       dispatch({ type: ADD_USER_EVENT })
       this.props.getUserEvents();
       this.props.history.push('/eventsdashboard');
@@ -65,18 +53,18 @@ class CreateEvent extends Component {
       });
     }
   }
+
   renderInput = ({ input, meta }) => {
     return (
-      <Form.Input className='eventForm'
-                  {...input}
-                  fluid
-
-
-                  error={ meta.touched && meta.error }
+      <Form.Input
+        className='eventForm'
+        {...input}
+        fluid
+        error={ meta.touched && meta.error }
         icon='file'
         iconPosition='left'
-                  autoComplete='off'
-                  placeholder='Do not leave blank'
+        autoComplete='off'
+        placeholder='Do not leave blank'
       />
     )
   }
@@ -96,17 +84,13 @@ class CreateEvent extends Component {
     )
   }
 
-
-
-
-
   render() {
-
     const { handleSubmit, invalid, submitting, submitFailed, pristine, reset } = this.props;
     return (
-      <Container className='eventForm'>
+      <Container fluid className='body'>
+        <Container className='formFields'>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-          <Segment stacked>
+          <Segment>
             <h2 align='left'>Name of event</h2>
             <Field
               name='title'
@@ -119,33 +103,31 @@ class CreateEvent extends Component {
             />
             <h3 align='left'>Date of the event</h3>
             <Field
-                   name='date'
-
-                   validate={
-                     [
-                       required({ msg: 'Date of event required' })
-                     ]
-                   }
-                   component={this.renderDatePicker}
-
+              name='date'
+              validate={
+                [
+                  required({ msg: 'Date of event required' })
+                ]
+                      }
+              component={this.renderDatePicker}
             />
             <h3 align='left' >Describe the event for your guests.</h3>
-            <Field className='text-area'
-                   name='description'
-                   validate={
+            <Field
+              className='text-area'
+              name='description'
+              validate={
                      [
                        required({ msg: 'Description is required' })
                      ]
                    }
-                   component={this.renderInput}
-                   className='field'
+              component={this.renderInput}
+              className='field'
             />
             <h3 align='left'>4-Digit access code</h3>
             <p>This will be used for inviting guest who can update the event.</p>
             <Field
               name='pin'
               label='password'
-
               validate={
                 [
                   required({ msg: '4-digit pin is required' }),
@@ -154,15 +136,12 @@ class CreateEvent extends Component {
               }
               component={this.renderPassword}
             />
-
             <Button
               animated
               type='submit'
               size='large'
-
               color='facebook'
               disabled={ invalid || submitting || submitFailed }
-
             >
               <Button.Content visible>Create Event</Button.Content>
               <Button.Content hidden>
@@ -170,36 +149,28 @@ class CreateEvent extends Component {
               </Button.Content>
             </Button>
             <Button
-                    animated
-                    type='button'
-                    size='large'
-
-                    color='red'
-                    disabled={ invalid || submitting || submitFailed }
-
+              animated
+              type='button'
+              size='large'
+              color='red'
+              disabled={ invalid || submitting || submitFailed }
             >
               <Button.Content visible>Reset Event</Button.Content>
               <Button.Content hidden>
                 <Icon name='long arrow alternate left' />
               </Button.Content>
             </Button>
-
           </Segment>
         </Form>
+        </Container>
       </Container>
     )
   }
 }
 
-// export default requireAuth(reduxForm({
-//   form: 'CreateEvent'
-// }),
-// connect(mapStateToProps, { getUserTodos, updateCompleteUserTodoById, deleteTodoById })
-// (CreateEvent));
 function mapStateToProps(state) {
   return {
     userEvents: state.event.userEvents,
-    
   }
 }
 
@@ -209,4 +180,3 @@ const composedComponent = compose(
 )(CreateEvent)
 
 export default requireAuth(composedComponent)
-
