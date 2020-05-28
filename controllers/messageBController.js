@@ -27,9 +27,10 @@ module.exports = {
 
   getAllMessages: async (req, res) => {
     console.log(req.query);
-    const { messages } = req.query;
+    const { content } = req.query;
     try {
-      const eventMessages = await User.find({ messages }, 'email');
+      const eventMessages = await User.find({ content }, 'email');
+      console.log(eventMessages)
       return res.status(200).json(eventMessages);
     } catch (e) {
       return res.status(403).json({ e });

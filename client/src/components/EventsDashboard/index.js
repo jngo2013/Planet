@@ -27,7 +27,7 @@ class EventDashboard extends Component {
   render() {
     return (
       <div>
-        <Container style={{float: 'left'}}>
+        <Container>
           <Grid.Row>
             <Grid.Column>
               <Sidebar/>
@@ -35,7 +35,7 @@ class EventDashboard extends Component {
             </Grid.Column>
           </Grid.Row>
         </Container>
-        <Container style={{float: 'left'}}>
+        <Container>
           <Grid>
             <Grid.Row>
               <HeroImage />
