@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { Header, Form, Segment, Message, List, Pagination, Button, Comment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-// import { compose } from 'redux';
+import { compose } from 'redux';
 import { length, required } from 'redux-form-validators';
 import axios from 'axios';
 import requireAuth from './../../hoc/requireAuth';
 
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { AUTH_USER, POST_MESSAGE, GET_MESSAGE } from '../../actions/types';
-// import { getAllMessages } from './../../actions/message';
+import { getAllMessages } from './../../actions/message';
 import './messageboard.css';
 
 
@@ -19,7 +19,9 @@ class MessageBoardContainer extends Component {
 
   state = {
     startDate: new Date()
-  }; handleChange = date => { this.setState({ startDate: date }); };
+  }; 
+  
+  handleChange = date => { this.setState({ startDate: date }); };
 
 
   // NEXT STEPS:
@@ -34,9 +36,9 @@ class MessageBoardContainer extends Component {
   // 2.  POST http://localhost:3000/api/dashboard 400 (Bad Request) <--- what on earth is this
 
   // componentDidMount will go here to get all the messages from the database
-  // componentDidMount(){
-  //   getAllMessages();
-  // }
+  componentDidMount(){
+    this.props.getAllMessages();
+  }
 
   onSubmit = async (formValues, dispatch) => {
     console.log(formValues);
@@ -70,7 +72,7 @@ class MessageBoardContainer extends Component {
               </Comment.Metadata>
               <Comment.Text>How artistic!</Comment.Text>
               <Comment.Actions>
-                <Comment.Action>Reply</Comment.Action>
+  <Comment.Action>Reply: </Comment.Action>
               </Comment.Actions>
             </Comment.Content>
           </Comment>
@@ -101,15 +103,13 @@ class MessageBoardContainer extends Component {
 
 
   render() {
-
+    console.log(this.props.messages)
     const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
       <div className='messageBoard'>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           <Segment stacked>
-
             <h2 align='left'>Add Your Message Here</h2>
-
             <Field
               name='text'
               validate={
@@ -119,7 +119,6 @@ class MessageBoardContainer extends Component {
               }
               component={this.renderInput}
             />
-
           </Segment>
         </Form>
       </div>
@@ -127,9 +126,16 @@ class MessageBoardContainer extends Component {
   }
 }
 
-export default requireAuth(reduxForm({
-  form: 'CreateEvent'
-})(MessageBoardContainer));
+function mapStateToProps(state) {
+  return { messages: state.messages.content }
+}
+
+export default compose(
+  connect(mapStateToProps, { getAllMessages }),
+  reduxForm({
+    form: 'CreateEvent'
+  })
+)(MessageBoardContainer);
 
 //  ====================== OLD CODE FOR REFERENCE =======================
 // // this is the message board.  use this component in an events page (will probably go in kerry's page).

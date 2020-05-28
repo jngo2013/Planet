@@ -6,6 +6,7 @@ import authReducer from './authReducer';
 import eventReducer from './eventReducer';
 
 import { ADD_USER_TODO } from '../actions/types';
+import messageReducer from './messageReducer';
 
 export default combineReducers({
   event: eventReducer,
@@ -21,4 +22,5 @@ export default combineReducers({
       }
     }
   }),
+  messages: messageReducer,
 });
