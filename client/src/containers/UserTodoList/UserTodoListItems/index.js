@@ -1,7 +1,9 @@
 import React from 'react';
-import { Header, List, Button, Popup } from 'semantic-ui-react';
+import { Header, List, Button, Popup, Image } from 'semantic-ui-react';
 
 import DeleteTodoModal from './../../../components/DeleteTodoModal';
+
+import './styles.css';
 
 export default (props) => {
   console.log(props)
@@ -12,7 +14,8 @@ export default (props) => {
     return props.events.map(({_id, title, completed }) => {
       return (
         <List.Item key={_id}>
-          <List.Content floated='left' >
+          <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' floated='left' />
+          <List.Content floated='left' className="list-content">
             <p style={{ textDecoration: completed ? 'line-through' : 'none', fontSize: '20px'}}>{title}</p>
           </List.Content>
           <List.Content floated='right'>
@@ -20,20 +23,27 @@ export default (props) => {
               on='click'
               position='top right'
               trigger={
-                <Button
-                  color='blue'
-                  content='Event Details'
-                  size='small'
-                />
+                // <Button
+                //   color='blue'
+                //   content='Event Details'
+                //   size='small'
+                //   onClick={ (event) => props.handleRedirect(_id, completed) }
+                // />
+                <Button animated='fade' onClick={ (event) => props.handleRedirect(_id, completed) } color='instagram'>
+                  <Button.Content visible>Event Details</Button.Content>
+                  <Button.Content hidden>See What's Up!</Button.Content>
+                </Button>
               }
-              content={
-                <Button
-                  color='green'
-                  content='Event Dashboard'
-                  // onClick={ (event) => props.handleEventSelect(_id, completed) }
-                  onClick={ (event) => props.handleRedirect(_id, completed) }
-                />
-              }
+
+              
+              // content={
+              //   <Button
+              //     color='green'
+              //     content='Event Dashboard'
+              //     // onClick={ (event) => props.handleEventSelect(_id, completed) }
+              //     onClick={ (event) => props.handleRedirect(_id, completed) }
+              //   />
+              // }
             />
             <DeleteTodoModal
               handleDelete={props.handleDelete}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { Header, Form, Segment, Message, List, Pagination, Button } from 'semantic-ui-react';
+import { Header, Form, Segment, Message, List, Pagination, Button, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -16,6 +16,7 @@ import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
 
 import UserTodoListItems from './UserTodoListItems';
+
 
 class UserTodoList extends Component {
   state = {
@@ -49,6 +50,7 @@ class UserTodoList extends Component {
       />
     );
   }
+
   handleRedirect = (_id, completed) => {
     this.props.selectEvent(_id, completed)
     this.props.history.push('/eventsdashboard')
@@ -66,9 +68,10 @@ class UserTodoList extends Component {
     const { handleSubmit } = this.props;
     return (
       <>
-        <Header as='h2' color='black' textAlign='center' content='Create New Event'/>
+        <Header as='h2' color='black' textAlign='center' content='My Events'/>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-          <Segment stacked>
+          {/* ======= DELETE THIS ======== */}
+          {/* <Segment stacked>
             <Field
               name='text'
               component={this.renderAddTodo}
@@ -78,9 +81,10 @@ class UserTodoList extends Component {
               fluid
               color='teal'
               content='Create new event'/>
-          </Segment>
+          </Segment> */}
         </Form>
-        <List animated divided selection>
+
+        <List divided selection>
           <UserTodoListItems
             events={this.props.userEvents.slice(this.state.start, this.state.end)}
             handleDelete={this.props.deleteUserEvent}
@@ -88,6 +92,7 @@ class UserTodoList extends Component {
             handleRedirect={this.handleRedirect}
           />
         </List>
+
         { this.props.userEvents.length === 0 ?
           null
           : <Pagination
