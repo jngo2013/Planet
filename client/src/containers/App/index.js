@@ -35,6 +35,8 @@ class App extends Component {
          </div>
          <img src='https://images.unsplash.com/photo-1504275107627-0c2ba7a43dba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80' className='hero-image'/>
        </div>
+
+
         <Container fluid className='app-main-container'>
           <Grid>
             <Grid.Row>
@@ -51,6 +53,9 @@ class App extends Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
+          <div className="footer">
+            <p>Footer</p>
+          </div>
         </Container>
 
 
