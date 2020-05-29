@@ -22,6 +22,7 @@ export const postMessage = (id) => async dispatch => {
 // getAllMessages function
 export const getAllMessages = (id) => async dispatch => {
   console.log("GET ALL MESSAGES FUNCTION WAS HIT");
+  console.log(id)
   try {
     const { data } = await axios.get(`/api/dashboard/get/${id}`, { headers: { 'authorization': localStorage.getItem('token') }});
     console.log(data);

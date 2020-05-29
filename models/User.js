@@ -36,6 +36,9 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Message'
   }],
+  userName: {
+    type: String,
+  }
 });
 
 UserSchema.methods.toJSON = function() {

@@ -1,5 +1,6 @@
 .hero {
     position: relative;
+    margin-top: 50px;
 }
 
 .hero-overlay {
@@ -11,11 +12,14 @@
 }
 
 .hero-title {
-    font-size: 6vw;
+    font-size: 7vw;
     transform: translateY(9vw);
     color: #ffffff;
     letter-spacing: 0.45rem;
-    font-weight: 700;
+    font-weight: 500;
+    font-family: 'Monoton', cursive;
+
+
 }
 
 .hero-image {
@@ -25,4 +29,9 @@
     margin-left: auto;
     margin-right: auto;
     width: 75%;
+
+}
+
+.app-main-container {
+    padding-bottom: 500px;
 }

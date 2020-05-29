@@ -39,6 +39,9 @@ const EventSchema = new Schema({
   task: [{
     type: String
   }],
+  userName: [{
+    type: String
+  }],
   completed: {
     type: Boolean,
     default: false,
