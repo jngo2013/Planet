@@ -38,6 +38,7 @@ class MessageBoardContainer extends Component {
   // componentDidMount will go here to get all the messages from the database
   componentDidMount(){
     this.props.getAllMessages(this.props.eventId);
+    console.log(this.props.messages.content)
   }
 
   onSubmit = async (formValues, dispatch) => {

@@ -57,7 +57,6 @@ class CreateEvent extends Component {
   renderInput = ({ input, meta }) => {
     return (
       <Form.Input
-        className='eventForm'
         {...input}
         fluid
         error={ meta.touched && meta.error }
@@ -91,8 +90,9 @@ class CreateEvent extends Component {
         <Container className='formFields'>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           <Segment>
-            <h2 align='left'>Name of event</h2>
+            <h2 className='form-headers' align='left'>Name of event</h2>
             <Field
+              
               name='title'
               validate={
                 [
@@ -101,7 +101,7 @@ class CreateEvent extends Component {
               }
               component={this.renderInput}
             />
-            <h3 align='left'>Date of the event</h3>
+            <h3 className='form-headers' align='left'>Date of the event</h3>
             <Field
               name='date'
               validate={
@@ -111,8 +111,9 @@ class CreateEvent extends Component {
                       }
               component={this.renderDatePicker}
             />
-            <h3 align='left' >Describe the event for your guests.</h3>
+            <h3 className='form-headers' align='left' >Describe the event for your guests.</h3>
             <Field
+            
               className='text-area'
               name='description'
               validate={
@@ -123,7 +124,7 @@ class CreateEvent extends Component {
               component={this.renderInput}
               className='field'
             />
-            <h3 align='left'>4-Digit access code</h3>
+            <h3 className='form-headers' align='left'>4-Digit access code</h3>
             <p>This will be used for inviting guest who can update the event.</p>
             <Field
               name='pin'

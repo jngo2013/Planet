@@ -47,12 +47,13 @@ h3, h2 {
 }
 
 .eventForm {
-
+    
 }
 
 .formFields {
     box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.35)!important;
 }
+
 
 /*.body {*/
 /*    position: fixed;*/
@@ -68,3 +69,21 @@ h3, h2 {
 /*    from {left: 0px;}*/
 /*    to {left: 900px;}*/
 /*}*/
+
+
+/* =============== Styles ================= */
+
+/*font-family: 'Bitter', serif;*/
+/*font-family: 'Fugaz One', cursive;*/
+/*font-family: 'Homemade Apple', cursive;*/
+/*font-family: 'Lato', sans-serif;*/
+/*font-family: 'Merriweather', serif;*/
+/*font-family: 'Monoton', cursive;*/
+/*font-family: 'Pacifico', cursive;*/
+
+.form-headers {
+    font-family: 'Merriweather', serif;
+}
+
+
+
