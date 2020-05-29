@@ -1,5 +1,6 @@
 import {
   GET_USER_EVENTS,
+  GET_USER_EVENTS_ERROR,
   ADD_USER_EVENT,
   DELETE_EVENT_BY_ID_ERROR,
   UPDATE_EVENT_BY_ID_ERROR,
@@ -27,7 +28,9 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case GET_USER_EVENTS:
-      return {...state, userEvents: action.payload, getUserEventServerError: action.payload};
+      return {...state, userEvents: action.payload, getUserEventServerError: ''};
+    case GET_USER_EVENTS_ERROR:
+      return {...state, getUserEventsServerError: action.payload }
     case ADD_USER_EVENT:
       return {...state, addUserEventError: ''};
     case ADD_USER_EVENT_ERROR:
