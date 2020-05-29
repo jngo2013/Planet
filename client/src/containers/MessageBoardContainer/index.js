@@ -15,9 +15,7 @@ import './messageboard.css';
 class MessageBoardContainer extends Component {
 
   componentDidMount() {
-    console.log(this.props.eventId);
     this.props.getAllMessages(this.props.eventId);
-    console.log(this.props.messages.content)
   }
 
   onSubmit = async (formValues, dispatch) => {
@@ -38,6 +36,7 @@ class MessageBoardContainer extends Component {
         error={meta.touched && meta.error}
         autoComplete='off'
         placeholder="Add your comment here"
+
       />
     )
   }
@@ -46,28 +45,30 @@ class MessageBoardContainer extends Component {
     return (
       <Comment key={idx}>
         <Comment.Content>
-          <Comment.Author>{message.user.email}</Comment.Author>
-          <Comment.Metadata>{moment(message.date).format('h:mma MMM Do, YY')}</Comment.Metadata>
-          <Comment.Text>{message.text}</Comment.Text>
+          <Comment.Author className='message-userName'>{message.user.userName}</Comment.Author>
+          <Comment.Metadata className='message-time'>{moment(message.date).format('h:mma MMM Do, YYYY')}</Comment.Metadata>
+          <Comment.Text className='message-userPost'>{message.text}</Comment.Text>
         </Comment.Content>
       </Comment>
     )
 
   }
 
+
+
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className='messageBoard'>
+      <div className='message-board'>
         <Segment className='view-messages'>
           <Header as='h3' dividing>
-            Message Board
+            Event Message Board
           </Header>
           <Comment.Group>
             { this.props.messages.map((message,idx) => this.renderMessages(message,idx)) }
           </Comment.Group>
         </Segment>
-        <Form size='large' reply onSubmit={handleSubmit(this.onSubmit)}>
+        <Form className='message-posting' size='large' reply onSubmit={handleSubmit(this.onSubmit)}>
           <Segment stacked>
             <h2 align='left'>Add Your Message Here</h2>
             <Field
@@ -75,13 +76,16 @@ class MessageBoardContainer extends Component {
               validate={required({ msg: 'Please add a message' })}
               component={this.renderInput}
             />
+
             <Button
-              content='Add Reply'
+              content='Post'
               labelPosition='left'
               icon='edit'
-              primary
+              color='facebook'
               type='submit'
+
             />
+
           </Segment>
         </Form>
       </div>
