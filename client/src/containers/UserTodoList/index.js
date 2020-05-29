@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { Header, Form, Segment, Message, List, Pagination, Button, Image } from 'semantic-ui-react';
+import { Header, Form, Segment, Message, List, Pagination, Button, Image, Container, Grid, Icon} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -16,6 +16,10 @@ import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
 
 import UserTodoListItems from './UserTodoListItems';
+
+import './list.css';
+
+import HorizontalDivider from './../../components/HorizontalDivider';
 
 
 class UserTodoList extends Component {
@@ -68,7 +72,12 @@ class UserTodoList extends Component {
     const { handleSubmit } = this.props;
     return (
       <>
-        <Header as='h2' color='black' textAlign='center' content='My Events'/>
+        
+        <Header as='h2' icon textAlign='center'>
+          <Icon name='calendar alternate outline' circular size='massive'/>
+          <HorizontalDivider title="My Events"/>
+        </Header>
+
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           {/* ======= DELETE THIS ======== */}
           {/* <Segment stacked>
@@ -84,23 +93,31 @@ class UserTodoList extends Component {
           </Segment> */}
         </Form>
 
-        <List divided selection>
-          <UserTodoListItems
-            events={this.props.userEvents.slice(this.state.start, this.state.end)}
-            handleDelete={this.props.deleteUserEvent}
-            handleEventSelect={this.props.selectEvent}
-            handleRedirect={this.handleRedirect}
-          />
-        </List>
+        <Container>
+          
+              <List divided selection className='list'>
+                <UserTodoListItems
+                  events={this.props.userEvents.slice(this.state.start, this.state.end)}
+                  handleDelete={this.props.deleteUserEvent}
+                  handleEventSelect={this.props.selectEvent}
+                  handleRedirect={this.handleRedirect}
+                />
+              </List>
+           
+              { this.props.userEvents.length === 0 ?
+              null
+              : <Pagination
+                totalPages={ Math.ceil(this.props.userEvents.length / 10) }
+                activePage={this.state.activePage}
+                onPageChange={ (e, data) => this.handlePageChange(e, data) }
+              />
+            }
+          
+          
+        </Container>
+        
 
-        { this.props.userEvents.length === 0 ?
-          null
-          : <Pagination
-            totalPages={ Math.ceil(this.props.userEvents.length / 10) }
-            activePage={this.state.activePage}
-            onPageChange={ (e, data) => this.handlePageChange(e, data) }
-          />
-        }
+        
       </>
     );
   }

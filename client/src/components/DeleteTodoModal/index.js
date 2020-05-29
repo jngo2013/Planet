@@ -6,7 +6,8 @@ import './deletetodomodal.css'
 
 export default (props) => (
   <Modal className='deleteModal'
-    trigger={ <Button color='red' content='Delete' size='small'/> }
+    trigger={ <Button color='red' content='Delete' size='small' animated='fade'><Button.Content visible>Delete</Button.Content>
+    <Button.Content hidden>You Sure?</Button.Content></Button> }
     basic
     style={{ width: '450px'}}
   >
@@ -19,7 +20,6 @@ export default (props) => (
       <Button
         fluid
         negative
-
         onClick={ () => props.handleDelete(props.id)}
       >
         <Icon name='remove'/> Are you sure you want to delete?

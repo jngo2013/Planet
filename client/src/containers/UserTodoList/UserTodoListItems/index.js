@@ -16,27 +16,24 @@ export default (props) => {
         <List.Item key={_id}>
           <Image avatar src='https://react.semantic-ui.com/images/avatar/small/rachel.png' floated='left' />
           <List.Content floated='left' className="list-content">
-            <p style={{ textDecoration: completed ? 'line-through' : 'none', fontSize: '20px'}}>{title}</p>
+            <p>{title}</p>
           </List.Content>
           <List.Content floated='right'>
-            <Popup
-              on='click'
-              position='top right'
-              trigger={
-                // <Button
+            
+                {/* // <Button
                 //   color='blue'
                 //   content='Event Details'
                 //   size='small'
                 //   onClick={ (event) => props.handleRedirect(_id, completed) }
-                // />
-                <Button animated='fade' onClick={ (event) => props.handleRedirect(_id, completed) } color='instagram'>
+                // /> */}
+                <Button animated='fade' onClick={ (event) => props.handleRedirect(_id, completed) } color='instagram' size='small'>
                   <Button.Content visible>Event Details</Button.Content>
                   <Button.Content hidden>See What's Up!</Button.Content>
                 </Button>
-              }
+              
 
               
-              // content={
+              {/* // content={
               //   <Button
               //     color='green'
               //     content='Event Dashboard'
@@ -44,7 +41,7 @@ export default (props) => {
               //     onClick={ (event) => props.handleRedirect(_id, completed) }
               //   />
               // }
-            />
+            /> */}
             <DeleteTodoModal
               handleDelete={props.handleDelete}
               text={title}
