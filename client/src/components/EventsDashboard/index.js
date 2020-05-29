@@ -13,7 +13,7 @@ import { reduxForm, Field } from 'redux-form';
 
 import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 // import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react';
-import {  Container, Grid } from 'semantic-ui-react'
+import {  Container, Grid, GridRow } from 'semantic-ui-react'
 // import { LOAD_SPECIFIC_EVENT_ID, LOAD_SPECIFIC_EVENT_ID_ERROR} from "../../actions/types";
 // import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
 
@@ -76,7 +76,10 @@ class EventDashboard extends Component {
               />
               <Grid.Column width={11}>
                 <MessageBoardContainer 
-                  eventId={this.props.specificEvent}/>
+                  eventId={this.props.specificEvent}
+
+                />
+
               </Grid.Column>
               
               <Grid.Row>
@@ -98,6 +101,7 @@ function mapStateToProps(state) {
     specificEvent: state.event.specificEvent,
     specificEventError: state.event.specificEventError,
     deleteEventError: state.event.deleteEventError,
+
   };
 };
 

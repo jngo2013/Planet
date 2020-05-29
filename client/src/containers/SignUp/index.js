@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Form, Segment, Button } from 'semantic-ui-react';
+import { Form, Segment, Button, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react';
 import { email, length, required } from 'redux-form-validators';
 import axios from 'axios';
 
@@ -13,11 +13,27 @@ class SignUp extends Component {
       const { data } = await axios.post('/api/auth/signup', formValues);
       localStorage.setItem('token', data.token);
       dispatch({ type: AUTH_USER, payload: data.token });
-      this.props.history.push('/counter');
+      this.props.history.push('/eventsdashboard');
     } catch (e) {
       dispatch({ type: AUTH_USER_ERROR, payload: e });
     }
   }
+
+  renderInput = ({ input, meta }) => {
+    return (
+      <Form.Input
+        
+        {...input}
+        fluid
+        error={ meta.touched && meta.error }
+        icon='file'
+        iconPosition='left'
+        autoComplete='off'
+        placeholder='Username please'
+      />
+    )
+  }
+
 
   renderEmail = ({ input, meta }) => {
     return (
@@ -52,38 +68,68 @@ class SignUp extends Component {
   render() {
     const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
-      <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-        <Segment stacked>
-          <Field
-            name='email'
-            validate={
-              [
-                required({ msg: 'Email is required' }),
-                email({ msg: 'You must provide a valid email address' })
-              ]
-            }
-            component={this.renderEmail}
-          />
-          <Field
-            name='password'
-            validate={
-              [
-                required({ msg: 'You must provide a password' }),
-                length({ minimum: 6, msg: 'Your password must be at least 6 characters long' })
-              ]
-            }
-            component={this.renderPassword}
-          />
-          <Button
-            content='Sign Up'
-            color='teal'
-            fluid
-            size='large'
-            type='submit'
-            disabled={ invalid || submitting || submitFailed }
-          />
-        </Segment>
-      </Form>
+      <Container>
+        <Grid.Row>
+          <Grid.Column width={1}>
+            <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
+              <Segment stacked>
+                <Field
+                  name='email'
+                  validate={
+                    [
+                      required({ msg: 'Email is required' }),
+                      email({ msg: 'You must provide a valid email address' })
+                    ]
+                  }
+                  component={this.renderEmail}
+                />
+                <Field
+                  name='password'
+                  validate={
+                    [
+                      required({ msg: 'You must provide a password' }),
+                      length({ minimum: 6, msg: 'Your password must be at least 6 characters long' })
+                    ]
+                  }
+                  component={this.renderPassword}
+                />
+                <Field
+                  name='userName'
+                  validate={
+                    [
+                      required({ msg: 'You must provide a username' })
+                    ]
+                  }
+                  component={this.renderInput}
+                />
+                <Container>
+                  <Grid.Row>
+                    <Grid.Column>
+                      <Button
+                        content='Sign Up'
+                        color='facebook'
+
+                        size='large'
+                        type='submit'
+                        disabled={ invalid || submitting || submitFailed }
+                      /> <Button
+                        content='Sign In'
+                        color='facebook'
+
+                        size='large'
+                        type='submit'
+                        disabled={ invalid || submitting || submitFailed }
+                      />
+                    </Grid.Column>
+                  </Grid.Row>
+                </Container>
+
+              </Segment>
+            </Form>
+          </Grid.Column>
+        </Grid.Row>
+      </Container>
+
     );
   }
 };

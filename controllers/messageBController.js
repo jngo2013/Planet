@@ -21,8 +21,9 @@ module.exports = {
       console.log (newMessage)
       // req.user.messages.push(newMessage);
       var success = await req.user.save();
-      console.log(success, "hello this is line 20")
-      return res.status(200).json(newMessage);
+      const eventMessages = await Message.find({ event: eventId }).populate("user");
+      console.log(eventMessages)
+      return res.status(200).json(eventMessages);
     } catch (e) {
       console.log("6")
       return res.status(403).json({ e });

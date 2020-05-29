@@ -1,125 +1,86 @@
 import React, { Component } from 'react';
-import { reduxForm, Field, SubmissionError } from 'redux-form';
-import { Header, Form, Segment, Message, List, Pagination, Button, Comment } from 'semantic-ui-react';
+import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { length, required } from 'redux-form-validators';
+import { required } from 'redux-form-validators';
 import axios from 'axios';
+import moment from 'moment';
 import requireAuth from './../../hoc/requireAuth';
-
-// import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import { AUTH_USER, POST_MESSAGE, GET_MESSAGE } from '../../actions/types';
 import { getAllMessages, postMessage } from './../../actions/message';
+
+import { Header, Form, Segment, Message, List, Pagination, Button, Comment } from 'semantic-ui-react';
 import './messageboard.css';
-
-
-// import UserTodoListItems from './UserTodoListItems';
 
 class MessageBoardContainer extends Component {
 
-  state = {
-    startDate: new Date()
-  }; 
-  
-  handleChange = date => { this.setState({ startDate: date }); };
-
-
-  // NEXT STEPS:
-  // X 1.  connect 'onSubmit' to the backend
-  // X 2.  add the area for messages to show up in
-  // 3.  connect the messages area to the backend to get all messages
-  // ??? 4.  BACKEND BROKEN FIX 052520!!
-  // 5.  create a function to get all of the messages to be rendered into the comments area
-
-  // QUESTIONS TO ASK:
-  // 1.  how do we get all the messages from the database and display them here?
-  // 2.  POST http://localhost:3000/api/dashboard 400 (Bad Request) <--- what on earth is this
-
-  // componentDidMount will go here to get all the messages from the database
-  componentDidMount(){
+  componentDidMount() {
+    console.log(this.props.eventId);
     this.props.getAllMessages(this.props.eventId);
     console.log(this.props.messages.content)
   }
 
   onSubmit = async (formValues, dispatch) => {
-    console.log(formValues);
     try {
       // change the post route here
       // const { data } = await axios.post('/api/dashboard', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
       const { data } = await axios.post(`/api/dashboard/comment/${this.props.eventId}`, formValues, { headers: { 'authorization': localStorage.getItem('token') } })
-      dispatch({ type: POST_MESSAGE, payload: data });
-      this.props.getAllMessages(this.props.eventId);
-
-      // localStorage.setItem('token', data.token);
-      // dispatch({ type: AUTH_USER, payload: data.token });
-      // this.props.history.push('/alltodos');
+      dispatch({ type: GET_MESSAGE, payload: data });
     } catch (e) {
       throw e;
     }
   }
+
   renderInput = ({ input, meta }) => {
     return (
-      <div>
-        <Comment.Group>
-          <Header as='h3' dividing>
-            Message Board
-         </Header>
-
-          <Comment>
-            {/* <Comment.Avatar src='/images/avatar/small/matt.jpg' /> */}
-            <Comment.Content>
-              <Comment.Author as='a'>Matt</Comment.Author>
-              <Comment.Metadata>
-                <div>Today at 5:42PM</div>
-              </Comment.Metadata>
-              <Comment.Text>How artistic!</Comment.Text>
-              <Comment.Actions>
-  <Comment.Action>Reply: </Comment.Action>
-              </Comment.Actions>
-            </Comment.Content>
-          </Comment>
-
-        </Comment.Group>
-
-        <Form reply>
-          <Form.TextArea
-            {...input}
-            fluid
-            error={meta.touched && meta.error}
-            autoComplete='off'
-            placeholder="Add your comment here"
-          />
-
-          <Button
-            content='Add Reply'
-            labelPosition='left'
-            icon='edit'
-            primary
-            onClick={this.onSubmit}
-          />
-        </Form>
-      </div>
-
+      <Form.TextArea
+        {...input}
+        error={meta.touched && meta.error}
+        autoComplete='off'
+        placeholder="Add your comment here"
+      />
     )
   }
 
+  renderMessages = (message, idx) => {
+    return (
+      <Comment key={idx}>
+        <Comment.Content>
+          <Comment.Author>{message.user.email}</Comment.Author>
+          <Comment.Metadata>{moment(message.date).format('h:mma MMM Do, YY')}</Comment.Metadata>
+          <Comment.Text>{message.text}</Comment.Text>
+        </Comment.Content>
+      </Comment>
+    )
+
+  }
 
   render() {
-    console.log(this.props.messages)
-    const { handleSubmit, invalid, submitting, submitFailed } = this.props;
+    const { handleSubmit } = this.props;
     return (
       <div className='messageBoard'>
-        <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
+        <Segment className='view-messages'>
+          <Header as='h3' dividing>
+            Message Board
+          </Header>
+          <Comment.Group>
+            { this.props.messages.map((message,idx) => this.renderMessages(message,idx)) }
+          </Comment.Group>
+        </Segment>
+        <Form size='large' reply onSubmit={handleSubmit(this.onSubmit)}>
           <Segment stacked>
             <h2 align='left'>Add Your Message Here</h2>
             <Field
               name='text'
-              validate={
-                [
-                  required({ msg: 'Please add a message' })
-                ]
-              }
+              validate={required({ msg: 'Please add a message' })}
               component={this.renderInput}
+            />
+            <Button
+              content='Add Reply'
+              labelPosition='left'
+              icon='edit'
+              primary
+              type='submit'
             />
           </Segment>
         </Form>
@@ -267,3 +228,17 @@ export default compose(
 //   form: 'CreateEvent'
 // })(MessageBoardContainer));
 
+
+
+  // NEXT STEPS:
+  // X 1.  connect 'onSubmit' to the backend
+  // X 2.  add the area for messages to show up in
+  // 3.  connect the messages area to the backend to get all messages
+  // ??? 4.  BACKEND BROKEN FIX 052520!!
+  // 5.  create a function to get all of the messages to be rendered into the comments area
+
+  // QUESTIONS TO ASK:
+  // 1.  how do we get all the messages from the database and display them here?
+  // 2.  POST http://localhost:3000/api/dashboard 400 (Bad Request) <--- what on earth is this
+
+  // componentDidMount will go here to get all the messages from the database
