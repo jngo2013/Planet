@@ -4,16 +4,16 @@ const { User, Event } = require('../models/index');
 module.exports = {
   
   joinEvent: async (req, res) => {
-    const { pin } = req.body
+    const { pin, username } = req.body
+    console.log(req.body)
 
     try {
-      const findEventToJoin = await Event.find({ pin })
-      const joinedEventId = findEventToJoin._id
+      const findEventToJoin = await Event.find({ pin, userName: username })
+      const joinedEventId = findEventToJoin[0]._id
       if(!findEventToJoin.length) {
         return res.status(401).json({ error: 'No event found with that pin'})
       }
       const joinAttending = await Event.findByIdAndUpdate(joinedEventId, { $push: { attending: req.user._id }})
-
       return res.json(joinAttending)
 
     } catch (e) {
@@ -23,14 +23,15 @@ module.exports = {
 
   createEvent: async (req, res) => {
     const { title, description, date, pin } = req.body;
+    console.log(req.user)
     if(!title || !description || !date || !pin) {
       return res.status(400).json({ error: 'You must input a title, description, date, and pin!'})
     }
     try {
-      const existingPin = await Event.findOne({ pin });
-      if(existingPin) { return res.status(403).json({ error: 'Pin Already Exists'})}
+      const existingPin = await Event.findOne({ pin, userName: req.user.userName });
+      if(existingPin) { return res.status(403).json({ error: 'You used this pin already'})}
 
-      const newEvent = await new Event({ title, description, date, pin, host: req.user._id }).save();
+      const newEvent = await new Event({ title, description, date, pin, host: req.user._id, userName: req.user.userName }).save();
       
       const newEventId = newEvent._id
 
@@ -46,11 +47,9 @@ module.exports = {
   },
 
   getEvent: async (req, res) => {
-    console.log("you made it to getEvent Function")
-    console.log(req.user._id)
     try {
       const events = await Event.find({ attending: req.user._id })
-      console.log(events)
+    
       return res.json(events)
 
     } catch (e) {
@@ -58,19 +57,19 @@ module.exports = {
     }
   },
   deleteEvent: async (req, res) => {
-    console.log("you're deleting me!?")
-    console.log(req.user._id)
+ 
     const { eventId } = req.params;
-    console.log(eventId)
+ 
     try {
       const eventToDelete = await Event.findById(eventId)
-      console.log(eventToDelete)
       if(!eventToDelete) {
         return res.status(401).json({ error: 'That event had already been deleted'});
       }
       if(req.user._id.toString() !== eventToDelete.host.toString()) {
         // considering checking (if this is true maybe we just remove you from attendance array instead of deleting the event)
-        return res.status(401).json({ error: "You cannot delete an event you are not hosting"})
+        await Event.findByIdAndUpdate(eventId, { $pull: { attending: req.user._id }})
+        return res.json(eventToDelete)
+
       }
 
       const deletedEvent = await Event.findByIdAndDelete(eventId)
@@ -80,15 +79,12 @@ module.exports = {
     }
   },
   specificEvent: async (req, res) => {
-    console.log("you made it the whole way here!")
+
     const { eventId } = req.params;
-    console.log(req.user._id)
-    console.log(eventId)
+
     try {
      const eventFound = await Event.findById(eventId).populate('attending')
-      console.log('----')
-      console.log(eventFound)
-      console.log('----')
+
       return res.json(eventFound)
 
     } catch (e) {
@@ -96,5 +92,6 @@ module.exports = {
     }
 
   }
+
 
 }

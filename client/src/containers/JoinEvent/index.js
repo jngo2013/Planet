@@ -25,7 +25,7 @@ class JoinEvent extends Component {
       dispatch({ type: ADD_USER_EVENT })
       this.props.getUserEvents();
       
-      this.props.history.push('/alltodos');
+      this.props.history.push('/usertodos');
       // this.props.getUserTodos();
     } catch (e) {
       throw new SubmissionError({
@@ -37,19 +37,19 @@ class JoinEvent extends Component {
   // set the token coming from data into localStorage under the key 'token'
   // Dispatch the action to the reducer to set the token as the state for authentication
   // Redirect the user to the '/counter' route
-  // renderEmail = ({ input, meta }) => {
-  //   return (
-  //     <Form.Input
-  //       {...input}
-  //       fluid
-  //       error={ meta.touched && meta.error }
-  //       icon='user'
-  //       iconPosition='left'
-  //       autoComplete='off'
-  //       placeholder='Email address'
-  //     />
-  //   )
-  // }
+  renderEmail = ({ input, meta }) => {
+    return (
+      <Form.Input
+        {...input}
+        fluid
+        error={ meta.touched && meta.error }
+        icon='user'
+        iconPosition='left'
+        autoComplete='off'
+        placeholder='User Name'
+      />
+    )
+  }
   renderPassword = ({ input, meta }) => {
     return (
       <Form.Input
@@ -75,6 +75,15 @@ class JoinEvent extends Component {
             validate={
               [
                 required({ msg: 'You must provide a pin' })
+              ]
+            }
+          />
+          <Field
+            name='username'
+            component={this.renderEmail}
+            validate={
+              [
+                required({ msg: 'You must provide a username'})
               ]
             }
           />
