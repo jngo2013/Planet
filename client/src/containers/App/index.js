@@ -41,8 +41,18 @@ class App extends Component {
           <Grid>
             <Grid.Row>
               <Grid.Column width={16}>
-          <Route exact path='/' component={LandingPage}/>
-          <Route exact path='/' component={SignUp}/>
+              {/* <Route exact path='/' component={LandingPage}/> */}
+          {/* ================ 053020 GCM =================== */}
+          
+
+          <Container>
+              <Route exact path='/' component={SignIn}/>
+              <Route exact path='/signup' component={SignUp}/>
+          </Container>
+
+          {/* ============================================ */}
+          
+          {/* <Route exact path='/' component={SignUp}/> */}
           <Route exact path='/signin' component={SignIn}/>
           <Route exact path='/signout' component={SignOut}/>
           <Route exact path='/createevent' component={CreateEvent}/>
