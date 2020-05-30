@@ -38,6 +38,10 @@ const UserSchema = new Schema({
   }],
   userName: {
     type: String,
+  },
+  Gender: {
+    type: String,
+    default: 'https://avatars.dicebear.com/api/bottts/john.svg?mood[]=happy'
   }
 });
 

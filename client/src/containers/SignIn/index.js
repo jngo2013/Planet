@@ -69,6 +69,7 @@ class SignIn extends Component {
                 required({ msg: 'Email is required' }),
                 email({ msg: 'You must provide a valid email address' })
               ]
+
             }
           />
           <Field

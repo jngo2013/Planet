@@ -68,3 +68,18 @@
 /*font-family: 'Merriweather', serif;*/
 /*font-family: 'Monoton', cursive;*/
 /*font-family: 'Pacifico', cursive;*/
+
+.ui.comments .comment .avatar img, .ui.comments .comment img.avatar {
+  display: block;
+  margin: 0 auto;
+  width: 70%;
+  height: 70%;
+  border-radius: .25rem;
+}
+
+.ui.comments .comment .avatar img, .ui.comments .comment img.avatar {
+  display: inline;
+  height: 24px;
+  width: 24px;
+
+}
