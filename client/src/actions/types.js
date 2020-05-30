@@ -47,3 +47,9 @@ export const POST_MESSAGE_ERROR = 'POST_MESSAGE_ERROR';
 // Get messages action types
 export const GET_MESSAGE = 'GET_MESSAGE';
 export const GET_MESSAGE_ERROR = 'GET_MESSAGE_ERROR';
+
+export const POST_TASK = 'POST_TASK';
+export const POST_TASK_ERROR = 'POST_TASK_ERROR';
+
+export const GET_TASK = 'POST_TASK';
+export const GET_TASK_ERROR = 'POST_TASK_ERROR';
