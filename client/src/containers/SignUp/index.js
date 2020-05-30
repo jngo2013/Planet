@@ -8,7 +8,7 @@ import { AUTH_USER, AUTH_USER_ERROR } from '../../actions/types';
 
 class SignUp extends Component {
   onSubmit = async (formValues, dispatch) => {
-    console.log("test");
+
     try {
       const { data } = await axios.post('/api/auth/signup', formValues);
       localStorage.setItem('token', data.token);
@@ -102,6 +102,14 @@ class SignUp extends Component {
                   }
                   component={this.renderInput}
                 />
+                <div >
+                  <label>Gender</label>
+                  <div className='gender-radio'>
+                    <label><Field name="Gender" component="input" type="radio" value="male"/> Male</label>
+                    <label><Field name="Gender" component="input" type="radio" value="female"/> Female</label>
+                    <label><Field name="Gender" component="input" type="radio" value="default"/> Undefined</label>
+                  </div>
+                </div>
                 <Container>
                   <Grid.Row>
                     <Grid.Column>

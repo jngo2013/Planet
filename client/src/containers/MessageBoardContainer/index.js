@@ -8,14 +8,27 @@ import moment from 'moment';
 import requireAuth from './../../hoc/requireAuth';
 import { AUTH_USER, POST_MESSAGE, GET_MESSAGE } from '../../actions/types';
 import { getAllMessages, postMessage } from './../../actions/message';
-
-import { Header, Form, Segment, Message, List, Pagination, Button, Comment } from 'semantic-ui-react';
+import {
+  Header,
+  Form,
+  Segment,
+  Message,
+  List,
+  Pagination,
+  Button,
+  Comment,
+  Icon,
+  IconProps,
+  Image
+} from 'semantic-ui-react';
 import './messageboard.css';
+
 
 class MessageBoardContainer extends Component {
 
   componentDidMount() {
     this.props.getAllMessages(this.props.eventId);
+
   }
 
   onSubmit = async (formValues, dispatch) => {
@@ -45,6 +58,7 @@ class MessageBoardContainer extends Component {
     return (
       <Comment key={idx}>
         <Comment.Content>
+          <Comment.Avatar src={message.user.Gender} />
           <Comment.Author className='message-userName'>{message.user.userName}</Comment.Author>
           <Comment.Metadata className='message-time'>{moment(message.date).format('h:mma MMM Do, YYYY')}</Comment.Metadata>
           <Comment.Text className='message-userPost'>{message.text}</Comment.Text>
@@ -53,6 +67,7 @@ class MessageBoardContainer extends Component {
     )
 
   }
+
 
 
 

@@ -103,7 +103,7 @@ class UserTodoList extends Component {
                   handleRedirect={this.handleRedirect}
                 />
               </List>
-           
+           <Container className='page-nation'>
               { this.props.userEvents.length === 0 ?
               null
               : <Pagination
@@ -111,9 +111,10 @@ class UserTodoList extends Component {
                 activePage={this.state.activePage}
                 onPageChange={ (e, data) => this.handlePageChange(e, data) }
               />
-            }
-          
-          
+
+              }
+
+           </Container>
         </Container>
         
 
