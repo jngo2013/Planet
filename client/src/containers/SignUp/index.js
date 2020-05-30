@@ -19,6 +19,7 @@ class SignUp extends Component {
     }
   }
 
+
   renderInput = ({ input, meta }) => {
     return (
       <Form.Input

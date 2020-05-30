@@ -5,6 +5,7 @@ import { email, required } from 'redux-form-validators';
 import axios from 'axios';
 import { AUTH_USER } from '../../actions/types';
 import './signin.css'
+import { withRouter, Link } from 'react-router-dom';
 
 
 
@@ -15,7 +16,8 @@ class SignIn extends Component {
       const { data } = await axios.post('/api/auth/signin', formValues);
       localStorage.setItem('token', data.token);
       dispatch({ type: AUTH_USER, payload: data.token });
-      this.props.history.push('/eventsdashboard');
+      // this.props.history.push('/eventsdashboard');
+      this.props.history.push('/usertodos');
     } catch (e) {
       throw new SubmissionError({
         email: 'Wrong email',
@@ -81,6 +83,7 @@ class SignIn extends Component {
               ]
             }
           />
+          <p>Don't have an account?  Click <Link to="/signup">here</Link> to sign up!</p>
           <Button
             content='Sign In'
             color='purple'
