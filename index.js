@@ -23,6 +23,6 @@ require('./services/passport');
 
 
 // Connect database
-mongoose.connect(process.env.MONGODB_URI || "mongodb://project03:password1@ds141320.mlab.com:41320/heroku_sr8c6jmt", { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/events', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
 
 app.listen(PORT);
