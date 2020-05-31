@@ -3,3 +3,8 @@
   border-radius: 10px;
   background-image: url(https://images.unsplash.com/photo-1557682257-2f9c37a3a5f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=843&q=80);
 }
+
+.list-icon { 
+  color: white;
+  border: 2px solid white;
+}
