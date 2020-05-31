@@ -3,13 +3,15 @@ import { Header, List, Button, Popup, Image } from 'semantic-ui-react';
 
 import DeleteTodoModal from './../../../components/DeleteTodoModal';
 
+import { withRouter, Link } from 'react-router-dom';
+
 import './styles.css';
 
 export default (props) => {
   console.log(props)
   console.log("---------")
   if (props.events.length === 0) {
-    return <Header content='No events yet'/>;
+    return <Header>No events yet.  Click <Link to='/createevent'>here</Link> to add one.</Header>;
   } else {
     return props.events.map(({_id, title, completed }) => {
       return (

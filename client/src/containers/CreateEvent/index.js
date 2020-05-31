@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
-import { Form, Segment, Button, Icon, Container } from 'semantic-ui-react';
+import { Form, Segment, Button, Icon, Container, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 // import { compose } from 'redux';
 import { length, required} from 'redux-form-validators';
@@ -16,6 +16,8 @@ import { getUserEvents } from '../../actions/eventActions'
 import { ADD_USER_EVENT } from '../../actions/types'
 import { AUTH_USER, ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 // import UserTodoListItems from './UserTodoListItems';
+
+import HorizontalDivider from './../../components/HorizontalDivider';
 
 
 class CreateEvent extends Component {
@@ -86,8 +88,14 @@ class CreateEvent extends Component {
   render() {
     const { handleSubmit, invalid, submitting, submitFailed, pristine, reset } = this.props;
     return (
+
+      
       <Container fluid className='body'>
         <Container className='formFields'>
+          <Header as='h2' icon textAlign='center'>
+            <Icon name='add to calendar' circular size='massive' className='list-icon'/>
+            <HorizontalDivider title="Create An Event"/>
+          </Header>
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           <Segment>
             <h2 className='form-headers' align='left'>Name of event</h2>

@@ -72,11 +72,13 @@ class UserTodoList extends Component {
     const { handleSubmit } = this.props;
     return (
       <>
+        <Container>
+          <Header as='h2' icon textAlign='center'>
+            <Icon name='calendar alternate outline' circular size='massive' className='list-icon'/>
+            <HorizontalDivider title="My Events"/>
+          </Header>
+        </Container>
         
-        <Header as='h2' icon textAlign='center'>
-          <Icon name='calendar alternate outline' circular size='massive'/>
-          <HorizontalDivider title="My Events"/>
-        </Header>
 
         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
           {/* ======= DELETE THIS ======== */}

@@ -2,3 +2,8 @@
     display: inline;
     text-align: left;
 }
+
+.sign-up-icon { 
+    color: white;
+    border: 2px solid white;
+  }
