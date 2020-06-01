@@ -20,8 +20,6 @@ import {  Container, Grid, GridRow } from 'semantic-ui-react'
 import { getUserEvents, deleteUserEvent, selectEvent, selectedEvent } from '../../actions/eventActions'
 
 
-
-
 class EventDashboard extends Component {
 
   async componentDidMount()  {
@@ -42,7 +40,6 @@ class EventDashboard extends Component {
     }
 
   }
-
 
 
   render() {

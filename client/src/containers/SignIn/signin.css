@@ -4,11 +4,6 @@
 /*}*/
 
 
-/* .ui.stacked.segment {
-  border: 2px solid orange;
-  border-radius: 30px;
-} */
-
 .sign-in-icon { 
   color: white;
   border: 2px solid white;
@@ -17,13 +12,11 @@
 body {
   background-image:url(https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);
   background-size: cover;
-  /* position: absolute; */
+  background-attachment: fixed;
 }
 
 .ui.grid>.row {
-  /* border: 2px solid white; */
   margin-bottom: 300px;
-  /* margin-top: 300px; */
 }
 
 .ui.horizontal.divider {

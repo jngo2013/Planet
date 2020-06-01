@@ -1,126 +1,128 @@
-// this is using 'UserTodoList' index.js as a template
+// 053120 GCM - I don't think this is being used so we can probably delete this.
 
-import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { Header, Form, Segment, Message, List, Pagination, Button } from 'semantic-ui-react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+// // this is using 'UserTodoList' index.js as a template
 
-import axios from 'axios';
+// import React, { Component } from 'react';
+// import { reduxForm, Field } from 'redux-form';
+// import { Header, Form, Segment, Message, List, Pagination, Button } from 'semantic-ui-react';
+// import { connect } from 'react-redux';
+// import { compose } from 'redux';
 
-import requireAuth from './../../hoc/requireAuth';
+// import axios from 'axios';
 
-// 1.  rename 'getUserTodos' to 'getUserEvents'
-// 2.  go to 'actions' --> 'allTodos' and edit the function
-import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
+// import requireAuth from './../../hoc/requireAuth';
 
-// 1.  rename 'ADD_USER_TODO' and 'ADD_USER_TODO_ERROR' to 'ADD_USER_EVENT' AND 'ADD_USER_EVENT_ERROR'
-// 2.  go to 'actions' --> 'types' and change the types
-import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
+// // 1.  rename 'getUserTodos' to 'getUserEvents'
+// // 2.  go to 'actions' --> 'allTodos' and edit the function
+// import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 
-
-import UserTodoListItems from './UserTodoListItems';
-
-class UserTodoList extends Component {
-  state = {
-    activePage: 1,
-    start: 0,
-    end: 10,
-  }
-
-  // 1.  // change 'this.props.getUserTodos()' to 'this.props.getUserEvents()'
-  componentDidMount() {
-    this.props.getUserTodos();
-  }
-
-  onSubmit = async (formValues, dispatch) => {
-    try {
-      await axios.post('/api/user/todos', formValues, { headers: { 'authorization': localStorage.getItem('token')}});
-      dispatch({ type: ADD_USER_TODO });
-      this.props.getUserTodos();
-    } catch (e) {
-      dispatch({ type: ADD_USER_TODO_ERROR, payload: 'You must provide text' });
-    }
-  }
-
-  renderAddTodo = ({ input, meta, language })=> {
-    return (
-      <Form.Input
-        {...input}
-        error={ meta.touched && meta.error }
-        autoComplete='off'
-        placeholder={ language === 'portuguese' ? 'adicione uma tarefa' : 'Add a todo' }
-      />
-    );
-  }
-
-  handlePageChange = (event, data) => {
-    this.setState({
-      activePage: data.activePage,
-      start: data.activePage === 1 ? 0 : data.activePage * 10 - 10,
-      end: data.activePage * 10
-    });
-  }
-
-  render() {
-    const { handleSubmit } = this.props;
-    console.log(this.props.userTodos);
-    return (
-      <>
-        <Header as='h2' color='teal' textAlign='center' content='Welcome to the todo app'/>
-        <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-          <Segment stacked>
-            <Field
-              name='text'
-              component={this.renderAddTodo}
-              language='portuguese'
-            />
-            <Button
-              type='submit'
-              fluid
-              color='teal'
-              content='Add a todo'/>
-          </Segment>
-        </Form>
-        <List animated divided selection>
-          <UserTodoListItems
-            todos={this.props.userTodos.slice(this.state.start, this.state.end)}
-            handleDelete={this.props.deleteTodoById}
-            handleUpdate={this.props.updateCompleteUserTodoById}
-          />
-        </List>
-        { this.props.userTodos.length === 0 ?
-          null
-          : <Pagination
-            totalPages={ Math.ceil(this.props.userTodos.length / 10) }
-            activePage={this.state.activePage}
-            onPageChange={ (e, data) => this.handlePageChange(e, data) }
-          />
-        }
-      </>
-    );
-  }
-}
-
-function mapStateToProps(state) {
-  return {
-    userTodos: state.todos.userTodos,
-    todoClientError: state.todos.getUserTodosClientError,
-    todoServerError: state.todos.getUserTodosServerError
-  };
-};
+// // 1.  rename 'ADD_USER_TODO' and 'ADD_USER_TODO_ERROR' to 'ADD_USER_EVENT' AND 'ADD_USER_EVENT_ERROR'
+// // 2.  go to 'actions' --> 'types' and change the types
+// import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
 
 
-// export default reduxForm({ form: 'addTodo' })(connect(mapStateToProps, { getUserTodos })(UserTodoList));
-// export default connect(mapStateToProps, { getUserTodos })(reduxForm({ form: 'addTodo' })(UserTodoList))
+// import UserTodoListItems from './UserTodoListItems';
 
-// const composedComponent = connect(mapStateToProps, { getUserTodos })(UserTodoList);
-// export default reduxForm({ form: 'addTodo' })(composedComponent);
+// class UserTodoList extends Component {
+//   state = {
+//     activePage: 1,
+//     start: 0,
+//     end: 10,
+//   }
 
-const composedComponent =  compose(
-  reduxForm({ form: 'addTodo' }),
-  connect(mapStateToProps, { getUserTodos, updateCompleteUserTodoById, deleteTodoById })
-)(UserTodoList);
+//   // 1.  // change 'this.props.getUserTodos()' to 'this.props.getUserEvents()'
+//   componentDidMount() {
+//     this.props.getUserTodos();
+//   }
+
+//   onSubmit = async (formValues, dispatch) => {
+//     try {
+//       await axios.post('/api/user/todos', formValues, { headers: { 'authorization': localStorage.getItem('token')}});
+//       dispatch({ type: ADD_USER_TODO });
+//       this.props.getUserTodos();
+//     } catch (e) {
+//       dispatch({ type: ADD_USER_TODO_ERROR, payload: 'You must provide text' });
+//     }
+//   }
+
+//   renderAddTodo = ({ input, meta, language })=> {
+//     return (
+//       <Form.Input
+//         {...input}
+//         error={ meta.touched && meta.error }
+//         autoComplete='off'
+//         placeholder={ language === 'portuguese' ? 'adicione uma tarefa' : 'Add a todo' }
+//       />
+//     );
+//   }
+
+//   handlePageChange = (event, data) => {
+//     this.setState({
+//       activePage: data.activePage,
+//       start: data.activePage === 1 ? 0 : data.activePage * 10 - 10,
+//       end: data.activePage * 10
+//     });
+//   }
+
+//   render() {
+//     const { handleSubmit } = this.props;
+//     console.log(this.props.userTodos);
+//     return (
+//       <>
+//         <Header as='h2' color='teal' textAlign='center' content='Welcome to the todo app'/>
+//         <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
+//           <Segment stacked>
+//             <Field
+//               name='text'
+//               component={this.renderAddTodo}
+//               language='portuguese'
+//             />
+//             <Button
+//               type='submit'
+//               fluid
+//               color='teal'
+//               content='Add a todo'/>
+//           </Segment>
+//         </Form>
+//         <List animated divided selection>
+//           <UserTodoListItems
+//             todos={this.props.userTodos.slice(this.state.start, this.state.end)}
+//             handleDelete={this.props.deleteTodoById}
+//             handleUpdate={this.props.updateCompleteUserTodoById}
+//           />
+//         </List>
+//         { this.props.userTodos.length === 0 ?
+//           null
+//           : <Pagination
+//             totalPages={ Math.ceil(this.props.userTodos.length / 10) }
+//             activePage={this.state.activePage}
+//             onPageChange={ (e, data) => this.handlePageChange(e, data) }
+//           />
+//         }
+//       </>
+//     );
+//   }
+// }
+
+// function mapStateToProps(state) {
+//   return {
+//     userTodos: state.todos.userTodos,
+//     todoClientError: state.todos.getUserTodosClientError,
+//     todoServerError: state.todos.getUserTodosServerError
+//   };
+// };
 
 
-export default requireAuth(composedComponent);
+// // export default reduxForm({ form: 'addTodo' })(connect(mapStateToProps, { getUserTodos })(UserTodoList));
+// // export default connect(mapStateToProps, { getUserTodos })(reduxForm({ form: 'addTodo' })(UserTodoList))
+
+// // const composedComponent = connect(mapStateToProps, { getUserTodos })(UserTodoList);
+// // export default reduxForm({ form: 'addTodo' })(composedComponent);
+
+// const composedComponent =  compose(
+//   reduxForm({ form: 'addTodo' }),
+//   connect(mapStateToProps, { getUserTodos, updateCompleteUserTodoById, deleteTodoById })
+// )(UserTodoList);
+
+
+// export default requireAuth(composedComponent);
