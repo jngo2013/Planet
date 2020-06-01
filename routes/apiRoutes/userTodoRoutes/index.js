@@ -14,6 +14,7 @@ router.get('/emails', getAllUserEmails);
 
 // /api/user/todos
 
+router.route('/profile/:id')
 
 router.route('/todos')
   .get(requireAuth, getUserTodos)

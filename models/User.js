@@ -37,7 +37,9 @@ const UserSchema = new Schema({
     ref: 'Message'
   }],
   userName: {
-    type: String,
+    type: String
+
+
   },
   Gender: {
     type: String,

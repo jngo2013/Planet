@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Form, Segment, Button, Grid, GridRow, GridColumn, Container, Header, Icon } from 'semantic-ui-react';
+import { Form, Segment, Button, Grid, GridRow, GridColumn, Container } from 'semantic-ui-react';
 import { email, length, required } from 'redux-form-validators';
 import axios from 'axios';
+import './signup.css'
 
 import { AUTH_USER, AUTH_USER_ERROR } from '../../actions/types';
-
-import HorizontalDivider from './../../components/HorizontalDivider';
-
-import './signup.css';
 
 class SignUp extends Component {
   onSubmit = async (formValues, dispatch) => {
 
     try {
+      console.log('im hit')
       const { data } = await axios.post('/api/auth/signup', formValues);
       localStorage.setItem('token', data.token);
       dispatch({ type: AUTH_USER, payload: data.token });
-      // this.props.history.push('/eventsdashboard');
-      this.props.history.push('/usertodos');
+      this.props.history.push('/eventsdashboard');
     } catch (e) {
       dispatch({ type: AUTH_USER_ERROR, payload: e });
     }
   }
-
 
   renderInput = ({ input, meta }) => {
     return (
@@ -75,13 +71,6 @@ class SignUp extends Component {
     const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
       <Container>
-        
-        <Header as='h2' icon textAlign='center'>
-          <Icon name='signup' circular size='massive' className='sign-up-icon'/>
-          <HorizontalDivider title="Sign Up"/>
-        </Header>
-
-
         <Grid.Row>
           <Grid.Column width={1}>
             <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
@@ -115,18 +104,18 @@ class SignUp extends Component {
                   }
                   component={this.renderInput}
                 />
-                <div>
+                <div >
                   <Segment>
-                  <label>Gender</label>
+                  <label>Gender ( For avatar )</label>
                   <div className='gender-radio'>
                     <label><Field name="Gender" component="input" type="radio" value="male"/> Male</label>
                     <label><Field name="Gender" component="input" type="radio" value="female"/> Female</label>
                     <label><Field name="Gender" component="input" type="radio" value="default"/> Undefined</label>
+
                   </div>
                   </Segment>
-                  
                 </div>
-                <Container>
+                <Container className='signup-radio'>
                   <Grid.Row>
                     <Grid.Column>
                       <Button
@@ -136,15 +125,14 @@ class SignUp extends Component {
                         size='large'
                         type='submit'
                         disabled={ invalid || submitting || submitFailed }
-                      /> 
-                      
-                      {/* <Button
+                      /> <Button
                         content='Sign In'
                         color='facebook'
+
                         size='large'
                         type='submit'
                         disabled={ invalid || submitting || submitFailed }
-                      /> */}
+                      />
                     </Grid.Column>
                   </Grid.Row>
                 </Container>
