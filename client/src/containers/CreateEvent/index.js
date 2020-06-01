@@ -10,12 +10,12 @@ import DatePicker from 'react-datepicker';
 import './createevent.css'
 import { compose } from 'redux';
 import "react-datepicker/dist/react-datepicker.css";
-// import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
+
 import { getUserEvents } from '../../actions/eventActions'
-// import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
+
 import { ADD_USER_EVENT } from '../../actions/types'
-import { AUTH_USER, ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
-// import UserTodoListItems from './UserTodoListItems';
+
+
 
 import HorizontalDivider from './../../components/HorizontalDivider';
 
@@ -42,7 +42,7 @@ class CreateEvent extends Component {
   }
 
   onSubmit = async (formValues, dispatch) => {
-    console.log(formValues);
+
     try {
       const { data } = await axios.post('/api/event/create', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});
       dispatch({ type: ADD_USER_EVENT })

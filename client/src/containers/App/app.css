@@ -1,6 +1,6 @@
 .hero {
     position: relative;
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .hero-overlay {
@@ -12,23 +12,25 @@
 }
 
 .hero-title {
-    font-size: 7vw;
+    font-size: 6vw;
     transform: translateY(9vw);
     color: #ffffff;
     letter-spacing: 0.45rem;
     font-weight: 500;
     font-family: 'Monoton', cursive;
+    opacity: 100%;
 
 
 }
 
 .hero-image {
     display: block;
-    overflow: visible;
+    overflow: scroll;
     z-index: -1;
     margin-left: auto;
     margin-right: auto;
     width: 75%;
+
 
 }
 .footer {

@@ -1,0 +1,61 @@
+.profile-container {
+    height: 300px !important;
+    width: 200px !important;
+    border-radius: 50%;
+    background-color: purple;
+
+
+}
+
+.profile-social {
+    background-color: royalblue;
+    display: block;
+}
+
+.profile-name, .profile-info {
+    background-color: rebeccapurple;
+    /*border: 5px black solid;*/
+}
+
+.profile-image {
+    height: 300px !important;
+    width: 300px !important;
+    border-radius: 50%;
+    background-color: purple;
+    box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.35)!important;
+    display: block;
+    overflow: visible;
+    z-index: -1;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+
+}
+
+.profile-segment-main {
+    background-color: antiquewhite !important;
+    /*opacity: 90% !important;*/
+}
+
+.profile-bio {
+    box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.15)!important;
+    font-size: 14px !important;
+    overflow: scroll;
+
+}
+
+.profile-right-sidebar {
+    color: white;
+    background-color: black;
+}
+
+.profile-segment-sidebar {
+    background-color: black !important;
+    color: antiquewhite !important;
+}
+
+.profile-text {
+    color: ghostwhite;
+    background-color: black;
+
+}

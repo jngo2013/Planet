@@ -4,7 +4,9 @@ const authRoutes = require('./authRoutes');
 const userTodoRoutes = require('./userTodoRoutes');
 const eventRoutes = require('./eventRoutes');
 const messageRoutes = require('./messageRoutes');
+const profile = require('./profile');
 
+router.use('/profile', profile)
 router.use('/todos', todoRoutes);
 router.use('/auth', authRoutes);
 router.use('/user', userTodoRoutes);
