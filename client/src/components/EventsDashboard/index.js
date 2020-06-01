@@ -3,6 +3,7 @@ import HeroImage from '../HeroImage';
 import MessageBoardContainer from './../../containers/MessageBoardContainer';
 import GoogleMap from './../GoogleMap';
 import TasksBox from './../TasksBox';
+import moment from 'moment';
 import Sidebar from './../Sidebar/index';
 import './../Sidebar/sidebar.css'
 import EventDetails from './../EventDetails';
@@ -70,7 +71,8 @@ class EventDashboard extends Component {
               <EventDetails 
                 title={this.props.userSpecificEvent.title}
                 description={this.props.userSpecificEvent.description}
-                dateCreated={this.props.userSpecificEvent.date}
+                dateCreated={moment(this.props.userSpecificEvent.date).format('LL')}
+                // dateCreated={this.props.userSpecificEvent.date}
               />
               <Grid.Column width={11}>
                 <MessageBoardContainer 

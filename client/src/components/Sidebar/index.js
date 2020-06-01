@@ -1,20 +1,32 @@
 import React, { Component } from "react";
 import './sidebar.css';
+import {compose} from "redux";
+import {reduxForm} from "redux-form";
+import {connect} from "react-redux";
+import {getUserName} from "../../actions/profile";
+import requireAuth from "../../hoc/requireAuth";
 
 
-function Sidebar() {
-  return (
-    <div>
+class Sidebar extends Component {
+  render () {
+    return (
+      <div>
 
-      ​
-      <div className="sidebar">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#clients">Clients</a>
-        <a href="#contact">Contact</a>
+        ​
+        <div className="sidebar">
+          { this.props.attending?.map((user, idx) => <p key={idx}>{user.userName}</p>)}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
-export default Sidebar;
+
+
+function mapStateToProps(state) {
+  return { attending: state.event.userSpecificEvent.attending }
+}
+
+
+
+export default connect(mapStateToProps)(Sidebar);

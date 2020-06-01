@@ -1,24 +1,37 @@
 /* eslint-disable max-len */
 
 import React from 'react'
-import { Container, Header, Button } from 'semantic-ui-react'
+import { Container, Header, Segment } from 'semantic-ui-react'
 import './eventdetails.css';
 
 
-const buttonFunction = () => {
-  prompt("Edit Something");
-}
+
 
 const EventDetails = (props) => (
   <div className="eventDetailsBox">
     <Container fluid textAlign='left'>
-      <Header as='h1' textAlign='left' className='header'>{props.title}<Button onClick={buttonFunction}>Edit</Button> </Header>
-      <p className="eventDetails">
-        {props.dateCreated} <Button onClick={buttonFunction}>Edit</Button>
-      </p>
-      <p className="eventDetails">
-        {props.description} <Button onClick={buttonFunction}>Edit</Button>
-      </p>
+      <Segment>
+        <Header as='h1' textAlign='left' className='header'>Name of event: {props.title} </Header>
+      </Segment>
+
+
+     <Container>
+       <Segment>
+         <p className="eventDetails">
+          Date of the event: {props.dateCreated}
+         </p>
+       </Segment>
+     </Container>
+      <Container>
+        <Segment>
+          <p className="eventDetails">
+          About event: {props.description}
+          </p>
+
+        </Segment>
+      </Container>
+
+
       
 
     </Container>
