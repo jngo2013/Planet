@@ -10,6 +10,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import requireAuth from './../../hoc/requireAuth';
 import { reduxForm, Field } from 'redux-form';
+// import TaskContainer from './../../containers/taskBox';
 
 import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 // import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react';
@@ -81,7 +82,10 @@ class EventDashboard extends Component {
               
               <Grid.Row>
                 <Grid.Column><GoogleMap /></Grid.Column>
-                <Grid.Column><TasksBox /></Grid.Column>
+                <Grid.Column>
+                  <TasksBox />
+                  {/* <TaskContainer/> */}
+                  </Grid.Column>
               </Grid.Row>
 
             </Grid.Row>
