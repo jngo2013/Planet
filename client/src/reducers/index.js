@@ -7,6 +7,7 @@ import eventReducer from './eventReducer';
 import profileReducer from './profileReducer'
 import { ADD_USER_TODO } from '../actions/types';
 import messageReducer from './messageReducer';
+import taskReducer from './taskReducer'
 
 export default combineReducers({
   event: eventReducer,
@@ -24,4 +25,5 @@ export default combineReducers({
     }
   }),
   messages: messageReducer,
+  tasks: taskReducer
 });

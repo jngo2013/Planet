@@ -1,7 +1,9 @@
 import React from 'react'
-import { Card } from 'semantic-ui-react'
+import { Card, Button } from 'semantic-ui-react'
+import { postTask, getAllTasks } from '../../actions/task'
 
 const TasksBox = () => (
+  <div>
   <Card
     link
     header='Tasks Box?'
@@ -12,6 +14,16 @@ const TasksBox = () => (
       '  Rick also needs to bring chips.',
     ].join('')}
   />
+  <Button
+    content='Add Task'
+    labelPosition='left'
+    icon='edit'
+    color='facebook'
+    type='submit'
+    onClick= {postTask}
+    />
+    </div>
 )
+
 
 export default TasksBox;
