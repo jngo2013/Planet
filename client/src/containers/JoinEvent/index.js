@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm, SubmissionError } from 'redux-form';
-import { Form, Segment, Button } from 'semantic-ui-react';
+import { Form, Segment, Button, Header, Icon, Container } from 'semantic-ui-react';
 import { required } from 'redux-form-validators';
 import axios from 'axios';
 // import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { ADD_USER_EVENT } from '../../actions/types'
 import { getUserEvents } from '../../actions/eventActions'
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
+import HorizontalDivider from './../../components/HorizontalDivider';
 
 
 
@@ -67,36 +68,51 @@ class JoinEvent extends Component {
   render() {
     const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
-      <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-        <Segment stacked>
-          <Field
-            name='pin'
-            component={this.renderPassword}
-            validate={
-              [
-                required({ msg: 'You must provide a pin' })
-              ]
-            }
-          />
-          <Field
-            name='username'
-            component={this.renderEmail}
-            validate={
-              [
-                required({ msg: 'You must provide a username'})
-              ]
-            }
-          />
-          <Button
-            content='Join Event'
-            color='teal'
-            fluid
-            size='large'
-            type='submit'
-            disabled={ invalid || submitting || submitFailed }
-          />
-        </Segment>
+      <div>
+        <Container>
+          <Header as='h2' icon textAlign='center'>
+            <Icon name='calendar check outline' circular size='massive' className='sign-in-icon'/>
+            <HorizontalDivider title="Join An Event"/>
+          </Header>
+
+          <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
+            <Segment stacked>
+              <Field
+                name='pin'
+                component={this.renderPassword}
+                validate={
+                  [
+                    required({ msg: 'You must provide a pin' })
+                  ]
+                }
+              />
+              <Field
+                name='username'
+                component={this.renderEmail}
+                validate={
+                  [
+                    required({ msg: 'You must provide a username'})
+                  ]
+                }
+              />
+              <Button
+                content='Join Event'
+                color='teal'
+                
+                size='large'
+                type='submit'
+                disabled={ invalid || submitting || submitFailed }
+              />
+            </Segment>
       </Form>
+
+        </Container>
+
+        
+
+        
+      </div>
+      
     )
   }
 }

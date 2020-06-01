@@ -1,3 +1,5 @@
+// 053120 GCM - I don't think this is being used anywhere so we can probably delete this.
+
 import React from 'react';
 
 function ShowEvent() {
