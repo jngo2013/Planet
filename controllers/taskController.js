@@ -28,7 +28,7 @@ getAllTasks: async (req, res) => {
   console.log(eventId)
   console.log("You've reached the getAllTask")
   try {
-    const eventTasks = await Task.find({ event: eventId })
+    const eventTasks = await Task.find({ event: eventId }).populate('user')
     console.log(eventTasks)
     return res.status(200).json(eventTasks);
   } catch (e) {

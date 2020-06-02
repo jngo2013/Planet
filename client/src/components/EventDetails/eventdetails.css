@@ -1,7 +1,9 @@
 .eventDetails {
     font-family: 'Bitter', serif;
     font-size: 1.5rem;
-    color: Black;
+    color: ghostwhite;
+    background-color: rebeccapurple;
+    opacity: 95%;
 }
 
 .eventDetailsBox {
@@ -14,9 +16,14 @@
 } */
 
 .event-header {
-    font-family: 'Bitter', serif !important;
+    /*font-family: 'Bitter', serif !important;*/
+   font-family: 'Fugaz One', cursive !important;
     font-size: 4rem !important;
-    color: black !important;
+    font-weight: lighter !important;
+    color: ghostwhite !important;
+    background-color: rebeccapurple;
+    opacity: 95%;
+    max-width: 125rem;
 }
 
 .eventDetails-edit {

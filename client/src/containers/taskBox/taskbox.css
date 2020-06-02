@@ -11,3 +11,7 @@
   min-height: 150px;
   max-height: 225px;
 }
+
+.task-userName {
+  background-color: indianred;
+}

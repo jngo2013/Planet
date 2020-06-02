@@ -52,6 +52,7 @@ class TaskContainer extends Component {
       <Comment key={idx}>
       <Comment.Content>
         <Comment.Content className='view-tasks'>
+          <Comment.Author className='task-userName'>{task.user.userName}</Comment.Author>
           <Comment.Text>{task.text}</Comment.Text>
         </Comment.Content>
       </Comment.Content>
