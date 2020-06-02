@@ -7,39 +7,53 @@
 
 }
 
-.profile-background {
-    background-color: black;
-}
-
 .profile-name, .profile-info {
-    background-color: rebeccapurple;
+    background-color: mediumpurple;
     /*border: 5px black solid;*/
+    border-radius: 5px;
+    text-transform: capitalize;
+    margin-bottom: 30px !important;
+    box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.55)!important;
+
 }
 
 .profile-image {
     height: 300px !important;
     width: 300px !important;
     border-radius: 50%;
-    background-color: purple;
-    box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.35)!important;
+    background-color: blueviolet;
+    box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.55)!important;
     display: block;
     overflow: visible;
     z-index: -1;
     margin-left: auto;
     margin-right: auto;
     width: 75%;
+    padding-top: 10px;
 
 }
 
 .profile-segment-main {
-    background-color: antiquewhite !important;
-    /*opacity: 90% !important;*/
+    background-color: #8076a3 !important;
+    box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.65)!important;
+
+
 }
 
 .profile-bio {
     box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.15)!important;
     font-size: 14px !important;
-    overflow: scroll;
+    /*overflow: scroll;*/
+    text-indent: 50px;
+    margin:4px, 4px;
+    padding:4px;
+
+    height: 500px;
+    overflow-x: hidden;
+    overflow-x: auto;
+
+
+
 
 }
 
@@ -54,7 +68,21 @@
 }
 
 .profile-text {
-    color: ghostwhite;
-    background-color: black;
+    color: black;
 
 }
+
+
+
+.ui.padded.grid:not(.vertically):not(.horizontally) {
+    margin: 0!important;
+    width: 100% !important;
+    opacity: 100% !important;
+}
+
+.profile-update {
+    box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.55)!important;
+}
+
+
+

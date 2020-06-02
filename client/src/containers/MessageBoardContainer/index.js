@@ -28,7 +28,7 @@ class MessageBoardContainer extends Component {
 
   componentDidMount() {
     this.props.getAllMessages(this.props.eventId);
-
+      console.log('kerry')
   }
 
   onSubmit = async (formValues, dispatch) => {
