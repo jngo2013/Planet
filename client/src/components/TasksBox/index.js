@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'semantic-ui-react'
-import { postTask, getAllTasks } from '../../actions/task'
+import { postTask } from '../../actions/task'
 
 const TasksBox = () => (
   <div>
