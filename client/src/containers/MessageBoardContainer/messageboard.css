@@ -14,7 +14,7 @@
   overflow: scroll;
   scroll-behavior: smooth !important;
   white-space: nowrap;
-  width: 800px;
+  /* width: 800px; */
   border: 20px solid #000000;
   /*overflow: hidden;*/
   /*text-overflow: ellipsis;*/

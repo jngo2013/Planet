@@ -1,16 +1,24 @@
 .eventDetails {
     font-family: 'Bitter', serif;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    color: whitesmoke;
 }
 
 .eventDetailsBox {
     margin: 30px;
 }
 
-/* header {
+/* .event-header {
     font-family: 'Pacifico', cursive !important;
     font-size: 30px !important;
 } */
+
+.event-header {
+    font-family: 'Bitter', serif !important;
+    font-size: 4rem !important;
+    color: whitesmoke !important;
+}
+
 
 
 /*font-family: 'Bitter', serif;*/

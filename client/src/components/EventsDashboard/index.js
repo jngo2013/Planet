@@ -15,11 +15,12 @@ import { reduxForm, Field } from 'redux-form';
 
 import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 // import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react';
-import {  Container, Grid, GridRow } from 'semantic-ui-react'
+import {  Container, Grid, GridRow, Header } from 'semantic-ui-react'
 // import { LOAD_SPECIFIC_EVENT_ID, LOAD_SPECIFIC_EVENT_ID_ERROR} from "../../actions/types";
 // import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
 
 import { getUserEvents, deleteUserEvent, selectEvent, selectedEvent } from '../../actions/eventActions'
+import './dashboard.css';
 
 
 class EventDashboard extends Component {
@@ -48,51 +49,94 @@ class EventDashboard extends Component {
     return (
       <div>
         
-        <Container>
+        {/* <Container>
           <Grid.Row>
             <Grid.Column>
-              <Sidebar/>
+              <Sidebar className='sidebar' />
 
             </Grid.Column>
           </Grid.Row>
-        </Container>
-        <Container>
+        </Container> */}
+
+        {/* <Container>
           <Grid>
             <Grid.Row>
               <HeroImage />
             </Grid.Row>
           </Grid>
-
-        </Container>
+        </Container> */}
 
         <Container>
-          <Grid>
+
+          {/* <Grid>
             <Grid.Row>
               <EventDetails 
                 title={this.props.userSpecificEvent.title}
                 description={this.props.userSpecificEvent.description}
                 dateCreated={moment(this.props.userSpecificEvent.date).format('LL')}
                 // dateCreated={this.props.userSpecificEvent.date}
-              />
-              <Grid.Column width={11}>
+              /> */}
+
+              {/* <Grid.Column width={11} className='map-taskbox'>
                 <MessageBoardContainer 
                   eventId={this.props.specificEvent}
-
                 />
-
-              </Grid.Column>
+              </Grid.Column> */}
               
-              <Grid.Row>
+              
+              {/* <Grid.Row>
                 <Grid.Column><GoogleMap /></Grid.Column>
                 <Grid.Column>
                   <TasksBox />
-                  {/* <TaskContainer/> */}
+                  <TaskContainer/>
                   </Grid.Column>
               </Grid.Row>
 
             </Grid.Row>
+          </Grid> */}
+
+          
+              <EventDetails 
+                title={this.props.userSpecificEvent.title}
+                description={this.props.userSpecificEvent.description}
+                dateCreated={moment(this.props.userSpecificEvent.date).format('LL')}
+                // dateCreated={this.props.userSpecificEvent.date}
+              />
+
+          {/* Message Board */}
+          <Grid columns={3} stackable>
+            <Grid.Column>
+              <MessageBoardContainer 
+                eventId={this.props.specificEvent}
+              />
+            </Grid.Column>
+
+            {/* Sidebar */}
+            <Grid.Column>
+              <Sidebar className='sidebar' /> 
+            </Grid.Column>
+      
+      
+            <Grid.Column>
+              <Grid
+                centered
+                columns={3}
+                padded
+                stackable
+                style={{ margin: '-1.5em', width: 400 }}
+                textAlign='center'
+              >
+                <GoogleMap />
+                <TasksBox />
+              </Grid>
+            </Grid.Column>
+
           </Grid>
         </Container>
+    
+        
+
+
       </div>
     );
   }
