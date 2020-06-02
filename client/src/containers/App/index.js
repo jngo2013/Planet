@@ -29,7 +29,7 @@ class App extends Component {
 
        {/*<div className='hero'>*/}
          <div className='hero-overlay'>
-           <h1 className='hero-title'>Planet.COM</h1>
+           <h1 className='hero-title'>Planet.Com</h1>
          </div>
          {/*<img src='https://images.unsplash.com/photo-1584573062914-a1f7848470a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' className='hero-image'/>*/}
        {/*</div>*/}

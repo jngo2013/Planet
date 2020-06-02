@@ -11,20 +11,25 @@
     text-transform: uppercase;
     z-index: 0;
     width: 100%;
+
 }
 
 .hero-title {
     font-size: 6vw;
     transform: translateY(9vw);
-    color: black;
+    color: ghostwhite;
     letter-spacing: 0.45rem;
     font-weight: 500;
     /*font-family: 'Monoton', cursive;*/
     font-family: 'Fugaz One', cursive;
-    opacity: 100%;
+    opacity: .75 !important;
     margin-bottom: 450px !important;
     height: 150px;
     width: 100vw;
+    background-color: darkslateblue;
+
+    border-radius: 15%;
+    box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.85)!important;
 
 
 }

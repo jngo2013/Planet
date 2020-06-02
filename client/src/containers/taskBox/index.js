@@ -26,10 +26,12 @@ class TaskContainer extends Component {
   }
 
   onSubmit = async (formValues, dispatch) => {
+    const { reset } = this.props;
     console.log(formValues)
     try {
       const { data } = await axios.post(`/api/taskboard/task/${this.props.eventId}`, formValues, { headers: { 'authorization': localStorage.getItem('token') } })
       dispatch({ type: POST_TASK, payload: data });
+      reset('CreateTask')
     } catch (e) {
       throw e;
     }

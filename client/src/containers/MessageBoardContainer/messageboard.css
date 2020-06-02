@@ -32,6 +32,7 @@
   letter-spacing: 0.45px;
     background-color: indianred;
     font-family: 'Lato', sans-serif;
+  text-transform: capitalize;
 
     /*width: 25%;*/
     /*display: block;*/
