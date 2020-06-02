@@ -8,7 +8,7 @@ import requireAuth from './../../hoc/requireAuth';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { ADD_USER_EVENT } from '../../actions/types'
-import { getUserEvents } from '../../actions/eventActions'
+import { getUserEvents, selectEvent } from '../../actions/eventActions'
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import HorizontalDivider from './../../components/HorizontalDivider';
 
@@ -24,9 +24,9 @@ class JoinEvent extends Component {
       // localStorage.setItem('token', data.token);
       // dispatch({ type: ADD_USER_TODO });
       dispatch({ type: ADD_USER_EVENT })
-      this.props.getUserEvents();
-      
-      this.props.history.push('/usertodos');
+      // this.props.getUserEvents();
+      this.props.selectEvent(data._id)
+      this.props.history.push('/eventsdashboard');
       // this.props.getUserTodos();
     } catch (e) {
       throw new SubmissionError({
@@ -124,7 +124,7 @@ function mapStateToProps(state) {
 }
 const composedComponent = compose(
   reduxForm({ form: 'JoinEvent' }),
-  connect(mapStateToProps, { getUserEvents })
+  connect(mapStateToProps, { getUserEvents, selectEvent })
 )(JoinEvent)
 
 // export default requireAuth(connect(mapStateToProps)(JoinEvent));
