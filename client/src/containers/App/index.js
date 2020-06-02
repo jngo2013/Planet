@@ -55,6 +55,16 @@ class App extends Component {
 
         </Container>
 
+        <div className="footer">
+          <div id="button"></div>
+          <div id="container">
+            <div id="cont">
+              <div className="footer_center">
+                <h3><a href="https://github.com/Kerry-Jr/" target="_blank">Kerry Smith</a></h3>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

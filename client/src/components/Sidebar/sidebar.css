@@ -19,7 +19,11 @@
 .sidebar-user {
 font-size: 16px;
     font-family: 'Merriweather', serif;
-    background-color: darkcyan !important;
+    background-color: indianred !important;
     /*text-transform: uppercase;*/
     text-transform: capitalize;
+}
+
+.attending-main-div {
+    margin-bottom: 25px;
 }

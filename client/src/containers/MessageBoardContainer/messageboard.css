@@ -30,16 +30,14 @@
 
 .message-userName {
   letter-spacing: 0.45px;
-    background-color: lightseagreen;
+    background-color: indianred;
     font-family: 'Lato', sans-serif;
 
     /*width: 25%;*/
     /*display: block;*/
 }
 
-.message-userName {
 
-}
 
 .message-time {
 /*float: left !important;*/
