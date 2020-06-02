@@ -54,13 +54,15 @@ class App extends Component {
           </Grid>
 
         </Container>
+        <section>
 
+        </section>
         <div className="footer">
-          <div id="button"></div>
+          <div id="button"><h2 className='footer-contact'>Contact</h2></div>
           <div id="container">
             <div id="cont">
               <div className="footer_center">
-                <h3><a href="https://github.com/Kerry-Jr/" target="_blank">Kerry Smith</a></h3>
+                <h3><a href="https://github.com/Kerry-Jr/" target="_blank">Kerry Smith</a>&#128512;&nbsp;<a href="http://github.com/jngo2013/" target="_blank">Jimmy Ngo</a>&#128512;&nbsp;<a href="https://github.com/Guillermo-Martin" target="_blank">Guillermo Martin</a>&#128512;&nbsp;<a href="https://github.com/scott-whitney" target="_blank">Scott Whitney</a></h3>
               </div>
             </div>
           </div>
