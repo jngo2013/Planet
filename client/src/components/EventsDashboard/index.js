@@ -63,8 +63,6 @@ class EventDashboard extends Component {
   render() {
     return (
       <div>
-
-
         
         <Container>
               <EventDetails 
@@ -79,8 +77,9 @@ class EventDashboard extends Component {
                 dateUpdate={this.props.userSpecificEvent.updateEventDate}
               />
 
-          {/* Message Board */}
           <Grid columns={3} stackable>
+
+            {/* Message Board */}
             <Grid.Column>
               <MessageBoardContainer 
                 eventId={this.props.specificEvent}
@@ -89,48 +88,23 @@ class EventDashboard extends Component {
 
             {/* Sidebar */}
             <Grid.Column>
-              <Sidebar className='sidebar' /> 
-            </Grid.Column>
-      
-      
-            <Grid.Column>
-              <Grid
-                centered
-                columns={3}
-                padded
-                stackable
-                style={{ margin: '-1.5em', width: 400 }}
-                textAlign='center'
-              >
-                
-                <TasksBox />
-                <TaskContainer
+              <Sidebar className='sidebar' />
+              <TaskContainer
                 eventId={this.props.specificEvent}
-                 />
-                  <Grid.Row>
-                    <Grid.Column>
-                    <GoogleApiWrapper
+              />
+            </Grid.Column>
+
+            {/* Google Maps */}
+            <Grid.Column>
+                  <h1>You'll be going here:</h1>
+                  <GoogleApiWrapper
                   location={this.props.eventCoordinates}
                   directions={this.props.userSpecificEvent.directions}
                   />
-                    </Grid.Column>
- 
-                  </Grid.Row>
-
-                  <Grid.Row>
-                    <Grid.Column>
-                    <TasksBox />
-                    </Grid.Column>
-                  
-                  </Grid.Row>
-                
-              </Grid>
             </Grid.Column>
 
           </Grid>
         </Container>
-    
-        
       </div>
     );
   }

@@ -1,7 +1,7 @@
 .eventDetails {
     font-family: 'Bitter', serif;
     font-size: 1.5rem;
-    color: whitesmoke;
+    color: Black;
 }
 
 .eventDetailsBox {
@@ -16,9 +16,12 @@
 .event-header {
     font-family: 'Bitter', serif !important;
     font-size: 4rem !important;
-    color: whitesmoke !important;
+    color: black !important;
 }
 
+.eventDetails-edit {
+    margin-left: 20px !important;
+}
 
 
 /*font-family: 'Bitter', serif;*/
