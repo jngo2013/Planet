@@ -38,7 +38,7 @@ class App extends Component {
           <Grid>
             <Grid.Row>
               <Grid.Column width={16}>
-          <Container>
+          <Container className='main-cover'>
               <Route exact path='/' component={SignIn}/>
               <Route exact path='/signup' component={SignUp}/>
           </Container>

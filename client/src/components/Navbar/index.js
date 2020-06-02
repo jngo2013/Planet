@@ -8,7 +8,7 @@ const time = moment().format('LLLL');
 
 export default (props) => (
 
-  <Menu stackable inverted className='navi' widths={6}>
+  <Menu fixed='top' stackable inverted className='navi' widths={6}>
     { props.authenticated ? <Menu.Item content={time} /> : null   }
     { props.authenticated ? null : <Menu.Item as={Link} to='/signup' content='Sign Up'/> }
     { props.authenticated ?  <Menu.Item as={Link} to='/signout' content='Sign Out'/> : <Menu.Item as={Link} to='/signin' content='Sign In'/>}

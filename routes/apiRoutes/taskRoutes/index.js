@@ -1,8 +1,8 @@
-// const router = require('express').Router();
-// const { requireAuth } = require('../../../middlewares/authMiddlewares');
-// const { addTask, getAllTasks } = require('../../../controllers')
+const router = require('express').Router();
+const { requireAuth } = require('../../../middlewares/authMiddlewares');
+const { addTask, getAllTasks } = require('../../../controllers')
 
-// router.post('/task', requireAuth,  addTask);
+router.post('/task', requireAuth,  addTask);
 
-// router.get('/get/:id', requireAuth, getAllTasks);
-// module.exports = router;
+router.get('/get/:id', requireAuth, getAllTasks);
+module.exports = router;
