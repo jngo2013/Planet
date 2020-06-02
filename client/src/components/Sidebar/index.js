@@ -17,7 +17,7 @@ class Sidebar extends Component {
             Who's Going?
           </Header>
           <Comment.Group>
-            { this.props.attending?.map((user, idx) => <Segment className='sidebar-user' key={idx}><Icon name='user' />{user.userName}</Segment>)}
+            { this.props.attending?.map((user, idx) => <Segment className='sidebar-user' key={idx}><Icon name='user plus' />{user.userName}</Segment>)}
           </Comment.Group>
         </Segment>
 

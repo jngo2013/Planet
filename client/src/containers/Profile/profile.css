@@ -7,9 +7,8 @@
 
 }
 
-.profile-social {
-    background-color: royalblue;
-    display: block;
+.profile-background {
+    background-color: black;
 }
 
 .profile-name, .profile-info {

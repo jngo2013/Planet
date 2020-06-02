@@ -12,10 +12,10 @@ import {getUserName} from "../../actions/profile";
 
 class Profile extends Component {
   async componentDidMount() {
-console.log('hi')
+
   try {
    await this.props.getUserName()
-    console.log(this.props.getUserInfo)
+
   } catch (e) {
 
   }
