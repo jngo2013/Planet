@@ -5,8 +5,9 @@
 
 
 .sign-in-icon { 
-  color: red;
+  color: ghostwhite;
   border: 2px solid white;
+  box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.85)!important;
 }
 
 /*body {*/
@@ -34,4 +35,5 @@ body {
 
 .ui.stacked.segment {
   border-radius: 10px;
+  box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.85)!important;
 }

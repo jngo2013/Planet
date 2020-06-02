@@ -28,11 +28,14 @@ class MessageBoardContainer extends Component {
   }
 
   onSubmit = async (formValues, dispatch) => {
+    const { reset } = this.props;
     try {
       // change the post route here
       // const { data } = await axios.post('/api/dashboard', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});;
       const { data } = await axios.post(`/api/dashboard/comment/${this.props.eventId}`, formValues, { headers: { 'authorization': localStorage.getItem('token') } })
       dispatch({ type: GET_MESSAGE, payload: data });
+      reset('CreateEvent')
+
     } catch (e) {
       throw e;
     }
