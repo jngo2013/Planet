@@ -1,7 +1,7 @@
-const { isEmail, isLength } = require('validator');
-const jwt = require('jwt-simple');
-const { User } = require('../models');
-const { secret } = require('../config');
+const { isEmail, isLength } = require("validator");
+const jwt = require("jwt-simple");
+const { User } = require("../models");
+const { secret } = require("../config");
 
 function tokenForUser(user) {
   // 1st argument is the information we want to encode
@@ -20,38 +20,45 @@ module.exports = {
     const { email, password, userName, Gender } = req.body;
 
     if (!email || !password) {
-      return res.status(422).json({ error: 'You must provide email and password' });
+      return res
+        .status(422)
+        .json({ error: "You must provide email and password" });
     }
     if (!isEmail(email)) {
-      return res.status(403).json({ error: 'You must provide a valid email address' });
+      return res
+        .status(403)
+        .json({ error: "You must provide a valid email address" });
     }
     if (!isLength(password, { min: 6 })) {
-      return res.status(403).json({ error: 'Your password must be at least 6 characters long' });
+      return res
+        .status(403)
+        .json({ error: "Your password must be at least 6 characters long" });
     }
 
-
-let genderIcon = '';
-    if(Gender === 'male') {
-    genderIcon = 'https://avatars.dicebear.com/api/male/john.svg?mood[]=happy'
-    } else if (Gender === 'female'){
-      genderIcon = 'https://avatars.dicebear.com/api/female/john.svg?mood[]=happy'
-
-
-    }else {
-      genderIcon = 'https://avatars.dicebear.com/api/bottts/john.svg?mood[]=happy'
+    let genderIcon = "";
+    if (Gender === "male") {
+      genderIcon =
+        "https://avatars.dicebear.com/api/male/john.svg?mood[]=happy";
+    } else if (Gender === "female") {
+      genderIcon =
+        "https://avatars.dicebear.com/api/female/john.svg?mood[]=happy";
+    } else {
+      genderIcon =
+        "https://avatars.dicebear.com/api/bottts/john.svg?mood[]=happy";
     }
-
-
-
-
 
     try {
-      console.log('hi');
-      console.log(genderIcon);
       // See if a user with the given email exists
       const existingUser = await User.findOne({ email });
-      if (existingUser) { return res.status(403).json({ error: 'User already exists' }); }
-      const user = await new User({ email, password, userName, Gender: genderIcon }).save();
+      if (existingUser) {
+        return res.status(403).json({ error: "User already exists" });
+      }
+      const user = await new User({
+        email,
+        password,
+        userName,
+        Gender: genderIcon,
+      }).save();
       // Eventually we will send a token
 
       return res.json({ token: tokenForUser(user) });

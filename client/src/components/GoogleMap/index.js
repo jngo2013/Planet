@@ -1,55 +1,48 @@
-import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
-
-
+import React, { Component } from "react";
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 
 const mapStyles = {
-  width: '300px',
-  height: '450px',
-  // display: 'block',
-  margin: '10px'
+  width: "300px",
+  height: "450px",
+  margin: "10px",
 };
 
 export class MapContainer extends Component {
   state = {
-    showingInfoWindow: false,  //Hides or the shows the infoWindow
-    activeMarker: {},          //Shows the active marker upon click
-    selectedPlace: {},   
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
     latit: 0,
-    lngtude: 0,       //Shows the infoWindow to the selected place upon a marker
+    lngtude: 0,
   };
 
   onMarkerClick = (props, marker, e) =>
-  this.setState({
-    selectedPlace: props,
-    activeMarker: marker,
-    showingInfoWindow: true,
-    coordinates: {},
-  });
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true,
+      coordinates: {},
+    });
 
-  onClose = props => {
-    
+  onClose = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
-        activeMarker: null
+        activeMarker: null,
       });
     }
   };
 
   fetchPlaces(mapProps, map) {
-    if(mapProps.location == null){
-
+    if (mapProps.location == null) {
     }
-    console.log(mapProps.location)
-    console.log(mapProps.directions)
- 
   }
   render() {
-    if(this.props.location.lan === undefined && this.props.location.lng === undefined){
-      return (
-        <h2>You map is being made</h2>
-      )
+    if (
+      this.props.location.lan === undefined &&
+      this.props.location.lng === undefined
+    ) {
+      return <h2>You map is being made</h2>;
     } else {
       return (
         <Map
@@ -59,10 +52,7 @@ export class MapContainer extends Component {
           style={mapStyles}
           initialCenter={this.props.location}
         >
-          <Marker
-            onClick={this.onMarkerClick}
-            name={`Event Location`}
-          />
+          <Marker onClick={this.onMarkerClick} name={`Event Location`} />
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
@@ -76,20 +66,8 @@ export class MapContainer extends Component {
       );
     }
   }
-    }
-
-
-
-
-
-
-
-
-
-
-
+}
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyBYEQBxCNDP4ES5FEsblaj4I9ysK47F8iU'
+  apiKey: "AIzaSyBYEQBxCNDP4ES5FEsblaj4I9ysK47F8iU",
 })(MapContainer);
-

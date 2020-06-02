@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 
 import React from 'react'
-import { Container, Header, Segment, Button } from 'semantic-ui-react'
+import { Container, Header, Button } from 'semantic-ui-react'
 import './eventdetails.css';
 
 
