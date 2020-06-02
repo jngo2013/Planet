@@ -11,8 +11,9 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import requireAuth from './../../hoc/requireAuth';
 import { reduxForm, Field } from 'redux-form';
-// import TaskContainer from './../../containers/taskBox';
+import TaskContainer from './../../containers/taskBox';
 import GoogleApiWrapper from './../GoogleMap'
+
 
 import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 // import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react';
@@ -62,70 +63,10 @@ class EventDashboard extends Component {
   render() {
     return (
       <div>
-        
-        {/* <Container>
-          <Grid.Row>
-            <Grid.Column>
-              <Sidebar className='sidebar' />
 
-            </Grid.Column>
-          </Grid.Row>
-        </Container> */}
 
-        {/* <Container>
-          <Grid>
-            <Grid.Row>
-              <HeroImage />
-            </Grid.Row>
-          </Grid>
-        </Container> */}
-
+        <Container> 
         <Container>
-
-          {/* <Grid>
-            <Grid.Row>
-              <EventDetails 
-                title={this.props.userSpecificEvent.title}
-                description={this.props.userSpecificEvent.description}
-                dateCreated={this.props.userSpecificEvent.date}
-                titleUpdate={this.updateTitle}
-                descriptionUpdate={this.updateDescription}
-                locationUpdate={this.updateLocation}
-                location={this.props.userSpecificEvent.directions}
-                dateUpdate={this.props.userSpecificEvent.updateEventDate}
-              />
-              <Grid.Column width={11}>
-                <MessageBoardContainer 
-                  eventId={this.props.specificEvent}
-                />
-              </Grid.Column> */}
-              
-              
-              {/* <Grid.Row>
-                <Grid.Column><GoogleMap /></Grid.Column>
-                <Grid.Column>
-                  <TasksBox />
-                  <TaskContainer/>
-                  </Grid.Column>
-              <Grid.Row>
-                <Grid.Column>
-                  <GoogleApiWrapper
-                  location={this.props.eventCoordinates}
-                  directions={this.props.userSpecificEvent.directions}
-                  />
-                </Grid.Column>
-                
-              </Grid.Row>
-              
-                <Grid.Row>
-                <Grid.Column><TasksBox /></Grid.Column>
-                </Grid.Row>
-              
-
-            </Grid.Row>
-          </Grid> */}
-
-          
               <EventDetails 
                 title={this.props.userSpecificEvent.title}
                 description={this.props.userSpecificEvent.description}
@@ -161,6 +102,11 @@ class EventDashboard extends Component {
                 style={{ margin: '-1.5em', width: 400 }}
                 textAlign='center'
               >
+                <GoogleMap />
+                <TasksBox />
+                <TaskContainer
+                eventId={this.props.specificEvent}
+                 />
                   <Grid.Row>
                     <Grid.Column>
                     <GoogleApiWrapper
@@ -185,8 +131,6 @@ class EventDashboard extends Component {
         </Container>
     
         
-
-
       </div>
     );
   }
@@ -210,6 +154,3 @@ const composedComponent =  compose(
 )(EventDashboard);
 
 export default requireAuth(composedComponent);
-
-
-

@@ -53,8 +53,8 @@ export const GET_MESSAGE_ERROR = 'GET_MESSAGE_ERROR';
 export const POST_TASK = 'POST_TASK';
 export const POST_TASK_ERROR = 'POST_TASK_ERROR';
 
-export const GET_TASK = 'POST_TASK';
-export const GET_TASK_ERROR = 'POST_TASK_ERROR';
+export const GET_TASK = 'GET_TASK';
+export const GET_TASK_ERROR = 'GET_TASK_ERROR';
 
 // for getting the user's model db for profile page
 export const GET_USER_INFO = 'GET_USER_INFO';

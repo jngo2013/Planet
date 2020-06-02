@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { required } from 'redux-form-validators';
 import axios from 'axios';
-import requireAuth from './../../hoc/requireAuth';
-import { GET_TASK } from '../../actions/types';
+import { POST_TASK } from '../../actions/types';
 import { getAllTasks, postTask } from './../../actions/task';
+import './taskbox.css';
 import {
   Header,
   Form,
@@ -19,15 +19,17 @@ import {
 
 class TaskContainer extends Component {
 
-  componentDidMount() {
-    this.props.getAllTasks(this.props.eventId);
-
+  async componentDidUpdate() {
+    console.log("mount me pls")
+     await this.props.getAllTasks(this.props.eventId);
+    console.log("I have been mounted")
   }
 
   onSubmit = async (formValues, dispatch) => {
+    console.log(formValues)
     try {
       const { data } = await axios.post(`/api/taskboard/task/${this.props.eventId}`, formValues, { headers: { 'authorization': localStorage.getItem('token') } })
-      dispatch({ type: GET_TASK, payload: data });
+      dispatch({ type: POST_TASK, payload: data });
     } catch (e) {
       throw e;
     }
@@ -44,12 +46,12 @@ class TaskContainer extends Component {
     )
   }
 
-  renderTasks = (task, tsk) => {
+  renderTasks = (task, idx) => {
+    console.log("owo")
     return (
-      <Comment key={tsk}>
+      <Comment key={idx}>
         <Comment.Content>
-          <Comment.Author>{task.user.userName}</Comment.Author>
-          <Comment.Text>{task.text}</Comment.Text>
+          <Comment.Text className='view-tasks'>{task.text}</Comment.Text>
         </Comment.Content>
       </Comment>
     )
@@ -60,6 +62,9 @@ class TaskContainer extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    const { allTask }= this.props.tasks;
+    console.log(this.props.tasks, "Hello");
+    console.log(allTask)
     return (
       <div>
         <Segment>
@@ -67,16 +72,17 @@ class TaskContainer extends Component {
             Task Box
           </Header>
           <Comment.Group>
-            {this.props.tasks?.map((task,tsk) => this.renderTasks(task,tsk)) }
+            {allTask.map((task,idx) => this.renderTasks(task,idx)) }
           </Comment.Group>
         
         <Form className='message-posting' size='large' reply onSubmit={handleSubmit(this.onSubmit)}>
           
             <Field
-              name='text'
+              name='taskText'
               validate={required({ msg: 'Please add a task' })}
               component={this.renderInput}
             />
+
 
             <Button
               content='Post'
@@ -86,7 +92,6 @@ class TaskContainer extends Component {
               type='submit'
 
             />
-
         </Form>
         </Segment>
       </div>
@@ -101,6 +106,6 @@ function mapStateToProps(state) {
 export default compose(
   connect(mapStateToProps, { getAllTasks, postTask }),
   reduxForm({
-    form: 'CreateEvent'
+    form: 'CreateTask'
   })
 )(TaskContainer);

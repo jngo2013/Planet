@@ -1,0 +1,16 @@
+.view-tasks {
+  height: 500px !important;
+  overflow: scroll;
+  scroll-behavior: smooth !important;
+  white-space: nowrap;
+  /* width: 800px; */
+  border: 20px solid #000000;
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
+  box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.95)!important;
+  border-radius: 5px !important;
+/*background-color: #4CAF50 !important;*/
+
+  /*background-size: cover !important;*/
+
+}

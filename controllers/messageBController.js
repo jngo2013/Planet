@@ -30,7 +30,6 @@ module.exports = {
     const { content } = req.query;
     try {
       const eventMessages = await Message.find({ event: id }).populate("user");
-      console.log(eventMessages)
       return res.status(200).json(eventMessages);
     } catch (e) {
       return res.status(403).json({ e });
