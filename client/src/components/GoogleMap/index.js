@@ -1,24 +1,95 @@
-import React from 'react'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
-const GoogleMap = () => (
-  <Card>
-    <Image src='https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg' wrapped ui={false} />
-    <Card.Content>
-      <Card.Header>Google Map Will Go Here!</Card.Header>
-      <Card.Meta>La Taqueria</Card.Meta>
-      <Card.Meta>2889 Mission St, San Francisco, CA 94110</Card.Meta>
-      <Card.Description>
-        There's no parking.  EVER.  Take BART.
-      </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        10 Friends
-      </a>
-    </Card.Content>
-  </Card>
-)
 
-export default GoogleMap;
+
+const mapStyles = {
+  width: '300px',
+  height: '450px',
+  // display: 'block',
+  margin: '10px'
+};
+
+export class MapContainer extends Component {
+  state = {
+    showingInfoWindow: false,  //Hides or the shows the infoWindow
+    activeMarker: {},          //Shows the active marker upon click
+    selectedPlace: {},   
+    latit: 0,
+    lngtude: 0,       //Shows the infoWindow to the selected place upon a marker
+  };
+
+  onMarkerClick = (props, marker, e) =>
+  this.setState({
+    selectedPlace: props,
+    activeMarker: marker,
+    showingInfoWindow: true,
+    coordinates: {},
+  });
+
+  onClose = props => {
+    
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      });
+    }
+  };
+
+  fetchPlaces(mapProps, map) {
+    if(mapProps.location == null){
+
+    }
+    console.log(mapProps.location)
+    console.log(mapProps.directions)
+ 
+  }
+  render() {
+    if(this.props.location.lan === undefined && this.props.location.lng === undefined){
+      return (
+        <h2>You map is being made</h2>
+      )
+    } else {
+      return (
+        <Map
+          google={this.props.google}
+          onReady={this.fetchPlaces(this.props)}
+          zoom={14}
+          style={mapStyles}
+          initialCenter={this.props.location}
+        >
+          <Marker
+            onClick={this.onMarkerClick}
+            name={`Event Location`}
+          />
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            onClose={this.onClose}
+          >
+            <div>
+              <h4>{this.state.selectedPlace.name}</h4>
+            </div>
+          </InfoWindow>
+        </Map>
+      );
+    }
+  }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyBYEQBxCNDP4ES5FEsblaj4I9ysK47F8iU'
+})(MapContainer);
+

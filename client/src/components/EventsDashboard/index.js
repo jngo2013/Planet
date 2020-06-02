@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HeroImage from '../HeroImage';
 import MessageBoardContainer from './../../containers/MessageBoardContainer';
-import GoogleMap from './../GoogleMap';
+
 import TasksBox from './../TasksBox';
 import moment from 'moment';
 import Sidebar from './../Sidebar/index';
@@ -12,15 +12,15 @@ import { connect } from 'react-redux';
 import requireAuth from './../../hoc/requireAuth';
 import { reduxForm, Field } from 'redux-form';
 // import TaskContainer from './../../containers/taskBox';
+import GoogleApiWrapper from './../GoogleMap'
 
 import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 // import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react';
 import {  Container, Grid, GridRow, Header } from 'semantic-ui-react'
 // import { LOAD_SPECIFIC_EVENT_ID, LOAD_SPECIFIC_EVENT_ID_ERROR} from "../../actions/types";
 // import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
-
-import { getUserEvents, deleteUserEvent, selectEvent, selectedEvent } from '../../actions/eventActions'
 import './dashboard.css';
+import { getUserEvents, deleteUserEvent, selectEvent, selectedEvent, updateEventTitle, updateEventDescription, updateEventDate, getAddress, updateEventLocation } from '../../actions/eventActions'
 
 
 class EventDashboard extends Component {
@@ -30,19 +30,33 @@ class EventDashboard extends Component {
     try {
       const eventId = this.props.specificEvent
       await this.props.selectedEvent(eventId);
-      // the way you access the summoned event is through this prop below
-      console.log(this.props.userSpecificEvent, "LINE 33")
-      console.log(this.props.userSpecificEvent.title, "THIS IS THE TITLE")
-      console.log(this.props.userSpecificEvent.description, "THIS IS THE DESCRIPTION")
-      console.log(this.props.userSpecificEvent.date, "THIS IS THE DATE OF EVENT")
-      console.log(this.props.userSpecificEvent.attending)
-      console.log("-----")
-
+      await this.props.selectedEvent(this.props.specificEvent)
+      await this.props.getAddress(this.props.userSpecificEvent.directions)
+   
+       
     } catch (e) {
-
+      console.log(e)
     }
 
   }
+
+   updateTitle = (_id) => {
+    let newEdit = prompt('Edit Something');
+     console.log("youre updating title")
+     console.log(newEdit)
+     this.props.updateEventTitle(newEdit, this.props.userSpecificEvent._id)
+   }
+   updateDescription = (_id) => {
+     let newEdit = prompt('Edit Something');
+     console.log("You're updating the description")
+     console.log(newEdit)
+     this.props.updateEventDescription(newEdit, this.props.userSpecificEvent._id)
+   }
+   updateLocation = (_id) => {
+     let newEdit = prompt('Input A Location/Address');
+     this.props.updateEventLocation(newEdit, this.props.userSpecificEvent._id)
+   }
+
 
 
   render() {
@@ -73,11 +87,14 @@ class EventDashboard extends Component {
               <EventDetails 
                 title={this.props.userSpecificEvent.title}
                 description={this.props.userSpecificEvent.description}
-                dateCreated={moment(this.props.userSpecificEvent.date).format('LL')}
-                // dateCreated={this.props.userSpecificEvent.date}
-              /> */}
-
-              {/* <Grid.Column width={11} className='map-taskbox'>
+                dateCreated={this.props.userSpecificEvent.date}
+                titleUpdate={this.updateTitle}
+                descriptionUpdate={this.updateDescription}
+                locationUpdate={this.updateLocation}
+                location={this.props.userSpecificEvent.directions}
+                dateUpdate={this.props.userSpecificEvent.updateEventDate}
+              />
+              <Grid.Column width={11}>
                 <MessageBoardContainer 
                   eventId={this.props.specificEvent}
                 />
@@ -90,7 +107,20 @@ class EventDashboard extends Component {
                   <TasksBox />
                   <TaskContainer/>
                   </Grid.Column>
+              <Grid.Row>
+                <Grid.Column>
+                  <GoogleApiWrapper
+                  location={this.props.eventCoordinates}
+                  directions={this.props.userSpecificEvent.directions}
+                  />
+                </Grid.Column>
+                
               </Grid.Row>
+              
+                <Grid.Row>
+                <Grid.Column><TasksBox /></Grid.Column>
+                </Grid.Row>
+              
 
             </Grid.Row>
           </Grid> */}
@@ -101,6 +131,11 @@ class EventDashboard extends Component {
                 description={this.props.userSpecificEvent.description}
                 dateCreated={moment(this.props.userSpecificEvent.date).format('LL')}
                 // dateCreated={this.props.userSpecificEvent.date}
+                titleUpdate={this.updateTitle}
+                descriptionUpdate={this.updateDescription}
+                locationUpdate={this.updateLocation}
+                location={this.props.userSpecificEvent.directions}
+                dateUpdate={this.props.userSpecificEvent.updateEventDate}
               />
 
           {/* Message Board */}
@@ -126,8 +161,23 @@ class EventDashboard extends Component {
                 style={{ margin: '-1.5em', width: 400 }}
                 textAlign='center'
               >
-                <GoogleMap />
-                <TasksBox />
+                  <Grid.Row>
+                    <Grid.Column>
+                    <GoogleApiWrapper
+                  location={this.props.eventCoordinates}
+                  directions={this.props.userSpecificEvent.directions}
+                  />
+                    </Grid.Column>
+ 
+                  </Grid.Row>
+
+                  <Grid.Row>
+                    <Grid.Column>
+                    <TasksBox />
+                    </Grid.Column>
+                  
+                  </Grid.Row>
+                
               </Grid>
             </Grid.Column>
 
@@ -148,13 +198,15 @@ function mapStateToProps(state) {
     specificEvent: state.event.specificEvent,
     specificEventError: state.event.specificEventError,
     deleteEventError: state.event.deleteEventError,
+    eventCoordinates: state.event.eventCoordinates,
+    eventCoordinatesError: state.event.eventCoordnatesError,
 
   };
 };
 
 const composedComponent =  compose(
   reduxForm({ form: 'addTodo' }),
-  connect(mapStateToProps, { getUserEvents, selectEvent, deleteUserEvent, selectedEvent })
+  connect(mapStateToProps, { getUserEvents, selectEvent, deleteUserEvent, selectedEvent, updateEventTitle, updateEventDescription, updateEventDate, getAddress, updateEventLocation })
 )(EventDashboard);
 
 export default requireAuth(composedComponent);
