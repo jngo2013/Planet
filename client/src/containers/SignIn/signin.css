@@ -9,11 +9,19 @@
   border: 2px solid white;
 }
 
+/*body {*/
+/*  background-image:url(https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);*/
+/*  background-size: cover;*/
+/*  background-attachment: fixed;*/
+/*}*/
+
 body {
-  background-image:url(https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);
+  background-image:url(https://codetheweb.blog/assets/img/posts/full-image-hero/image.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
+
+
 
 .ui.grid>.row {
   margin-bottom: 300px;

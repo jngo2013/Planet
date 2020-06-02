@@ -131,7 +131,7 @@ class CreateEvent extends Component {
                      ]
                    }
               component={this.renderInput}
-              className='field'
+
             />
             <h3 className='form-headers' align='left'>4-Digit access code</h3>
             <p>This will be used for inviting guest who can update the event.</p>

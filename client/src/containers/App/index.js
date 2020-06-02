@@ -12,13 +12,12 @@ import SignIn from '../SignIn';
 import SignOut from '../SignOut';
 import JoinEvent from '../JoinEvent'
 import Profile from './../../containers/Profile';
-import './app.css'
 import EventsDashboard from './../../components/EventsDashboard';
 import ShowEventContainer from './../../containers/ShowEventContainer'
-// import HeroVideo from "../../components/HeroVideo";
 import "react-datepicker/dist/react-datepicker.css";
 import Navbar from './../../components/Navbar';
 import CreateEvent from "../CreateEvent";
+import './app.css'
 
 class App extends Component {
   render() {
@@ -27,13 +26,13 @@ class App extends Component {
         <Container fluid>
         <Navbar authenticated={this.props.authenticated}/>
         </Container>
-        {/*<HeroVideo />*/}
-       <div className='hero'>
+
+       {/*<div className='hero'>*/}
          <div className='hero-overlay'>
-           <h1 className='hero-title'>Cool-Name.com</h1>
+           <h1 className='hero-title'>Planet.COM</h1>
          </div>
-         <img src='https://images.unsplash.com/photo-1584573062914-a1f7848470a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' className='hero-image'/>
-       </div>
+         {/*<img src='https://images.unsplash.com/photo-1584573062914-a1f7848470a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80' className='hero-image'/>*/}
+       {/*</div>*/}
         <Container fluid className='app-main-container'>
           <Grid>
             <Grid.Row>
