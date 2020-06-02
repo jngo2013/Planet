@@ -15,7 +15,8 @@ class SignUp extends Component {
       const { data } = await axios.post('/api/auth/signup', formValues);
       localStorage.setItem('token', data.token);
       dispatch({ type: AUTH_USER, payload: data.token });
-      this.props.history.push('/eventsdashboard');
+      // this.props.history.push('/eventsdashboard');
+      this.props.history.push('/usertodos');
     } catch (e) {
       dispatch({ type: AUTH_USER_ERROR, payload: e });
     }
@@ -125,14 +126,15 @@ class SignUp extends Component {
                         size='large'
                         type='submit'
                         disabled={ invalid || submitting || submitFailed }
-                      /> <Button
+                      /> 
+                      {/* <Button
                         content='Sign In'
                         color='facebook'
 
                         size='large'
                         type='submit'
                         disabled={ invalid || submitting || submitFailed }
-                      />
+                      /> */}
                     </Grid.Column>
                   </Grid.Row>
                 </Container>
