@@ -11,7 +11,7 @@ import { ADD_USER_EVENT } from '../../actions/types'
 import { getUserEvents, selectEvent } from '../../actions/eventActions'
 // import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 import HorizontalDivider from './../../components/HorizontalDivider';
-
+import './joinevent.css'
 
 
 class JoinEvent extends Component {

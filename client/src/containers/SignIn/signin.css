@@ -5,7 +5,7 @@
 
 
 .sign-in-icon { 
-  color: white;
+  color: red;
   border: 2px solid white;
 }
 
@@ -16,12 +16,12 @@
 /*}*/
 
 body {
-  background-image:url(https://codetheweb.blog/assets/img/posts/full-image-hero/image.jpg);
+  background-image:url(https://images.wallpaperscraft.com/image/san_francisco_usa_buildings_sky_bridge_night_118204_3840x2160.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
 
-
+/*background-image:url(https://codetheweb.blog/assets/img/posts/full-image-hero/image.jpg);*/
 
 .ui.grid>.row {
   margin-bottom: 300px;

@@ -52,9 +52,7 @@ class App extends Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <div className="footer">
-            <p>Footer</p>
-          </div>
+
         </Container>
 
       </div>
