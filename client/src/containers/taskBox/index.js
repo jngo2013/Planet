@@ -50,9 +50,11 @@ class TaskContainer extends Component {
     console.log("owo")
     return (
       <Comment key={idx}>
-        <Comment.Content>
-          <Comment.Text className='view-tasks'>{task.text}</Comment.Text>
+      <Comment.Content>
+        <Comment.Content className='view-tasks'>
+          <Comment.Text>{task.text}</Comment.Text>
         </Comment.Content>
+      </Comment.Content>
       </Comment>
     )
   }
@@ -66,17 +68,19 @@ class TaskContainer extends Component {
     console.log(this.props.tasks, "Hello");
     console.log(allTask)
     return (
-      <div>
+      <div className='task-board'>
         <Segment>
-          <Header as='h3' dividing>
+          <Header as='h1' dividing>
             Task Box
           </Header>
           <Comment.Group>
+            <Segment className='task-scroll'>
             {allTask.map((task,idx) => this.renderTasks(task,idx)) }
+            </Segment>
           </Comment.Group>
-        
-        <Form className='message-posting' size='large' reply onSubmit={handleSubmit(this.onSubmit)}>
-          
+        </Segment>
+        <Form className='message-posting' size='large' reply onSubmit={handleSubmit(this.onSubmit)}>    <Segment stacked>
+
             <Field
               name='taskText'
               validate={required({ msg: 'Please add a task' })}
@@ -92,8 +96,9 @@ class TaskContainer extends Component {
               type='submit'
 
             />
-        </Form>
         </Segment>
+        </Form>
+
       </div>
     )
   }

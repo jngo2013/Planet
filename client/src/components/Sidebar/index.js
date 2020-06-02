@@ -11,7 +11,7 @@ import { Segment, Header, Comment, Icon } from 'semantic-ui-react';
 class Sidebar extends Component {
   render () {
     return (
-      <div>
+      <div className='attending-main-div'>
         <Segment className='view-attending'>
           <Header as='h3' dividing>
             Who's Going?
