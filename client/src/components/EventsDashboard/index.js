@@ -11,7 +11,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import requireAuth from './../../hoc/requireAuth';
 import { reduxForm, Field } from 'redux-form';
-// import TaskContainer from './../../containers/taskBox';
+import TaskContainer from './../../containers/taskBox';
 
 import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
 // import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react';
@@ -48,54 +48,8 @@ class EventDashboard extends Component {
   render() {
     return (
       <div>
-        
-        {/* <Container>
-          <Grid.Row>
-            <Grid.Column>
-              <Sidebar className='sidebar' />
 
-            </Grid.Column>
-          </Grid.Row>
-        </Container> */}
-
-        {/* <Container>
-          <Grid>
-            <Grid.Row>
-              <HeroImage />
-            </Grid.Row>
-          </Grid>
-        </Container> */}
-
-        <Container>
-
-          {/* <Grid>
-            <Grid.Row>
-              <EventDetails 
-                title={this.props.userSpecificEvent.title}
-                description={this.props.userSpecificEvent.description}
-                dateCreated={moment(this.props.userSpecificEvent.date).format('LL')}
-                // dateCreated={this.props.userSpecificEvent.date}
-              /> */}
-
-              {/* <Grid.Column width={11} className='map-taskbox'>
-                <MessageBoardContainer 
-                  eventId={this.props.specificEvent}
-                />
-              </Grid.Column> */}
-              
-              
-              {/* <Grid.Row>
-                <Grid.Column><GoogleMap /></Grid.Column>
-                <Grid.Column>
-                  <TasksBox />
-                  <TaskContainer/>
-                  </Grid.Column>
-              </Grid.Row>
-
-            </Grid.Row>
-          </Grid> */}
-
-          
+        <Container> 
               <EventDetails 
                 title={this.props.userSpecificEvent.title}
                 description={this.props.userSpecificEvent.description}
@@ -128,6 +82,9 @@ class EventDashboard extends Component {
               >
                 <GoogleMap />
                 <TasksBox />
+                <TaskContainer
+                eventId={this.props.specificEvent}
+                 />
               </Grid>
             </Grid.Column>
 
@@ -135,8 +92,6 @@ class EventDashboard extends Component {
         </Container>
     
         
-
-
       </div>
     );
   }
@@ -158,6 +113,3 @@ const composedComponent =  compose(
 )(EventDashboard);
 
 export default requireAuth(composedComponent);
-
-
-
