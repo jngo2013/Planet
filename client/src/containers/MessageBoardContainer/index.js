@@ -5,16 +5,12 @@ import { compose } from 'redux';
 import { required } from 'redux-form-validators';
 import axios from 'axios';
 import moment from 'moment';
-import requireAuth from './../../hoc/requireAuth';
-import { AUTH_USER, POST_MESSAGE, GET_MESSAGE } from '../../actions/types';
+import { GET_MESSAGE } from '../../actions/types';
 import { getAllMessages, postMessage } from './../../actions/message';
 import {
   Header,
   Form,
   Segment,
-  Message,
-  List,
-  Pagination,
   Button,
   Comment,
   Icon,
