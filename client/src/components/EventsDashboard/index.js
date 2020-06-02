@@ -65,7 +65,7 @@ class EventDashboard extends Component {
       <div>
 
 
-        <Container> 
+        
         <Container>
               <EventDetails 
                 title={this.props.userSpecificEvent.title}
@@ -102,7 +102,7 @@ class EventDashboard extends Component {
                 style={{ margin: '-1.5em', width: 400 }}
                 textAlign='center'
               >
-                <GoogleMap />
+                
                 <TasksBox />
                 <TaskContainer
                 eventId={this.props.specificEvent}
