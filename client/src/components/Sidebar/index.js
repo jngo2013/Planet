@@ -5,23 +5,19 @@ import {reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {getUserName} from "../../actions/profile";
 import requireAuth from "../../hoc/requireAuth";
-import { Segment, Header, Comment } from 'semantic-ui-react';
+import { Segment, Header, Comment, Icon } from 'semantic-ui-react';
 
 
 class Sidebar extends Component {
   render () {
     return (
       <div>
-        {/* <div className="sidebar">
-          { this.props.attending?.map((user, idx) => <p key={idx}>{user.userName}</p>)}
-        </div> */}
-
         <Segment className='view-attending'>
           <Header as='h3' dividing>
             Who's Going?
           </Header>
           <Comment.Group>
-            { this.props.attending?.map((user, idx) => <p key={idx}>{user.userName}</p>)}
+            { this.props.attending?.map((user, idx) => <Segment className='sidebar-user' key={idx}><Icon name='user' />{user.userName}</Segment>)}
           </Comment.Group>
         </Segment>
 

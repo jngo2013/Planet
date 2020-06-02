@@ -80,7 +80,9 @@ class MessageBoardContainer extends Component {
             Event Message Board
           </Header>
           <Comment.Group>
+            <Segment>
             { this.props.messages.map((message,idx) => this.renderMessages(message,idx)) }
+            </Segment>
           </Comment.Group>
         </Segment>
         <Form className='message-posting' size='large' reply onSubmit={handleSubmit(this.onSubmit)}>
