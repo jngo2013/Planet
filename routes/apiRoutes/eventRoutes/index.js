@@ -1,13 +1,9 @@
 const router = require('express').Router();
-// const { signUp, signIn } = require('../../../controllers/authController');
 const { requireAuth } = require('../../../middlewares/authMiddlewares');
 const { joinEvent, createEvent, getEvent, deleteEvent, specificEvent, updateTitle, updateDescription, updateLocation } = require('../../../controllers/eventController')
 
 // has /api/event prepended to everything
 
-
-// router.post('/signup', signUp);
-// router.post('/signin', requireSignIn, signIn);
 router.get('/events', requireAuth, getEvent);
 
 router.post('/join', requireAuth, joinEvent);

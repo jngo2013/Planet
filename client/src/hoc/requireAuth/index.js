@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 export default (ChildComponent) => {
   class ComposedComponent extends Component {
@@ -12,12 +12,12 @@ export default (ChildComponent) => {
       this.shouldNavigateAway();
     }
     shouldNavigateAway() {
-      if(!this.props.authenticated) {
-        this.props.history.push('/');
+      if (!this.props.authenticated) {
+        this.props.history.push("/");
       }
     }
     render() {
-      return <ChildComponent {...this.props}/>
+      return <ChildComponent {...this.props} />;
     }
   }
 
@@ -26,4 +26,4 @@ export default (ChildComponent) => {
   }
 
   return connect(mapStateToProps)(ComposedComponent);
-}
+};

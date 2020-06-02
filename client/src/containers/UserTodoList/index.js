@@ -1,34 +1,46 @@
-import React, { Component } from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { Header, Form, Segment, Message, List, Pagination, Button, Image, Container, Grid, Icon} from 'semantic-ui-react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import React, { Component } from "react";
+import { reduxForm } from "redux-form";
+import {
+  Header,
+  Form,
+  List,
+  Pagination,
+  Container,
+  Icon,
+} from "semantic-ui-react";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
-import axios from 'axios';
+import axios from "axios";
 
-import requireAuth from './../../hoc/requireAuth';
+import requireAuth from "./../../hoc/requireAuth";
 
-import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
-import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from '../../actions/types';
+import {
+  getUserTodos,
+  updateCompleteUserTodoById,
+  deleteTodoById,
+} from "../../actions/allTodos";
+import { ADD_USER_TODO, ADD_USER_TODO_ERROR } from "../../actions/types";
 
+import {
+  getUserEvents,
+  deleteUserEvent,
+  selectEvent,
+  selectedEvent,
+} from "../../actions/eventActions";
 
-// import { ADD_USER_EVENT } from '../../actions/types'
-import { getUserEvents, deleteUserEvent, selectEvent, selectedEvent } from '../../actions/eventActions'
+import UserTodoListItems from "./UserTodoListItems";
 
-import UserTodoListItems from './UserTodoListItems';
+import "./list.css";
 
-import './list.css';
-
-import HorizontalDivider from './../../components/HorizontalDivider';
-
+import HorizontalDivider from "./../../components/HorizontalDivider";
 
 class UserTodoList extends Component {
   state = {
     activePage: 1,
     start: 0,
     end: 10,
-  }
-
+  };
 
   componentDidMount() {
     this.props.getUserEvents();
@@ -36,97 +48,83 @@ class UserTodoList extends Component {
 
   onSubmit = async (formValues, dispatch) => {
     try {
-      await axios.post('/api/user/todos', formValues, { headers: { 'authorization': localStorage.getItem('token')}});
+      await axios.post("/api/user/todos", formValues, {
+        headers: { authorization: localStorage.getItem("token") },
+      });
       dispatch({ type: ADD_USER_TODO });
       this.props.getUserTodos();
     } catch (e) {
-      dispatch({ type: ADD_USER_TODO_ERROR, payload: 'You must provide text' });
+      dispatch({ type: ADD_USER_TODO_ERROR, payload: "You must provide text" });
     }
-  }
+  };
 
-  renderAddTodo = ({ input, meta })=> {
+  renderAddTodo = ({ input, meta }) => {
     return (
       <Form.Input
         {...input}
-        error={ meta.touched && meta.error }
-        autoComplete='off'
-        placeholder='Event Name'
+        error={meta.touched && meta.error}
+        autoComplete="off"
+        placeholder="Event Name"
       />
     );
-  }
+  };
 
   handleRedirect = async (_id, completed) => {
     try {
-      await this.props.selectEvent(_id, completed)
- 
-      this.props.history.push('/eventsdashboard')
-    } catch (e) {
+      await this.props.selectEvent(_id, completed);
 
-    }
-
-  }
+      this.props.history.push("/eventsdashboard");
+    } catch (e) {}
+  };
 
   handlePageChange = (event, data) => {
     this.setState({
       activePage: data.activePage,
       start: data.activePage === 1 ? 0 : data.activePage * 10 - 10,
-      end: data.activePage * 10
+      end: data.activePage * 10,
     });
-  }
+  };
 
   render() {
     const { handleSubmit } = this.props;
     return (
       <>
         <Container>
-          <Header as='h2' icon textAlign='center'>
-            <Icon name='calendar alternate outline' circular size='massive' className='list-icon'/>
-            <HorizontalDivider title="My Events"/>
+          <Header as="h2" icon textAlign="center">
+            <Icon
+              name="calendar alternate outline"
+              circular
+              size="massive"
+              className="list-icon"
+            />
+            <HorizontalDivider title="My Events" />
           </Header>
         </Container>
-        
 
-        <Form size='large' onSubmit={handleSubmit(this.onSubmit)}>
-          {/* ======= DELETE THIS ======== */}
-          {/* <Segment stacked>
-            <Field
-              name='text'
-              component={this.renderAddTodo}
-            />
-            <Button
-              type='submit'
-              fluid
-              color='teal'
-              content='Create new event'/>
-          </Segment> */}
-        </Form>
+        <Form size="large" onSubmit={handleSubmit(this.onSubmit)}></Form>
 
         <Container>
-          
-              <List divided selection className='list'>
-                <UserTodoListItems
-                  events={this.props.userEvents.slice(this.state.start, this.state.end)}
-                  handleDelete={this.props.deleteUserEvent}
-                  handleEventSelect={this.props.selectEvent}
-                  handleRedirect={this.handleRedirect}
-                />
-              </List>
-           <Container className='page-nation'>
-              { this.props.userEvents.length === 0 ?
-              null
-              : <Pagination
-                totalPages={ Math.ceil(this.props.userEvents.length / 10) }
+          <List divided selection className="list">
+            <UserTodoListItems
+              events={this.props.userEvents.slice(
+                this.state.start,
+                this.state.end
+              )}
+              handleDelete={this.props.deleteUserEvent}
+              handleEventSelect={this.props.selectEvent}
+              handleRedirect={this.handleRedirect}
+            />
+          </List>
+          <Container className="page-nation">
+            {this.props.userEvents.length === 0 ? null : (
+              <Pagination
+                totalPages={Math.ceil(this.props.userEvents.length / 10)}
                 activePage={this.state.activePage}
-                onPageChange={ (e, data) => this.handlePageChange(e, data) }
+                onPageChange={(e, data) => this.handlePageChange(e, data)}
               />
-
-              }
-
-           </Container>
+            )}
+          </Container>
         </Container>
-        
-
-        
       </>
     );
   }
@@ -145,19 +143,19 @@ function mapStateToProps(state) {
     eventCoordinatesError: state.event.eventCoordnatesError,
     userSpecificEvent: state.event.userSpecificEvent,
   };
-};
+}
 
-
-// export default reduxForm({ form: 'addTodo' })(connect(mapStateToProps, { getUserTodos })(UserTodoList));
-// export default connect(mapStateToProps, { getUserTodos })(reduxForm({ form: 'addTodo' })(UserTodoList))
-
-// const composedComponent = connect(mapStateToProps, { getUserTodos })(UserTodoList);
-// export default reduxForm({ form: 'addTodo' })(composedComponent);
-
-const composedComponent =  compose(
-  reduxForm({ form: 'addTodo' }),
-  connect(mapStateToProps, { getUserEvents, selectEvent, deleteUserEvent, selectedEvent, getUserTodos, updateCompleteUserTodoById, deleteTodoById })
+const composedComponent = compose(
+  reduxForm({ form: "addTodo" }),
+  connect(mapStateToProps, {
+    getUserEvents,
+    selectEvent,
+    deleteUserEvent,
+    selectedEvent,
+    getUserTodos,
+    updateCompleteUserTodoById,
+    deleteTodoById,
+  })
 )(UserTodoList);
-
 
 export default requireAuth(composedComponent);

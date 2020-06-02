@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import './searchbox.css';
 
 export const Searchbox = ({ placeholder, handleChange }) => (
