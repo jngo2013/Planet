@@ -1,25 +1,15 @@
 import React, { Component } from 'react';
-import HeroImage from '../HeroImage';
 import MessageBoardContainer from './../../containers/MessageBoardContainer';
-
-import TasksBox from './../TasksBox';
 import moment from 'moment';
 import Sidebar from './../Sidebar/index';
-import './../Sidebar/sidebar.css'
 import EventDetails from './../EventDetails';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import requireAuth from './../../hoc/requireAuth';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import TaskContainer from './../../containers/taskBox';
 import GoogleApiWrapper from './../GoogleMap'
-
-
-import { getUserTodos, updateCompleteUserTodoById, deleteTodoById } from '../../actions/allTodos';
-// import { Container, Divider, Grid, Header, Image } from 'semantic-ui-react';
-import {  Container, Grid, GridRow, Header } from 'semantic-ui-react'
-// import { LOAD_SPECIFIC_EVENT_ID, LOAD_SPECIFIC_EVENT_ID_ERROR} from "../../actions/types";
-// import { getUserEvents, deleteUserEvent, selectEvent } from '../../actions/eventActions'
+import {  Container, Grid } from 'semantic-ui-react'
 import './dashboard.css';
 import { getUserEvents, deleteUserEvent, selectEvent, selectedEvent, updateEventTitle, updateEventDescription, updateEventDate, getAddress, updateEventLocation } from '../../actions/eventActions'
 
@@ -69,7 +59,6 @@ class EventDashboard extends Component {
                 title={this.props.userSpecificEvent.title}
                 description={this.props.userSpecificEvent.description}
                 dateCreated={moment(this.props.userSpecificEvent.date).format('LL')}
-                // dateCreated={this.props.userSpecificEvent.date}
                 titleUpdate={this.updateTitle}
                 descriptionUpdate={this.updateDescription}
                 locationUpdate={this.updateLocation}
@@ -85,16 +74,12 @@ class EventDashboard extends Component {
                 eventId={this.props.specificEvent}
               />
             </Grid.Column>
-
-            {/* Sidebar */}
             <Grid.Column>
               <Sidebar className='sidebar' />
               <TaskContainer
                 eventId={this.props.specificEvent}
               />
             </Grid.Column>
-
-            {/* Google Maps */}
             <Grid.Column>
                   <h1>You'll be going here:</h1>
                   <GoogleApiWrapper
