@@ -91,7 +91,44 @@ module.exports = {
       return res.status(403).json({ e })
     }
 
-  }
+  },
+  updateTitle: async (req, res) => {
+    console.log("title back end")
+    const { eventId } = req.params;
+    const { title } = req.body;
+    console.log(title)
+    console.log(eventId)
+    try {
+      const joinAttending = await Event.findByIdAndUpdate(eventId,{ title },  { new: true })
+      console.log('yesss')
+      console.log(joinAttending)
+      return res.json(joinAttending)
+    } catch (e) {
+      return res.status(403).json({ e })
+    }
+  },
+  updateDescription: async (req, res) => {
+    console.log('description back end')
+    const { eventId } = req.params;
+    const { description } = req.body;
+    try {
+      const joinAttending = await Event.findByIdAndUpdate(eventId,{ description },  { new: true })
+      return res.json(joinAttending)
+    } catch (e) {
+      return res.status(403).json({ e })
+    }
+  },
+  updateLocation: async (req, res) => {
+    console.log('updating the location')
+    const { eventId } = req.params;
+    const { location } = req.body;
+    try {
+      const joinAttending = await Event.findByIdAndUpdate(eventId,{ directions: location },  { new: true })
+      return res.json(joinAttending)
+    } catch (e) {
+      return res.status(403).json({ e })
+    }
+  },
 
 
 }

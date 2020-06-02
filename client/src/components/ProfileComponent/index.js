@@ -5,8 +5,8 @@ import { Container, Grid, Segment, Form, Comment } from "semantic-ui-react";
 const ProfileComponent = (props) => {
   return (
     <div>
-      <Container>
-        <Grid celled padded style={{height: '100vh'}}>
+      <Container className='profile-background'>
+        <Grid  padded style={{height: '100vh'}}>
           <Grid.Row style={{height: '70%'}}>
             <Grid.Column width={12}>
               <Segment className='profile-segment-main'>

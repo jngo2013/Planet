@@ -1,11 +1,13 @@
-.hero {
-    position: relative;
-    margin-top: 0px;
-}
+/*.hero {*/
+/*    position: relative;*/
+/*    margin-top: 0px;*/
+/*    opacity: 10%;*/
+/*}*/
 
 .hero-overlay {
+    margin-bottom: 200px;
     text-align: center;
-    position: absolute;
+    /*position: fixed;*/
     text-transform: uppercase;
     z-index: 0;
     width: 100%;
@@ -14,31 +16,35 @@
 .hero-title {
     font-size: 6vw;
     transform: translateY(9vw);
-    color: #ffffff;
+    color: black;
     letter-spacing: 0.45rem;
     font-weight: 500;
-    font-family: 'Monoton', cursive;
+    /*font-family: 'Monoton', cursive;*/
+    font-family: 'Fugaz One', cursive;
     opacity: 100%;
-
-
-}
-
-.hero-image {
-    display: block;
-    overflow: scroll;
-    z-index: -1;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-
+    margin-bottom: 450px;
+    height: 150px;
+    width: 100vw;
 
 }
-.footer {
-    background-color: #f1f1f1;
-    padding: 10px;
-    text-align: center;
 
-}
+/*.hero-image {*/
+/*    display: block;*/
+/*    overflow: scroll;*/
+/*    z-index: -1;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    width: 75%;*/
+
+
+
+/*}*/
+/*.footer {*/
+/*    background-color: #f1f1f1;*/
+/*    padding: 10px;*/
+/*    text-align: center;*/
+
+/*}*/
 
 /*.app-main-container {*/
 

@@ -26,6 +26,7 @@ const EventSchema = new Schema({
   },
   directions: {
     type: String,
+    default: 'San Francisco',
   },
   itemsNeeded: [{
     type: String

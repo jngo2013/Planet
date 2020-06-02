@@ -11,7 +11,7 @@ import './createevent.css'
 import { compose } from 'redux';
 import "react-datepicker/dist/react-datepicker.css";
 
-import { getUserEvents } from '../../actions/eventActions'
+import { getUserEvents, selectEvent, selectedEvent } from '../../actions/eventActions'
 
 import { ADD_USER_EVENT } from '../../actions/types'
 
@@ -42,11 +42,12 @@ class CreateEvent extends Component {
   }
 
   onSubmit = async (formValues, dispatch) => {
-
     try {
       const { data } = await axios.post('/api/event/create', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});
       dispatch({ type: ADD_USER_EVENT })
-      this.props.getUserEvents();
+      await this.props.selectEvent(data._id);
+      // console.log(this.props.specificEvent)
+      // await this.props.selectedEvent(this.props.specificEvent)
       this.props.history.push('/eventsdashboard');
     } catch (e) {
       throw new SubmissionError({
@@ -130,7 +131,7 @@ class CreateEvent extends Component {
                      ]
                    }
               component={this.renderInput}
-              className='field'
+
             />
             <h3 className='form-headers' align='left'>4-Digit access code</h3>
             <p>This will be used for inviting guest who can update the event.</p>
@@ -180,12 +181,18 @@ class CreateEvent extends Component {
 function mapStateToProps(state) {
   return {
     userEvents: state.event.userEvents,
+    userSpecificEvent: state.event.userSpecificEvent,
+    specificEvent: state.event.specificEvent,
+    specificEventError: state.event.specificEventError,
+    deleteEventError: state.event.deleteEventError,
+    eventCoordinates: state.event.eventCoordinates,
+    eventCoordinatesError: state.event.eventCoordnatesError,
   }
 }
 
 const composedComponent = compose(
   reduxForm({ form: 'CreateEvent'}),
-  connect(mapStateToProps, { getUserEvents })
+  connect(mapStateToProps, { getUserEvents, selectEvent, selectedEvent })
 )(CreateEvent)
 
 export default requireAuth(composedComponent)
