@@ -4,6 +4,8 @@
 
 # Table of Contents
 
+- [**Planet**](#planet)
+- [Table of Contents](#table-of-contents)
 - [Project Description](#project-description)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -11,6 +13,7 @@
 - [License](#license)
 - [Contributions](#contributions)
 - [Questions](#questions)
+- [Developers](#developers)
 
 # Project Description
 
@@ -61,3 +64,7 @@ Kerry Smith
 Scott Whitney  
 [Github](https://github.com/scott-whitney)  
 <scott.whitney334@gmail.com>
+
+![ss1](./assets/ss/landingPage.png)
+![ss2](./assets/ss/landingPage2.png)
+![ss3](assets/ss/eventPage.png)
