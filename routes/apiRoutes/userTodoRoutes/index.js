@@ -1,27 +1,29 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
   getUserTodos,
   deleteUserTodoById,
   updateTodoById,
   getAllUserEmails,
   addTodo,
-} = require('../../../controllers/userController');
+} = require("../../../controllers/userController");
 
-const { requireAuth } = require('../../../middlewares/authMiddlewares');
+const { requireAuth } = require("../../../middlewares/authMiddlewares");
 
 // /api/user/emails
-router.get('/emails', getAllUserEmails);
+router.get("/emails", getAllUserEmails);
 
 // /api/user/todos
 
-router.route('/profile/:id')
+router.route("/profile/:id");
 
-router.route('/todos')
+router
+  .route("/todos")
   .get(requireAuth, getUserTodos)
   .post(requireAuth, addTodo);
 // /api/user/emails
 
-router.route('/todos/:todoId')
+router
+  .route("/todos/:todoId")
   .delete(requireAuth, deleteUserTodoById)
   .put(requireAuth, updateTodoById);
 
