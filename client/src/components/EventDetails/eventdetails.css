@@ -3,7 +3,6 @@
     font-size: 1.5rem;
     color: ghostwhite;
     background-color: rebeccapurple;
-    /* opacity: 95%; */
 }
 
 .eventDetailsBox {
@@ -22,7 +21,6 @@
     font-weight: lighter !important;
     color: ghostwhite !important;
     background-color: rebeccapurple;
-    /* opacity: 95%; */
     max-width: 125rem;
 }
 
@@ -30,11 +28,3 @@
     margin-left: 20px !important;
 }
 
-
-/*font-family: 'Bitter', serif;*/
-/*font-family: 'Fugaz One', cursive;*/
-/*font-family: 'Homemade Apple', cursive;*/
-/*font-family: 'Lato', sans-serif;*/
-/*font-family: 'Merriweather', serif;*/
-/*font-family: 'Monoton', cursive;*/
-/*font-family: 'Pacifico', cursive;*/

@@ -24,10 +24,14 @@ class App extends Component {
         <Container fluid>
           <Navbar authenticated={this.props.authenticated} />
         </Container>
-        <div className="hero-overlay">
-          <h1 className="hero-title">Planet.Com</h1>
-        </div>
-        <Container fluid className="app-main-container">
+
+
+       {/*<div className='hero'>*/}
+         <div className='hero-overlay'>
+           <h1 className='hero-title'>Planet.Com</h1>
+         </div>
+
+        <Container fluid className='app-main-container'>
           <Grid>
             <Grid.Row>
               <Grid.Column width={16}>
@@ -53,29 +57,31 @@ class App extends Component {
         </Container>
         <section></section>
         <div className="footer">
-          <div id="button">
-            <h2 className="footer-contact">Contact</h2>
-          </div>
+          <div id="button"><h2 className='footer-contact'>Contact&nbsp;us</h2></div>
+            <div className='space'>
+
+            </div>
           <div id="container">
             <div id="cont">
               <div className="footer_center">
-                <h3>
-                  <a href="https://github.com/Kerry-Jr/" target="_blank">
-                    Kerry Smith
-                  </a>
-                  &#128512;&nbsp;
-                  <a href="http://github.com/jngo2013/" target="_blank">
-                    Jimmy Ngo
-                  </a>
-                  &#128512;&nbsp;
-                  <a href="https://github.com/Guillermo-Martin" target="_blank">
-                    Guillermo Martin
-                  </a>
-                  &#128512;&nbsp;
-                  <a href="https://github.com/scott-whitney" target="_blank">
-                    Scott Whitney
-                  </a>
-                </h3>
+                    <div className='footer-main'>
+                        <a href="https://github.com/Kerry-Jr" target="_blank">
+                            <img className='foot-image' src="https://avatars2.githubusercontent.com/u/59150488?s=460&u=a39e0505b20d0baa7e3ddc531c7b0a29b9855bc5&v=4" alt="img of Kerry Smith"/>
+                        <p className='footer-text'>Kerry Smith</p>
+                        </a>
+                        <a href="https://github.com/jngo2013" target="_blank">
+                            <img className='foot-image' src="https://ca.slack-edge.com/TUFNTT7ND-UUUANP878-152c8bd24b27-512" alt="img of Jimmy Ngo"/>
+                        <p className='footer-text'>Jimmy Ngo</p>
+                        </a>
+                        <a href="https://github.com/Guillermo-Martin" target="_blank">
+                            <img className='foot-image' src="https://avatars1.githubusercontent.com/u/57199674?s=460&v=4" alt="img of Guillermo-Martin"/>
+                        <p className='footer-text'>Guillermo Martin</p>
+                        </a>
+                        <a href="https://github.com/scott-whitney" target="_blank">
+                            <img className='foot-image' src="https://ca.slack-edge.com/TUFNTT7ND-UUS4D420G-ba76b1c50983-512" alt="img of Scott Whitney"/>
+                        <p className='footer-text'>Scott Whitney</p>
+                        </a>
+                    </div>
               </div>
             </div>
           </div>

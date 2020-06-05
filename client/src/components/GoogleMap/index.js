@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import React, { Component } from 'react';
+import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import './googlemap.css'
 
 const mapStyles = {
   width: "300px",
@@ -38,11 +39,11 @@ export class MapContainer extends Component {
     }
   }
   render() {
-    if (
-      this.props.location.lan === undefined &&
-      this.props.location.lng === undefined
-    ) {
-      return <h2>You map is being made</h2>;
+    if(this.props.location.lan === undefined && this.props.location.lng === undefined){
+      return (
+        <h2 className='google-spinner'>You map is being made</h2>
+      )
+
     } else {
       return (
         <Map

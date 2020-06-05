@@ -77,7 +77,7 @@
 .ui.padded.grid:not(.vertically):not(.horizontally) {
     margin: 0!important;
     width: 100% !important;
-    opacity: 100% !important;
+
 }
 
 .profile-update {
