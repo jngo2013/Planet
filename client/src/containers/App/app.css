@@ -22,7 +22,7 @@
     font-weight: 500;
     /*font-family: 'Monoton', cursive;*/
     font-family: 'Fugaz One', cursive;
-    opacity: .75 !important;
+
     margin-bottom: 450px !important;
     height: 150px;
     width: 100vw;
@@ -54,18 +54,7 @@ section{
     margin-bottom: 30px !important;
 
 }
-.footer #button:hover{
-    width:35px;
-    height:35px;
-    border: #3A3A3A 12px solid;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    transition: all 1s ease;
-    position:relative;
 
-}
 .footer {
     bottom:0;
     left:0;
@@ -81,6 +70,7 @@ section{
     transition: all 1s ease;
     z-index:999;
 
+
 }
 .footer:hover {
     -webkit-transition: all 1s ease;
@@ -88,7 +78,7 @@ section{
     -o-transition: all 1s ease;
     -ms-transition: all 1s ease;
     transition: all 1s ease;
-    height: 8em;
+    height: 19em;
 }
 .footer #container{
     /*margin-top:5px;*/
@@ -97,8 +87,9 @@ section{
     position:relative;
     top:0;
     left:0;
-    background-color: rebeccapurple;
-    opacity: 80%;
+    background-color: black;
+
+
 }
 .footer #cont{
     position:relative;
@@ -126,5 +117,35 @@ section{
     color: ghostwhite;
     /*padding-bottom: 30px;*/
     font-size: 30px;
+    margin-top: 40px;
+    font-family: 'Fugaz One', cursive;
 
+}
+
+.foot-image {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin-left: 40px;
+    box-shadow: 10px 5px 5px 0px rgba(0,0,0,0.95)!important;
+}
+
+.footer-main {
+    columns: 100px 5 !important;
+    justify-content: center !important;
+}
+
+.footer-text {
+    color:white;
+    font-size: 13px;
+    font-family: 'Fugaz One', cursive;
+
+}
+
+.space {
+    height: 50px;
+}
+
+.footer {
+    padding-bottom: 50px;
 }
