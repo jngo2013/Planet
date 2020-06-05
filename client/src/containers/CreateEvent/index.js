@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 import { Form, Segment, Button, Icon, Container, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-// import { compose } from 'redux';
 import { length, required} from 'redux-form-validators';
 import axios from 'axios';
 import requireAuth from './../../hoc/requireAuth';
@@ -32,7 +31,6 @@ class CreateEvent extends Component {
     <div className='customDatePickerWidth'>
       <Form.Input error={ touched && error }>
       <DatePicker className='dateForm' {...input} dateForm="MM/DD/YYYY" selected={this.state.startDate} onSelect={this.handleSelect} />
-      {/*{touched && error && <span>{error}</span>}*/}
       </Form.Input>
      </div>
   );
@@ -46,8 +44,6 @@ class CreateEvent extends Component {
       const { data } = await axios.post('/api/event/create', formValues,  { headers: { 'authorization': localStorage.getItem('token')}});
       dispatch({ type: ADD_USER_EVENT })
       await this.props.selectEvent(data._id);
-      // console.log(this.props.specificEvent)
-      // await this.props.selectedEvent(this.props.specificEvent)
       this.props.history.push('/eventsdashboard');
     } catch (e) {
       throw new SubmissionError({
@@ -87,7 +83,7 @@ class CreateEvent extends Component {
   }
 
   render() {
-    const { handleSubmit, invalid, submitting, submitFailed, pristine, reset } = this.props;
+    const { handleSubmit, invalid, submitting, submitFailed } = this.props;
     return (
 
       

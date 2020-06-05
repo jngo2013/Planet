@@ -1,31 +1,30 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Grid, Container } from 'semantic-ui-react'
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
+import { connect } from "react-redux";
+import { Grid, Container } from "semantic-ui-react";
 
-import AllTodosList from '../AllTodosList';
-import UserTodoList from '../UserTodoList';
+import UserTodoList from "../UserTodoList";
 
-import LandingPage from "../../components/LandingPage";
-import SignUp from '../SignUp';
-import SignIn from '../SignIn';
-import SignOut from '../SignOut';
-import JoinEvent from '../JoinEvent'
-import Profile from './../../containers/Profile';
-import EventsDashboard from './../../components/EventsDashboard';
-import ShowEventContainer from './../../containers/ShowEventContainer'
+import SignUp from "../SignUp";
+import SignIn from "../SignIn";
+import SignOut from "../SignOut";
+import JoinEvent from "../JoinEvent";
+import Profile from "./../../containers/Profile";
+import EventsDashboard from "./../../components/EventsDashboard";
+import ShowEventContainer from "./../../containers/ShowEventContainer";
 import "react-datepicker/dist/react-datepicker.css";
-import Navbar from './../../components/Navbar';
+import Navbar from "./../../components/Navbar";
 import CreateEvent from "../CreateEvent";
-import './app.css'
+import "./app.css";
 
 class App extends Component {
   render() {
     return (
       <div>
         <Container fluid>
-        <Navbar authenticated={this.props.authenticated}/>
+          <Navbar authenticated={this.props.authenticated} />
         </Container>
+
 
        {/*<div className='hero'>*/}
          <div className='hero-overlay'>
@@ -36,26 +35,27 @@ class App extends Component {
           <Grid>
             <Grid.Row>
               <Grid.Column width={16}>
-          <Container className='main-cover'>
-              <Route exact path='/' component={SignIn}/>
-              <Route exact path='/signup' component={SignUp}/>
-          </Container>
-          <Route exact path='/signin' component={SignIn}/>
-          <Route exact path='/signout' component={SignOut}/>
-          <Route exact path='/createevent' component={CreateEvent}/>
-                <Route exact path='/profile' component={Profile}/>
-          <Route exact path='/eventsdashboard' component={EventsDashboard} />
-          <Route exact path='/alltodos' component={ShowEventContainer}/>
-          <Route exact path='/usertodos' component={UserTodoList}/>
-          <Route exact path='/joinEvent' component={JoinEvent}/>
+                <Container className="main-cover">
+                  <Route exact path="/" component={SignIn} />
+                  <Route exact path="/signup" component={SignUp} />
+                </Container>
+                <Route exact path="/signin" component={SignIn} />
+                <Route exact path="/signout" component={SignOut} />
+                <Route exact path="/createevent" component={CreateEvent} />
+                <Route exact path="/profile" component={Profile} />
+                <Route
+                  exact
+                  path="/eventsdashboard"
+                  component={EventsDashboard}
+                />
+                <Route exact path="/alltodos" component={ShowEventContainer} />
+                <Route exact path="/usertodos" component={UserTodoList} />
+                <Route exact path="/joinEvent" component={JoinEvent} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
-
         </Container>
-        <section>
-
-        </section>
+        <section></section>
         <div className="footer">
           <div id="button"><h2 className='footer-contact'>Contact&nbsp;us</h2></div>
             <div className='space'>
@@ -81,17 +81,16 @@ class App extends Component {
                             <img className='foot-image' src="https://ca.slack-edge.com/TUFNTT7ND-UUS4D420G-ba76b1c50983-512" alt="img of Scott Whitney"/>
                         <p className='footer-text'>Scott Whitney</p>
                         </a>
-
                     </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 function mapStateToProps(state) {
-  return {authenticated: state.auth.authenticated};
+  return { authenticated: state.auth.authenticated };
 }
 export default connect(mapStateToProps)(App);
